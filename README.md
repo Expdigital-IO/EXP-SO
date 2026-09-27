@@ -9,6 +9,33 @@ Zero After Effects: HTML + trilha composta em numpy + render Playwright/ffmpeg.
 | 002 | Logo Flash Reel (`logo-reel.html`) | `exp-logo-reel.mp4` | 1080×1920 · 60fps · 10s · loop |
 | 003 | Logo Sting (`logo-sting.html`) | `exp-logo-sting.mp4` | 1080×1920 · 60fps · 3.6s · loop |
 | 004 | Ident (`logo-ident.html`) | `exp-logo-ident.mp4` | 1080×1920 · 60fps · 5s · loop — cinema dive/blast, render com `RENDER_SUB=10` |
+| 005 | Brand Film (`brand-film.html`) | `exp-brand-film.mp4` | 1080×1920 · 60fps · 16s · loop — 3 atos, trilha `film-audio.py`, render com `RENDER_SUB=10` |
+
+## 005 — Brand Film
+
+Apresentação completa da marca em 16 s (8 compassos a 120 BPM), em três atos:
+
+| Tempo | Ato | Cenas |
+|---|---|---|
+| 0–4,75 s | **I · Branding** | símbolo neon → positivo → sobre cor · capítulo 01 *"Criativo também é estratégia."* · paleta com proporção de uso (60/25/10/5) · espécime tipográfico Geist (4 pesos) · billboard · papelaria |
+| 4,75–6,25 s | ponte | perfil do Instagram → **mergulho de câmera no avatar** → iPhone nasce do card laranja |
+| 6,25–12 s | **II · Marketing** | capítulo 02 *"Do zero à operação digital."* · dashboard de campanhas (receita, ROAS, leads, CTR) · funil de performance · anúncio patrocinado + notificações de lead/venda · busca com a EXP em 1º · marquee |
+| 12–16 s | **III · Assinatura** | blast selando a tela → macro metálico · manifesto *"Você traz o negócio. A EXP traz a estrutura."* · endcard com CTA |
+
+Os números dos mockups são ilustrativos.
+
+**Trilha (`film-audio.py`):** corporate house em Lá menor. Piano elétrico FM
+com acordes sincopados (Am9 → Fmaj9 → Cmaj9 → G6/9), baixo no contratempo,
+hats com swing, reverb por convolução. O arpejo entra no Ato II, a caixa
+acelera no build, há ~60 ms de silêncio no frame laranja sólido antes do boom,
+acordes em meio-tempo no manifesto e cadência E7 → Am9 no endcard.
+
+```bash
+python3 film-audio.py                                          # → /tmp/exp-film.wav
+RENDER_SUB=10 python3 render.py /tmp/film.mp4 brand-film.html 16
+FF=$(python3 -c "import imageio_ffmpeg;print(imageio_ffmpeg.get_ffmpeg_exe())")
+$FF -i /tmp/film.mp4 -i /tmp/exp-film.wav -c:v copy -c:a aac -b:a 192k -shortest exp-brand-film.mp4
+```
 
 ## 002 — Logo Flash Reel
 

@@ -1,0 +1,790 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<title>EXP Brand Film</title>
+<style>
+  @font-face{font-family:Geist;src:url(fonts/Geist-Regular.woff2) format('woff2');font-weight:400}
+  @font-face{font-family:Geist;src:url(fonts/Geist-Medium.woff2) format('woff2');font-weight:500}
+  @font-face{font-family:Geist;src:url(fonts/Geist-SemiBold.woff2) format('woff2');font-weight:600}
+  @font-face{font-family:Geist;src:url(fonts/Geist-Bold.woff2) format('woff2');font-weight:700}
+  @font-face{font-family:GeistMono;src:url(fonts/GeistMono-Regular.woff2) format('woff2');font-weight:400}
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1080px;height:1920px;overflow:hidden;background:#0D0B0A}
+  body{font-family:Geist,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  section{position:absolute;inset:0;display:none;overflow:hidden}
+  .in{position:absolute;inset:0;transform-origin:50% 50%}
+  .abs{position:absolute}
+  .mk{-webkit-mask-image:url(assets/mark-mask.png);mask-image:url(assets/mark-mask.png);
+      -webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center}
+  .mk2{-webkit-mask-image:url(assets/mark-mask-2x.png);mask-image:url(assets/mark-mask-2x.png);
+      -webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center}
+  .ol{-webkit-mask-image:url(assets/mark-outline.png);mask-image:url(assets/mark-outline.png);
+      -webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center}
+  .wd{-webkit-mask-image:url(assets/wordmark-mask.png);mask-image:url(assets/wordmark-mask.png);
+      -webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center}
+  .mono{font-family:GeistMono,monospace}
+  .anch{position:absolute;left:330px;top:630px;width:420px;height:351px}
+  .sbar{position:absolute;left:0;top:0;width:1080px;height:100px;display:flex;align-items:center;justify-content:space-between;padding:14px 56px 0}
+  .sbar .tm{font-size:34px;font-weight:600}
+  .igstat{text-align:center}
+  .igstat b{display:block;font-size:34px;font-weight:700;color:#141414}
+  .igstat span{font-size:24px;color:#3A3A3A}
+</style>
+</head>
+<body>
+
+<!-- F1: neon outline over waves -->
+<section id="f1" style="background:#120C08">
+  <div class="in">
+    <div id="f1waves"></div>
+    <div class="anch ol" id="f1mark" style="background:#FF7A3A;filter:drop-shadow(0 0 26px rgba(255,76,0,.85)) drop-shadow(0 0 70px rgba(255,76,0,.35))"></div>
+  </div>
+</section>
+
+<!-- F2: white outline -->
+<section id="f2" style="background:#FDFDFD">
+  <div class="in"><div class="anch ol" style="background:#C43F00"></div>
+</div>
+</section>
+
+<!-- F3: billboard -->
+<section id="f3" style="background:#050505">
+  <div class="in">
+    <div class="abs" style="left:0;top:1620px;width:1080px;height:300px;background:linear-gradient(rgba(255,255,255,.045),transparent 65%)"></div>
+    <div class="abs" style="left:170px;top:1650px;width:740px;height:200px;background:#0B0B0B;transform:scaleY(-1);opacity:.35;border-radius:8px"></div>
+    <div class="abs" id="f3bb" style="left:190px;top:240px;width:700px;height:1310px;background:#0A0A0A;border:3px solid #1E1E1E;border-radius:10px;transform:perspective(1800px) rotateY(5deg);box-shadow:0 50px 120px rgba(0,0,0,.75)">
+      <div class="abs" style="left:16px;top:16px;right:16px;bottom:110px;background:#050505;border-radius:4px;overflow:hidden">
+        <div class="abs" style="inset:0;background:radial-gradient(ellipse 640px 620px at 334px 240px, rgba(255,76,0,.55), rgba(255,76,0,.12) 55%, transparent 78%)"></div>
+        <div class="abs" style="left:0;top:56px;width:668px;display:flex;justify-content:center">
+          <div style="display:flex;align-items:center;gap:10px;border:1.5px solid rgba(255,255,255,.25);border-radius:22px;padding:8px 20px">
+            <div class="mk" style="width:34px;height:28px;background:#fff"></div>
+            <span style="font-size:19px;color:#fff;font-weight:500">exp digital</span>
+          </div>
+        </div>
+        <div class="abs mk" style="left:174px;top:430px;width:320px;height:267px;background:#fff;filter:drop-shadow(0 0 34px rgba(255,110,40,.95)) drop-shadow(0 0 90px rgba(255,76,0,.5))"></div>
+        <div class="abs wd" style="left:234px;top:1010px;width:200px;height:73px;background:rgba(255,255,255,.85)"></div>
+      </div>
+      <div class="abs" style="left:0;bottom:0;width:100%;height:96px;background:#0D0D0D;border-top:2px solid #1A1A1A"></div>
+    </div>
+  </div>
+</section>
+
+<!-- F4: Instagram profile (camera dives INTO the avatar mark at the end) -->
+<section id="f4" style="background:#fff">
+  <div class="in" id="f4in" style="color:#141414">
+    <div class="sbar" style="color:#141414">
+      <div class="tm">9:41</div>
+      <div style="display:flex;gap:12px;align-items:center">
+        <svg width="34" height="24" viewBox="0 0 34 24" fill="#141414"><rect x="0" y="14" width="6" height="10" rx="1.5"/><rect x="9" y="10" width="6" height="14" rx="1.5"/><rect x="18" y="5" width="6" height="19" rx="1.5"/><rect x="27" y="0" width="6" height="24" rx="1.5"/></svg>
+        <svg width="32" height="24" viewBox="0 0 32 24" fill="none" stroke="#141414" stroke-width="3" stroke-linecap="round"><path d="M4 9a18 18 0 0 1 24 0"/><path d="M9 14.5a11 11 0 0 1 14 0"/><circle cx="16" cy="20" r="2.6" fill="#141414" stroke="none"/></svg>
+        <svg width="44" height="24" viewBox="0 0 44 24"><rect x="1" y="2" width="36" height="20" rx="6" fill="none" stroke="#141414" stroke-width="2.4" opacity=".5"/><rect x="4" y="5" width="30" height="14" rx="3.5" fill="#141414"/><rect x="39" y="8" width="4" height="8" rx="2" fill="#141414" opacity=".5"/></svg>
+      </div>
+    </div>
+    <div class="abs" style="left:0;top:104px;width:1080px;height:88px;display:flex;align-items:center;justify-content:center;font-size:38px;font-weight:700">expdigital.io
+      <svg width="22" height="14" viewBox="0 0 22 14" style="margin-left:10px"><path d="M2 2l9 9 9-9" fill="none" stroke="#141414" stroke-width="3.5" stroke-linecap="round"/></svg></div>
+    <div class="abs" id="f4ring" style="left:64px;top:250px;width:250px;height:250px;border-radius:50%;background:conic-gradient(#FEDA75,#FA7E1E,#D62976,#962FBF,#4F5BD5,#FEDA75)"></div>
+    <div class="abs" id="f4ringO" style="left:64px;top:250px;width:250px;height:250px;border-radius:50%;background:#FF4C00;opacity:0"></div>
+    <div class="abs" style="left:72px;top:258px;width:234px;height:234px;border-radius:50%;background:#fff"></div>
+    <div class="abs" style="left:79px;top:265px;width:220px;height:220px;border-radius:50%;background:#1E1E1E;display:flex;align-items:center;justify-content:center">
+      <div class="mk" style="width:126px;height:105px;background:#FF4C00"></div>
+    </div>
+    <div class="abs" style="left:380px;top:330px;width:640px;display:flex;justify-content:space-between;padding-right:70px">
+      <div class="igstat"><b>248</b><span>publica&#231;&#245;es</span></div>
+      <div class="igstat"><b id="f4count">9.885</b><span>seguidores</span></div>
+      <div class="igstat"><b>512</b><span>a seguir</span></div>
+    </div>
+    <div class="abs" style="left:64px;top:530px;font-size:32px;font-weight:700">exp digital</div>
+    <div class="abs" style="left:64px;top:576px;font-size:27px;line-height:1.45;color:#262626">Hub de servi&#231;os digitais<br>Design. Tecnologia. Estrat&#233;gia.<br><span style="color:#00376B">expdigital.io</span></div>
+    <div class="abs" id="f4btn" style="left:64px;top:720px;width:452px;height:70px;border-radius:16px;background:#FF4C00;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600;font-size:28px">Seguir</div>
+    <div class="abs" style="left:532px;top:720px;width:452px;height:70px;border-radius:16px;background:#EFEFEF;display:flex;align-items:center;justify-content:center;color:#141414;font-weight:600;font-size:28px">Mensagem</div>
+    <div class="abs" id="f4hl" style="left:64px;top:840px;display:flex;gap:44px"></div>
+    <div class="abs" style="left:0;top:1058px;width:1080px;height:2px;background:rgba(0,0,0,.08)"></div>
+    <div class="abs" style="left:0;top:1060px;width:360px;height:5px;background:#141414"></div>
+    <div class="abs" id="f4grid" style="left:0;top:1140px;width:1080px;display:grid;grid-template-columns:repeat(3,1fr);gap:3px"></div>
+    <div class="abs" id="f4rack" style="left:-400px;top:-400px;width:1880px;height:2720px;opacity:0;background:radial-gradient(circle at 589px 775px, rgba(255,255,255,0) 0px, rgba(255,255,255,0) 128px, #fff 168px)"></div>
+  </div>
+</section>
+
+<!-- F5: premium iPhone (camera pulls OUT of the hero mark) -->
+<section id="f5" style="background:#0C0A09">
+  <div class="in" id="f5in">
+    <div class="abs" style="inset:0;background:radial-gradient(ellipse 980px 900px at 540px 900px, rgba(255,76,0,.16), transparent 68%)"></div>
+    <div class="abs mk" style="left:-200px;top:300px;width:1500px;height:1253px;background:#FF4C00;opacity:.05;filter:blur(6px)"></div>
+    <div class="abs" style="left:190px;top:1660px;width:700px;height:80px;border-radius:50%;background:radial-gradient(ellipse at center, rgba(0,0,0,.85) 0%, rgba(0,0,0,0) 70%)"></div>
+    <div class="abs" id="f5ph" style="left:220px;top:270px;width:640px;height:1330px;border-radius:100px;background:#1A1A1A;border:3px solid rgba(255,255,255,.22);box-shadow:0 60px 140px rgba(0,0,0,.7), inset 0 0 0 7px #060606">
+      <div class="abs" style="left:-6px;top:300px;width:5px;height:70px;border-radius:3px;background:#3A3A3A"></div>
+      <div class="abs" style="left:-6px;top:400px;width:5px;height:110px;border-radius:3px;background:#3A3A3A"></div>
+      <div class="abs" style="right:-6px;top:360px;width:5px;height:150px;border-radius:3px;background:#3A3A3A"></div>
+      <div class="abs" style="left:16px;top:16px;right:16px;bottom:16px;border-radius:84px;background:#0E0D0C;overflow:hidden">
+        <div class="abs" style="left:50%;top:24px;width:210px;height:60px;margin-left:-105px;border-radius:30px;background:#000;z-index:5"></div>
+        <div class="abs" style="left:54px;top:34px;font-size:28px;font-weight:600;color:#fff">9:41</div>
+        <div class="abs" style="right:48px;top:38px;display:flex;gap:10px;align-items:center">
+          <svg width="28" height="20" viewBox="0 0 34 24" fill="#fff"><rect x="0" y="14" width="6" height="10" rx="1.5"/><rect x="9" y="10" width="6" height="14" rx="1.5"/><rect x="18" y="5" width="6" height="19" rx="1.5"/><rect x="27" y="0" width="6" height="24" rx="1.5"/></svg>
+          <svg width="36" height="20" viewBox="0 0 44 24"><rect x="1" y="2" width="36" height="20" rx="6" fill="none" stroke="#fff" stroke-width="2.4" opacity=".5"/><rect x="4" y="5" width="30" height="14" rx="3.5" fill="#fff"/></svg>
+        </div>
+        <div class="abs" style="left:48px;top:130px;display:flex;align-items:center;gap:18px">
+          <div class="mk" style="width:64px;height:53px;background:#FF4C00"></div>
+          <div style="font-size:32px;font-weight:700;color:#F4F1EE">exp <span style="font-weight:400;font-size:22px;color:#8B8B8B">digital</span></div>
+        </div>
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#8B8B8B" stroke-width="2.2" stroke-linecap="round" style="position:absolute;right:52px;top:138px"><path d="M4 7h16M4 12h16M4 17h10"/></svg>
+        <div class="abs" id="f5hero" style="left:40px;top:232px;width:528px;height:520px;border-radius:40px;background:#FF4C00;overflow:hidden">
+          <div class="abs" style="left:44px;top:52px;font-size:52px;line-height:1.15;font-weight:700;color:#fff;letter-spacing:-.01em">HUB DE<br>SERVI&#199;OS<br>DIGITAIS.</div>
+          <div class="abs" style="left:44px;top:290px;font-size:22px;color:rgba(255,255,255,.85);line-height:1.5">Design, tecnologia e estrat&#233;gia<br>em um &#250;nico ecossistema.</div>
+          <div class="abs" id="f5cta" style="left:44px;top:392px;width:250px;height:64px;border-radius:32px;background:#fff;display:flex;align-items:center;justify-content:center;color:#FF4C00;font-size:20px;font-weight:700;letter-spacing:.06em">CONHE&#199;A A EXP</div>
+          <div class="abs mk" style="right:-70px;bottom:-60px;width:280px;height:234px;background:rgba(255,255,255,.2)"></div>
+        </div>
+        <div class="abs" id="f5c1" style="left:40px;top:786px;width:252px;height:230px;border-radius:32px;background:#181614;border:1.5px solid rgba(255,255,255,.09)">
+          <div class="abs" id="f5n1" style="left:32px;top:44px;font-size:56px;font-weight:700;color:#FF4C00;letter-spacing:-.02em">+0%</div>
+          <div class="abs" style="left:32px;top:126px;font-size:21px;color:#9A938C;line-height:1.4">crescimento<br>m&#233;dio</div>
+        </div>
+        <div class="abs" id="f5c2" style="left:316px;top:786px;width:252px;height:230px;border-radius:32px;background:#181614;border:1.5px solid rgba(255,255,255,.09)">
+          <div class="abs" id="f5n2" style="left:32px;top:44px;font-size:56px;font-weight:700;color:#F4F1EE;letter-spacing:-.02em">0</div>
+          <div class="abs" style="left:32px;top:126px;font-size:21px;color:#9A938C;line-height:1.4">projetos<br>entregues</div>
+        </div>
+        <div class="abs" style="left:40px;bottom:44px;width:528px;height:96px;border-radius:48px;background:#181614;border:1.5px solid rgba(255,255,255,.09);display:flex;align-items:center;justify-content:space-around">
+          <div class="mk" style="width:44px;height:37px;background:#FF4C00"></div>
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#6E675F" stroke-width="2"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/></svg>
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#6E675F" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#6E675F" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="9" r="3.4"/><path d="M5 20c1.5-3.5 4-5 7-5s5.5 1.5 7 5"/></svg>
+        </div>
+        <div class="abs" id="f5sheen" style="left:-220px;top:-120px;width:170px;height:1700px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.07),transparent);transform:rotate(16deg)"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- F6: marquee wall + sealed blast -->
+<section id="f6" style="background:#161616">
+  <div class="in">
+    <div id="f6wrap" style="position:absolute;left:-220px;top:-220px;width:1520px;height:2360px;transform:rotate(-5deg)"></div>
+    <div class="abs" id="f6seal" style="left:390px;top:810px;width:300px;height:300px;border-radius:50%;background:#FF4C00;transform:scale(0)"></div>
+    <div class="abs mk" id="f6blast" style="left:240px;top:710px;width:600px;height:501px;background:#FF4C00;transform:scale(0)"></div>
+  </div>
+</section>
+
+<!-- F7: metallic macro + lockup + composition -->
+<section id="f7" style="background:#060504">
+  <div class="in">
+    <div class="abs mk2" id="f7macro" style="left:-760px;top:-120px;width:2600px;height:2172px;
+      background-image:linear-gradient(120deg, rgba(255,255,255,0) 42%, rgba(255,210,180,.5) 50%, rgba(255,255,255,0) 58%),linear-gradient(150deg,#FF8A4A 0%,#F25500 26%,#9E3000 52%,#E24C00 74%,#FF7A3A 100%);
+      background-size:260% 260%, 100% 100%;filter:drop-shadow(0 60px 90px rgba(0,0,0,.6))"></div>
+    <div class="abs" id="f7lock" style="left:0;top:0;width:1080px;height:1920px">
+      <div class="abs mk" style="left:322px;top:880px;width:150px;height:125px;background:#fff;filter:drop-shadow(0 6px 30px rgba(0,0,0,.6))"></div>
+      <div class="abs wd" style="left:494px;top:903px;width:264px;height:97px;background:#fff;filter:drop-shadow(0 6px 30px rgba(0,0,0,.6))"></div>
+      <div class="abs mono" id="f7tag" style="left:0;top:1050px;width:1080px;text-align:center;font-size:21px;color:rgba(255,255,255,.75);letter-spacing:.38em">HUB DE SERVI&#199;OS DIGITAIS</div>
+      <div class="abs" id="f7url" style="left:0;top:1108px;width:1080px;text-align:center;font-size:30px;font-weight:700;color:#fff">expdigital.io</div>
+    </div>
+    <div id="f7corners"></div>
+    <div class="abs mono" id="f7l1" style="left:80px;top:190px;font-size:24px;color:rgba(255,255,255,.6);letter-spacing:.18em">EXP&#174; &#8212; BRAND SYSTEM</div>
+    <div class="abs mono" id="f7l2" style="right:80px;top:190px;font-size:24px;color:rgba(255,255,255,.6);letter-spacing:.18em">&#169; 2026</div>
+
+  </div>
+</section>
+
+<!-- G3: on-orange mark -->
+<section id="g3" style="background:#FF4C00">
+  <div class="in"><div class="anch mk" style="background:#1E1E1E"></div></div>
+</section>
+
+<!-- CH1: chapter 01 — branding -->
+<section id="ch1" style="background:#0D0B0A">
+  <div class="in">
+    <div class="abs ol" id="ch1ghost" style="left:470px;top:1210px;width:980px;height:819px;background:#FF4C00;opacity:.13"></div>
+    <div class="abs mono" style="left:80px;top:190px;font-size:24px;color:#9A938C;letter-spacing:.2em">01 &#8212; VIS&#195;O DE MARCA</div>
+    <div class="abs mono" style="right:80px;top:190px;font-size:24px;color:#57514B;letter-spacing:.2em">EXP&#174;</div>
+    <div class="abs" id="ch1num" style="left:62px;top:470px;font-size:380px;line-height:1;font-weight:700;color:transparent;-webkit-text-stroke:3px #FF4C00;letter-spacing:-.04em">01</div>
+    <div class="abs chword" id="ch1word" style="left:74px;top:880px;height:180px;overflow:hidden;font-size:158px;line-height:180px;font-weight:700;color:#F4F1EE;letter-spacing:-.02em;white-space:nowrap" data-w="BRANDING"></div>
+    <div class="abs" id="ch1rule" style="left:80px;top:1082px;height:6px;width:0;background:#FF4C00"></div>
+    <div class="abs" id="ch1tag" style="left:80px;top:1130px;font-size:50px;line-height:1.2;font-weight:400;color:#F4F1EE">Criativo tamb&#233;m &#233;<br><span style="color:#FF4C00;font-weight:600">estrat&#233;gia.</span></div>
+    <div class="abs mono" style="left:80px;top:1560px;font-size:22px;color:#57514B;letter-spacing:.16em">DESIGN. TECNOLOGIA. ESTRAT&#201;GIA.</div>
+  </div>
+</section>
+
+<!-- PAL: palette -->
+<section id="pal" style="background:#0D0B0A">
+  <div class="in">
+    <div id="palcols"></div>
+  </div>
+</section>
+
+<!-- TYPO: typography specimen -->
+<section id="typo" style="background:#FF4C00">
+  <div class="in">
+    <div class="abs mono" style="left:80px;top:190px;font-size:24px;color:rgba(30,30,30,.72);letter-spacing:.2em">TIPOGRAFIA &#8212; GEIST</div>
+    <div class="abs mono" style="right:80px;top:190px;font-size:24px;color:rgba(30,30,30,.72);letter-spacing:.2em">04 PESOS</div>
+    <div class="abs" id="typoAa" style="left:52px;top:300px;font-size:640px;line-height:1;color:#1E1E1E;letter-spacing:-.04em;font-weight:400">Aa</div>
+    <div id="typorows"></div>
+    <div class="abs mono" id="typoset" style="left:80px;top:1540px;font-size:30px;line-height:1.5;color:rgba(30,30,30,.75);letter-spacing:.12em">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>0123456789 &amp; @ # % &#8594;</div>
+  </div>
+</section>
+
+<!-- STAT: stationery -->
+<section id="stat" style="background:#171311">
+  <div class="in">
+    <div class="abs" style="inset:0;background:radial-gradient(ellipse 900px 1000px at 620px 760px, rgba(255,150,90,.10), transparent 70%)"></div>
+    <div class="abs mono" style="left:80px;top:190px;font-size:24px;color:#9A938C;letter-spacing:.2em">APLICA&#199;&#213;ES &#8212; PAPELARIA</div>
+    <div class="abs" id="statSheet" style="left:470px;top:330px;width:540px;height:764px;background:#F4F1EE;border-radius:6px;box-shadow:0 30px 80px rgba(0,0,0,.5);transform:rotate(5deg)">
+      <div class="abs mk" style="left:44px;top:46px;width:64px;height:53px;background:#FF4C00"></div>
+      <div class="abs wd" style="left:124px;top:52px;width:120px;height:44px;background:#1E1E1E"></div>
+      <div class="abs" style="left:44px;top:170px;width:300px;height:12px;border-radius:6px;background:#1E1E1E;opacity:.85"></div>
+      <div id="statLines"></div>
+      <div class="abs mono" style="left:44px;bottom:40px;font-size:13px;color:#9A938C;letter-spacing:.14em">EXPDIGITAL.IO</div>
+      <div class="abs" style="right:0;bottom:0;width:120px;height:10px;background:#FF4C00"></div>
+    </div>
+    <div class="abs" id="statB" style="left:300px;top:930px;width:640px;height:400px;border-radius:14px;background:#1E1E1E;box-shadow:0 44px 90px rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.06)">
+      <div class="abs wd" style="left:56px;top:62px;width:250px;height:92px;background:#F4F1EE"></div>
+      <div class="abs mk" style="right:56px;top:62px;width:70px;height:58px;background:#FF4C00"></div>
+      <div class="abs mono" style="left:56px;top:278px;font-size:17px;color:#9A938C;letter-spacing:.2em">HUB DE SERVI&#199;OS DIGITAIS</div>
+      <div class="abs" style="left:56px;top:318px;font-size:24px;font-weight:600;color:#FF4C00">expdigital.io</div>
+    </div>
+    <div class="abs" id="statA" style="left:110px;top:560px;width:640px;height:400px;border-radius:14px;background:#FF4C00;box-shadow:0 44px 90px rgba(0,0,0,.55);overflow:hidden">
+      <div class="abs mk" style="left:210px;top:92px;width:220px;height:184px;background:#1E1E1E"></div>
+      <div class="abs" id="statShine" style="left:-300px;top:-100px;width:140px;height:700px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.28),transparent);transform:rotate(18deg)"></div>
+    </div>
+  </div>
+</section>
+
+<!-- CH2: chapter 02 — marketing -->
+<section id="ch2" style="background:#FF4C00">
+  <div class="in">
+    <div class="abs ol" id="ch2ghost" style="left:470px;top:1210px;width:980px;height:819px;background:#1E1E1E;opacity:.13"></div>
+    <div class="abs mono" style="left:80px;top:190px;font-size:24px;color:rgba(30,30,30,.72);letter-spacing:.2em">02 &#8212; VIS&#195;O DE MARKETING</div>
+    <div class="abs mono" style="right:80px;top:190px;font-size:24px;color:rgba(30,30,30,.5);letter-spacing:.2em">EXP&#174;</div>
+    <div class="abs" id="ch2num" style="left:62px;top:470px;font-size:380px;line-height:1;font-weight:700;color:transparent;-webkit-text-stroke:3px #1E1E1E;letter-spacing:-.04em">02</div>
+    <div class="abs chword" id="ch2word" style="left:74px;top:880px;height:180px;overflow:hidden;font-size:150px;line-height:180px;font-weight:700;color:#1E1E1E;letter-spacing:-.02em;white-space:nowrap" data-w="MARKETING"></div>
+    <div class="abs" id="ch2rule" style="left:80px;top:1082px;height:6px;width:0;background:#1E1E1E"></div>
+    <div class="abs" id="ch2tag" style="left:80px;top:1130px;font-size:50px;line-height:1.2;font-weight:400;color:#1E1E1E">Do zero &#224; opera&#231;&#227;o<br><span style="color:#fff;font-weight:600">digital.</span></div>
+    <div class="abs mono" style="left:80px;top:1560px;font-size:22px;color:rgba(30,30,30,.55);letter-spacing:.16em">PERFORMANCE. DADOS. CRESCIMENTO.</div>
+  </div>
+</section>
+
+<!-- DASH: campaign dashboard -->
+<section id="dash" style="background:#0D0B0A">
+  <div class="in">
+    <div class="abs" style="inset:0;background:radial-gradient(ellipse 900px 800px at 540px 1000px, rgba(255,76,0,.12), transparent 70%)"></div>
+    <div class="abs" id="dashP" style="left:50px;top:250px;width:980px;height:1350px;border-radius:40px;background:#161311;border:1.5px solid rgba(255,255,255,.08);box-shadow:0 60px 120px rgba(0,0,0,.6);overflow:hidden">
+      <div class="abs" style="left:48px;top:46px;display:flex;align-items:center;gap:18px">
+        <div class="mk" style="width:58px;height:48px;background:#FF4C00"></div>
+        <div style="font-size:40px;font-weight:700;color:#F4F1EE">Campanhas</div>
+      </div>
+      <div class="abs mono" style="right:48px;top:56px;height:44px;padding:0 20px;border-radius:22px;border:1.5px solid rgba(255,255,255,.14);display:flex;align-items:center;font-size:18px;color:#B6AFA8">&#218;LTIMOS 30 DIAS</div>
+      <div class="abs" style="left:48px;top:132px;display:flex;gap:12px">
+        <div style="height:44px;padding:0 20px;border-radius:22px;background:#FF4C00;display:flex;align-items:center;font-size:19px;font-weight:600;color:#fff">Meta Ads</div>
+        <div style="height:44px;padding:0 20px;border-radius:22px;background:#26211D;display:flex;align-items:center;font-size:19px;font-weight:600;color:#B6AFA8">Google Ads</div>
+        <div style="height:44px;padding:0 20px;border-radius:22px;background:#26211D;display:flex;align-items:center;font-size:19px;font-weight:600;color:#B6AFA8">Org&#226;nico</div>
+      </div>
+      <div id="dashKpis"></div>
+      <div class="abs mono" style="left:48px;top:760px;font-size:20px;color:#8B847D;letter-spacing:.14em">RECEITA ATRIBU&#205;DA</div>
+      <svg id="dashChart" width="884" height="440" viewBox="0 0 884 440" style="position:absolute;left:48px;top:810px;overflow:visible">
+        <g id="dashGrid"></g>
+        <path id="dashArea" fill="#FF4C00" fill-opacity="0.14" d=""/>
+        <path id="dashLine" fill="none" stroke="#FF4C00" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" pathLength="1" stroke-dasharray="1 1" d=""/>
+        <circle id="dashDot" cx="0" cy="0" r="12" fill="#FF4C00" stroke="#161311" stroke-width="5"/>
+      </svg>
+      <div class="abs mono" style="left:48px;top:1272px;width:884px;display:flex;justify-content:space-between;font-size:17px;color:#6E675F"><span>SEM 1</span><span>SEM 2</span><span>SEM 3</span><span>SEM 4</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- FUN: funnel -->
+<section id="fun" style="background:#0D0B0A">
+  <div class="in">
+    <div class="abs mono" style="left:80px;top:190px;font-size:24px;color:#9A938C;letter-spacing:.2em">FUNIL DE PERFORMANCE</div>
+    <div class="abs" style="left:80px;top:250px;font-size:72px;line-height:1.1;font-weight:700;color:#F4F1EE;letter-spacing:-.02em">Do alcance<br>&#224; <span style="color:#FF4C00">venda.</span></div>
+    <div id="funbars"></div>
+  </div>
+</section>
+
+<!-- ADS: sponsored post + notifications -->
+<section id="ads" style="background:#0D0B0A">
+  <div class="in">
+    <div class="abs" style="inset:0;background:radial-gradient(ellipse 900px 900px at 540px 1100px, rgba(255,76,0,.16), transparent 70%)"></div>
+    <div class="abs" id="adsCard" style="left:110px;top:640px;width:860px;height:950px;border-radius:40px;background:#fff;box-shadow:0 60px 120px rgba(0,0,0,.6);overflow:hidden;color:#141414">
+      <div class="abs" style="left:30px;top:26px;width:70px;height:70px;border-radius:50%;background:#1E1E1E;display:flex;align-items:center;justify-content:center"><div class="mk" style="width:40px;height:33px;background:#FF4C00"></div></div>
+      <div class="abs" style="left:118px;top:28px;font-size:27px;font-weight:700">expdigital.io</div>
+      <div class="abs" style="left:118px;top:64px;font-size:21px;color:#8A8A8A">Patrocinado</div>
+      <svg width="40" height="12" viewBox="0 0 40 12" style="position:absolute;right:34px;top:56px"><circle cx="6" cy="6" r="5" fill="#141414"/><circle cx="20" cy="6" r="5" fill="#141414"/><circle cx="34" cy="6" r="5" fill="#141414"/></svg>
+      <div class="abs" style="left:0;top:122px;width:860px;height:560px;background:#120E0C;overflow:hidden">
+        <div class="abs" style="inset:0;background:radial-gradient(ellipse 520px 480px at 700px 420px, rgba(255,76,0,.45), transparent 70%)"></div>
+        <div class="abs" style="left:56px;top:70px;font-size:92px;line-height:1.02;font-weight:700;letter-spacing:-.02em"><span style="color:#FF4C00">CRIATIVO</span><br><span style="color:#F4F1EE">TAMB&#201;M &#201;<br>ESTRAT&#201;GIA.</span></div>
+        <div class="abs mk" style="left:600px;top:360px;width:210px;height:175px;background:#fff"></div>
+      </div>
+      <div class="abs" style="left:0;top:682px;width:860px;height:84px;background:#FF4C00;display:flex;align-items:center;justify-content:space-between;padding:0 34px;color:#fff;font-size:27px;font-weight:600">Saiba mais
+        <svg width="18" height="30" viewBox="0 0 18 30"><path d="M3 3l12 12L3 27" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="abs" style="left:30px;top:792px;display:flex;gap:30px;align-items:center">
+        <svg id="adsHeart" width="46" height="42" viewBox="0 0 24 22"><path d="M12 21s-9-5.6-9-12.2C3 5.6 5.4 3 8.4 3c1.6 0 2.9.8 3.6 2 .7-1.2 2-2 3.6-2C18.6 3 21 5.6 21 8.8 21 15.4 12 21 12 21z" fill="#FF3040"/></svg>
+        <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="2"><path d="M20.5 11.5a8 8 0 0 1-11.7 7.1L3.5 20l1.4-5.3A8 8 0 1 1 20.5 11.5z"/></svg>
+        <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="2" stroke-linejoin="round"><path d="M21 3 10 13.5M21 3l-7 18-4-7.5L2.5 10z"/></svg>
+      </div>
+      <div class="abs" style="left:30px;top:862px;font-size:27px;font-weight:700"><span id="adsLikes">0</span> curtidas</div>
+    </div>
+    <div id="adsNotifs"></div>
+  </div>
+</section>
+
+<!-- GOO: search #1 -->
+<section id="goo" style="background:#FAFAF9">
+  <div class="in" style="color:#141414">
+    <div class="abs mono" style="left:80px;top:190px;font-size:24px;color:#A39A93;letter-spacing:.2em">SEO &#8212; PRIMEIRA POSI&#199;&#195;O</div>
+    <div class="abs" style="left:70px;top:280px;width:940px;height:112px;border-radius:56px;background:#fff;border:1.5px solid #E6E1DC;box-shadow:0 10px 30px rgba(0,0,0,.08);display:flex;align-items:center;padding:0 40px;gap:24px">
+      <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#8A8A8A" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <div id="gooQ" style="font-size:36px;color:#141414;white-space:nowrap"></div>
+      <div id="gooCaret" style="width:3px;height:44px;background:#FF4C00;margin-left:-18px"></div>
+    </div>
+    <div class="abs" id="gooR1" style="left:50px;top:470px;width:980px;height:330px;border-radius:32px;background:#FFF1EA;border:2px solid rgba(255,76,0,.35)">
+      <div class="abs" style="left:40px;top:40px;width:58px;height:58px;border-radius:50%;background:#1E1E1E;display:flex;align-items:center;justify-content:center"><div class="mk" style="width:34px;height:28px;background:#FF4C00"></div></div>
+      <div class="abs" style="left:116px;top:38px;font-size:25px;color:#202124">exp digital</div>
+      <div class="abs" style="left:116px;top:72px;font-size:21px;color:#5F6368">https://expdigital.io</div>
+      <div class="abs" id="gooBadge" style="right:40px;top:40px;height:58px;padding:0 24px;border-radius:29px;background:#FF4C00;display:flex;align-items:center;font-size:28px;font-weight:700;color:#fff">#1</div>
+      <div class="abs" style="left:40px;top:128px;font-size:38px;font-weight:500;color:#1A0DAB">EXP Digital &#8212; Hub de Servi&#231;os Digitais</div>
+      <div class="abs" style="left:40px;top:190px;width:880px;font-size:25px;line-height:1.5;color:#4D5156">Design, tecnologia e estrat&#233;gia em um &#250;nico ecossistema. Branding, sites e marketing de performance.</div>
+    </div>
+    <div id="gooSkel"></div>
+  </div>
+</section>
+
+<!-- MAN1 / MAN2: brand manifesto -->
+<section id="man1" style="background:#0D0B0A">
+  <div class="in">
+    <div class="abs mono" style="left:80px;top:190px;font-size:24px;color:#9A938C;letter-spacing:.2em">MANIFESTO</div>
+    <div class="abs manl" style="left:78px;top:700px;height:160px;overflow:hidden;font-size:136px;line-height:160px;font-weight:700;color:#F4F1EE;letter-spacing:-.02em;white-space:nowrap"><span class="mw">VOC&#202;</span> <span class="mw">TRAZ</span></div>
+    <div class="abs manl" style="left:78px;top:860px;height:160px;overflow:hidden;font-size:136px;line-height:160px;font-weight:700;color:#F4F1EE;letter-spacing:-.02em;white-space:nowrap"><span class="mw">O</span> <span class="mw">NEG&#211;CIO.</span></div>
+  </div>
+</section>
+<section id="man2" style="background:#FF4C00">
+  <div class="in">
+    <div class="abs mono" style="left:80px;top:190px;font-size:24px;color:rgba(30,30,30,.7);letter-spacing:.2em">MANIFESTO</div>
+    <div class="abs manl" style="left:78px;top:620px;height:160px;overflow:hidden;font-size:136px;line-height:160px;font-weight:700;color:#1E1E1E;letter-spacing:-.02em;white-space:nowrap"><span class="mw">A</span> <span class="mw">EXP</span></div>
+    <div class="abs manl" style="left:78px;top:780px;height:160px;overflow:hidden;font-size:136px;line-height:160px;font-weight:700;color:#1E1E1E;letter-spacing:-.02em;white-space:nowrap"><span class="mw">TRAZ</span> <span class="mw">A</span></div>
+    <div class="abs manl" style="left:78px;top:940px;height:160px;overflow:hidden;font-size:136px;line-height:160px;font-weight:700;color:#fff;letter-spacing:-.02em;white-space:nowrap"><span class="mw">ESTRUTURA.</span></div>
+  </div>
+</section>
+
+<!-- END: endcard + CTA -->
+<section id="end" style="background:#0D0B0A">
+  <div class="in">
+    <div class="abs ol" id="endGhost" style="left:-260px;top:420px;width:1600px;height:1337px;background:#FF4C00;opacity:.07"></div>
+    <div id="endcorners"></div>
+    <div class="abs mono" id="endl1" style="left:80px;top:190px;font-size:24px;color:rgba(255,255,255,.55);letter-spacing:.18em">EXP&#174; &#8212; BRAND FILM</div>
+    <div class="abs mono" id="endl2" style="right:80px;top:190px;font-size:24px;color:rgba(255,255,255,.55);letter-spacing:.18em">&#169; 2026</div>
+    <div class="abs mk" id="endMark" style="left:190px;top:748px;width:250px;height:209px;background:#FF4C00"></div>
+    <div class="abs wd" id="endWord" style="left:470px;top:792px;width:410px;height:150px;background:#F4F1EE"></div>
+    <div class="abs mono" id="endTag" style="left:0;top:1030px;width:1080px;text-align:center;font-size:23px;color:#9A938C;letter-spacing:.4em">HUB DE SERVI&#199;OS DIGITAIS</div>
+    <div class="abs" id="endCta" style="left:320px;top:1110px;width:440px;height:104px;border-radius:52px;background:#FF4C00;display:flex;align-items:center;justify-content:center;gap:16px;color:#fff;font-size:28px;font-weight:700;letter-spacing:.08em;overflow:hidden">CONHE&#199;A A EXP
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M9 7h8v8"/></svg>
+      <div class="abs" id="endShine" style="left:-200px;top:-40px;width:90px;height:200px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);transform:rotate(20deg)"></div>
+    </div>
+    <div class="abs" id="endUrl" style="left:0;top:1262px;width:1080px;text-align:center;font-size:32px;font-weight:600;color:#F4F1EE">expdigital.io</div>
+  </div>
+</section>
+
+<div id="flash" style="position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none;z-index:99"></div>
+<div id="flashO" style="position:absolute;inset:0;background:#FF4C00;opacity:0;pointer-events:none;z-index:98"></div>
+
+<script>
+'use strict';
+/* ============================================================
+   EXP BRAND FILM — 16.0 s · 120 BPM · 8 bars.
+   Act I  BRANDING  (identity system: mark, palette, type, applications)
+   Act II MARKETING (campaigns, funnel, ads, search) — linked by a
+          camera dive through the Instagram avatar into the phone
+   Act III manifesto + endcard.  Pure function of time inside seek(t).
+   ============================================================ */
+const DUR = 16.0;
+const clamp = (x, a, b) => Math.min(b, Math.max(a, x));
+const lerp = (a, b, x) => a + (b - a) * x;
+const ss = (a, b, x) => { x = clamp((x - a) / (b - a), 0, 1); return x * x * (3 - 2 * x); };
+const outQ = x => 1 - (1 - x) * (1 - x);
+function spr(u, f = 4, z = .75) {
+  if (u <= 0) return 0;
+  const w = 2 * Math.PI * f;
+  if (z < 0.999) { const wd = w * Math.sqrt(1 - z * z);
+    return 1 - Math.exp(-z * w * u) * (Math.cos(wd * u) + (z * w / wd) * Math.sin(wd * u)); }
+  return 1 - Math.exp(-w * u) * (1 + w * u);
+}
+const $ = id => document.getElementById(id);
+const br = (x, d = 1) => x.toFixed(d).replace('.', ',');
+const thou = n => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+
+const CUTS = [
+  [0.00, 'f1'], [0.50, 'f2'], [0.75, 'g3'], [1.00, 'ch1'], [1.75, 'pal'], [2.75, 'typo'],
+  [3.50, 'f3'], [4.00, 'stat'], [4.75, 'f4'], [5.50, 'f5'], [6.25, 'ch2'], [7.00, 'dash'],
+  [8.25, 'fun'], [9.00, 'ads'], [10.00, 'goo'], [10.75, 'f6'], [12.00, 'f7'],
+  [12.75, 'man1'], [13.50, 'man2'], [14.25, 'end'], [16.00, null]
+];
+const CUSTOM_CAM = new Set(['f4', 'f5', 'f7', 'goo', 'end']);
+const WHITE_FLASH = [[0.50, .85], [0.75, .4], [1.00, .3], [4.75, .25], [10.00, .3]];
+const ORANGE_FLASH = [[1.75, .3], [5.50, .85], [6.25, .35], [12.00, .85], [13.50, .45]];
+
+(function build() {
+  /* --- reused scenes --- */
+  $('f1waves').innerHTML = [0,1,2,3,4,5].map(i =>
+    `<div class="abs f1w" style="left:${-450-i*180}px;top:${-350-i*180}px;width:${(520+i*180)*2}px;height:${(520+i*180)*2}px;border-radius:50%;border:2.5px solid rgba(255,76,0,${(.16-i*.022).toFixed(3)})"></div>`).join('');
+  const HL = ['Design','Sites','Growth','Cases'];
+  $('f4hl').innerHTML = HL.map((h,i) =>
+    `<div style="text-align:center">
+      <div style="width:132px;height:132px;border-radius:50%;border:2.5px solid rgba(0,0,0,.15);display:flex;align-items:center;justify-content:center;background:${i%2?'#FF4C00':'#1E1E1E'}">
+        <div class="mk" style="width:56px;height:47px;background:${i%2?'#fff':'#FF4C00'}"></div></div>
+      <div style="font-size:22px;margin-top:10px;color:#141414">${h}</div></div>`).join('');
+  const TILES = [
+    ['#1E1E1E','<div class="mk" style="width:170px;height:142px;background:#FF4C00"></div>'],
+    ['#FF4C00','<div style="font-size:34px;font-weight:700;color:#fff;letter-spacing:.04em;text-align:center;line-height:1.4">CONHE&#199;A<br>A EXP</div>'],
+    ['#FFE4D9','<div class="mk" style="width:170px;height:142px;background:#FF4C00"></div>'],
+    ['#1E1E1E','<div style="font-size:52px;font-weight:700;color:#FF4C00">+248%</div>'],
+    ['#FF4C00','<div class="mk" style="width:170px;height:142px;background:#1E1E1E"></div>'],
+    ['#F4F1EE','<div class="wd" style="width:220px;height:81px;background:#1E1E1E"></div>']
+  ];
+  $('f4grid').innerHTML = TILES.map(t =>
+    `<div style="height:358px;background:${t[0]};display:flex;align-items:center;justify-content:center">${t[1]}</div>`).join('');
+  const sep = c => `<span style="display:inline-block;width:110px;height:92px;margin:0 60px;vertical-align:-6px" class="mk sepmk" data-c="${c}"></span>`;
+  const ROWS = [
+    { txt: 'HUB DE SERVIÇOS DIGITAIS', st: 'color:#FF4C00', sc: '#F4F1EE' },
+    { txt: 'BRANDING — MARKETING — PERFORMANCE', st: '-webkit-text-stroke:3.5px #F4F1EE;color:transparent', sc: '#FF4C00' },
+    { txt: 'EXP DIGITAL', st: 'color:#F4F1EE', sc: '#FF4C00' },
+    { txt: 'DESIGN — TECNOLOGIA — ESTRATÉGIA', st: '-webkit-text-stroke:3.5px #FF4C00;color:transparent', sc: '#F4F1EE' },
+    { txt: 'HUB DE SERVIÇOS DIGITAIS', st: 'color:#FF4C00', sc: '#F4F1EE' },
+  ];
+  $('f6wrap').innerHTML = ROWS.map((r, i) => {
+    const unit = `<span style="${r.st}">${r.txt}</span>` + sep(r.sc);
+    return `<div class="f6row" style="position:absolute;left:0;top:${140 + i * 424}px;width:1520px;height:360px;overflow:visible">
+      <div class="f6roll" style="position:absolute;white-space:nowrap;font-weight:700;font-size:168px;line-height:360px;letter-spacing:-.01em">${unit.repeat(6)}</div>
+    </div>`;
+  }).join('');
+  document.querySelectorAll('.sepmk').forEach(el => { el.style.background = el.dataset.c; });
+  const ticks = (c) => [[44,44,0],[1036,44,90],[1036,1636,180],[44,1636,270]].map(k =>
+    `<div class="${c}" style="position:absolute;left:${k[0]-2}px;top:${k[1]-2}px;transform:rotate(${k[2]}deg)">
+      <div style="position:absolute;left:0;top:0;width:56px;height:2.5px;background:rgba(255,255,255,.4)"></div>
+      <div style="position:absolute;left:0;top:0;width:2.5px;height:56px;background:rgba(255,255,255,.4)"></div></div>`).join('');
+  $('f7corners').innerHTML = ticks('f7tick');
+  $('endcorners').innerHTML = ticks('endtick');
+
+  /* --- chapter words: per-letter masks --- */
+  document.querySelectorAll('.chword').forEach(el => {
+    el.innerHTML = [...el.dataset.w].map(ch => `<span class="lt" style="display:inline-block">${ch}</span>`).join('');
+  });
+  document.querySelectorAll('.mw').forEach(el => { el.style.display = 'inline-block'; });
+
+  /* --- palette --- */
+  const PAL = [
+    ['#FF4C00', '#fff',    'Laranja EXP', '#FF4C00', 'R255 G76 B0',    '60%'],
+    ['#1E1E1E', '#F4F1EE', 'Grafite',     '#1E1E1E', 'R30 G30 B30',    '25%'],
+    ['#FFE4D9', '#1E1E1E', 'Pêssego', '#FFE4D9', 'R255 G228 B217', '10%'],
+    ['#F4F1EE', '#1E1E1E', 'Off-white',   '#F4F1EE', 'R244 G241 B238', '5%'],
+  ];
+  $('palcols').innerHTML = PAL.map((p, i) =>
+    `<div class="abs palc" style="left:${i*270}px;top:0;width:270px;height:1920px;background:${p[0]};z-index:${i===0?5:1};overflow:hidden;border-left:${i===1?'1px solid rgba(255,255,255,.06)':'0'}">
+      <div class="paltx" style="position:absolute;inset:0">
+        ${i===0 ? `<div class="mono" style="position:absolute;left:30px;top:192px;font-size:17px;color:rgba(255,255,255,.85);letter-spacing:.2em">PALETA DE CORES</div>
+                   <div class="mk" style="position:absolute;left:30px;top:250px;width:110px;height:92px;background:#fff"></div>` : ''}
+        <div style="position:absolute;left:30px;top:560px;font-size:78px;font-weight:700;color:${p[1]};letter-spacing:-.03em">${p[5]}</div>
+        <div style="position:absolute;left:30px;top:1330px;font-size:30px;font-weight:600;color:${p[1]}">${p[2]}</div>
+        <div class="mono" style="position:absolute;left:30px;top:1380px;font-size:22px;color:${p[1]}">${p[3]}</div>
+        <div class="mono" style="position:absolute;left:30px;top:1418px;font-size:16px;color:${p[1]};opacity:.7">${p[4]}</div>
+      </div></div>`).join('');
+
+  /* --- typography rows --- */
+  const TW = [['Regular', 400], ['Medium', 500], ['SemiBold', 600], ['Bold', 700]];
+  $('typorows').innerHTML = TW.map((r, i) =>
+    `<div class="abs typr" style="left:80px;top:${1040 + i*112}px;width:920px;height:112px;border-top:2px solid rgba(30,30,30,.22);display:flex;align-items:center;justify-content:space-between">
+      <span style="font-size:62px;font-weight:${r[1]};color:#1E1E1E;letter-spacing:-.01em">${r[0]}</span>
+      <span class="mono" style="font-size:24px;color:rgba(30,30,30,.7)">${r[1]}</span></div>`).join('');
+
+  /* --- letterhead text lines --- */
+  const LW = [440, 452, 430, 448, 300, 0, 446, 438, 452, 410, 0, 452, 360];
+  $('statLines').innerHTML = LW.map((w, k) => w ? `<div style="position:absolute;left:44px;top:${226 + k*34}px;width:${w}px;height:10px;border-radius:5px;background:#1E1E1E;opacity:.16"></div>` : '').join('');
+
+  /* --- dashboard KPIs + chart --- */
+  const KP = [['RECEITA', '38%', '#FF4C00'], ['ROAS', '21%', '#F4F1EE'], ['LEADS', '46%', '#F4F1EE'], ['CTR', '31%', '#F4F1EE']];
+  const up = '<svg width="16" height="14" viewBox="0 0 16 14" style="margin-right:8px"><path d="M8 1 15 13H1z" fill="#FF6A2A"/></svg>';
+  $('dashKpis').innerHTML = KP.map((k, i) =>
+    `<div class="abs dkt" style="left:${48 + (i%2)*454}px;top:${212 + Math.floor(i/2)*266}px;width:430px;height:240px;border-radius:28px;background:#1E1A17;border:1.5px solid rgba(255,255,255,.06)">
+      <div class="mono" style="position:absolute;left:32px;top:30px;font-size:18px;color:#8B847D;letter-spacing:.16em">${k[0]}</div>
+      <div id="dashV${i}" style="position:absolute;left:32px;top:72px;font-size:62px;font-weight:700;color:${k[2]};letter-spacing:-.02em;white-space:nowrap"></div>
+      <div style="position:absolute;left:32px;top:172px;height:40px;padding:0 16px;border-radius:20px;background:rgba(255,76,0,.14);display:flex;align-items:center;font-size:19px;font-weight:600;color:#FF8A55">${up}${k[1]}</div></div>`).join('');
+  const V = [18, 22, 21, 27, 30, 29, 37, 41, 40, 49, 56, 64];
+  const pts = V.map((v, i) => [i * 884 / 11, 420 - (v - 14) / 54 * 380]);
+  const d = pts.map((p, i) => (i ? 'L' : 'M') + p[0].toFixed(1) + ' ' + p[1].toFixed(1)).join(' ');
+  $('dashLine').setAttribute('d', d);
+  $('dashArea').setAttribute('d', d + ' L884 440 L0 440 Z');
+  $('dashGrid').innerHTML = [0, 1, 2, 3].map(k => `<line x1="0" x2="884" y1="${40 + k*120}" y2="${40 + k*120}" stroke="rgba(255,255,255,.06)" stroke-width="1.5"/>`).join('');
+
+  /* --- funnel --- */
+  const FB = [['ALCANCE', '#FF4C00', 920], ['ENGAJAMENTO', '#D94000', 740], ['LEADS', '#B33500', 560], ['VENDAS', '#8C2A00', 380]];
+  const CONV = ['15,5%', '6,7%', '25,6%'];
+  $('funbars').innerHTML = FB.map((f, i) =>
+    `<div class="abs funb" style="left:${540 - f[2]/2}px;top:${560 + i*230}px;width:${f[2]}px;height:180px;border-radius:30px;background:${f[1]};transform-origin:50% 50%">
+      <div class="mono" style="position:absolute;left:0;top:30px;width:100%;text-align:center;font-size:20px;color:rgba(255,255,255,.85);letter-spacing:.18em">${f[0]}</div>
+      <div id="funN${i}" style="position:absolute;left:0;top:66px;width:100%;text-align:center;font-size:66px;font-weight:700;color:#fff;letter-spacing:-.02em"></div></div>`
+    + (i < 3 ? `<div class="abs mono func" style="left:465px;top:${560 + i*230 + 184}px;width:150px;height:42px;border-radius:21px;background:#1E1A17;border:1.5px solid rgba(255,76,0,.4);display:flex;align-items:center;justify-content:center;font-size:19px;color:#FF8A55">↓ ${CONV[i]}</div>` : '')
+  ).join('');
+
+  /* --- notifications --- */
+  const NT = [['Novo lead recebido', 'Formulário do site · Plano Growth'],
+              ['Nova venda: R$ 1.290,00', 'Pagamento aprovado'],
+              ['Meta do mês atingida', 'Parabéns, time! +38% vs. mês anterior']];
+  $('adsNotifs').innerHTML = NT.map((n, i) =>
+    `<div class="abs adn" style="left:70px;top:0;width:940px;height:132px;border-radius:34px;background:rgba(246,243,240,.96);box-shadow:0 22px 50px rgba(0,0,0,.4);display:flex;align-items:center;gap:24px;padding:0 30px">
+      <div style="width:80px;height:80px;border-radius:20px;background:#FF4C00;display:flex;align-items:center;justify-content:center;flex:none"><div class="mk" style="width:46px;height:38px;background:#fff"></div></div>
+      <div style="flex:1;min-width:0">
+        <div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-size:26px;font-weight:700;color:#141414">${n[0]}</span><span style="font-size:20px;color:#8A8A8A">agora</span></div>
+        <div style="font-size:23px;color:#3A3A3A;margin-top:4px">${n[1]}</div></div></div>`).join('');
+
+  /* --- search skeleton results --- */
+  $('gooSkel').innerHTML = [0, 1].map(k =>
+    `<div class="abs goosk" style="left:50px;top:${850 + k*290}px;width:980px;height:250px;padding:40px">
+      <div style="position:absolute;left:40px;top:34px;width:58px;height:58px;border-radius:50%;background:#E8E4E0"></div>
+      <div style="position:absolute;left:116px;top:40px;width:200px;height:16px;border-radius:8px;background:#E8E4E0"></div>
+      <div style="position:absolute;left:116px;top:70px;width:300px;height:14px;border-radius:7px;background:#EEEBE8"></div>
+      <div style="position:absolute;left:40px;top:124px;width:${k ? 560 : 640}px;height:26px;border-radius:13px;background:#DCE3F2"></div>
+      <div style="position:absolute;left:40px;top:172px;width:860px;height:14px;border-radius:7px;background:#EEEBE8"></div>
+      <div style="position:absolute;left:40px;top:200px;width:${k ? 700 : 620}px;height:14px;border-radius:7px;background:#EEEBE8"></div></div>`).join('');
+})();
+
+const QUERY = 'agência de marketing digital';
+
+const SCENES = {
+  /* ---------- ACT I — BRANDING ---------- */
+  f1(u, tl, t) {
+    document.querySelectorAll('.f1w').forEach((r, i) => {
+      r.style.transform = `scale(${(1 + 0.04 * Math.sin(t * 2 + i * .8)).toFixed(4)})`;
+    });
+    $('f1mark').style.transform = `scale(${(1 + 0.02 * u).toFixed(4)})`;
+  },
+  f2() {}, g3() {},
+  ch1(u, tl) { chapter('ch1', tl); },
+  pal(u, tl) {
+    document.querySelectorAll('.palc').forEach((c, i) => {
+      const e = spr(tl + 0.05 - i * 0.07, 3.8, .86);
+      c.style.transform = `translateY(${((1 - e) * 1920).toFixed(1)}px)`;
+    });
+    const ex = Math.pow(ss(0.78, 0.98, tl), 1.4);
+    const c0 = document.querySelector('.palc');
+    c0.style.width = (270 + 810 * ex).toFixed(1) + 'px';
+    c0.querySelector('.paltx').style.opacity = (1 - ss(0.74, 0.86, tl)).toFixed(3);
+  },
+  typo(u, tl) {
+    $('typoAa').style.fontWeight = [400, 500, 600, 700][Math.min(3, Math.floor(tl / 0.09))];
+    $('typoAa').style.transform = `translateY(${((1 - spr(tl, 4, .8)) * 40).toFixed(1)}px)`;
+    document.querySelectorAll('.typr').forEach((r, i) => {
+      const e = spr(tl - 0.1 - i * 0.05, 4.6, .82);
+      r.style.transform = `translateX(${((1 - e) * -140).toFixed(1)}px)`;
+      r.style.opacity = clamp(e * 1.4, 0, 1).toFixed(3);
+    });
+    $('typoset').style.opacity = ss(0.3, 0.5, tl).toFixed(3);
+  },
+  f3(u, tl) {
+    const e = spr(tl, 5.5, .8);
+    $('f3bb').style.transform = `perspective(1800px) rotateY(${(7 - 2 * e).toFixed(2)}deg) translateY(${((1 - e) * 26).toFixed(1)}px)`;
+  },
+  stat(u, tl) {
+    const a = spr(tl, 3.8, .8), b = spr(tl - 0.08, 3.8, .8), s = spr(tl - 0.03, 3.4, .86);
+    $('statA').style.transform = `translate(${((1 - a) * -520 + 18 * u).toFixed(1)}px,${((1 - a) * -300).toFixed(1)}px) rotate(${(-24 + 14 * a).toFixed(2)}deg)`;
+    $('statB').style.transform = `translate(${((1 - b) * 520 - 14 * u).toFixed(1)}px,${((1 - b) * 380).toFixed(1)}px) rotate(${(20 - 13 * b).toFixed(2)}deg)`;
+    $('statSheet').style.transform = `translateY(${((1 - s) * 80).toFixed(1)}px) rotate(5deg) scale(${(0.96 + 0.04 * s).toFixed(4)})`;
+    $('statSheet').style.opacity = clamp(s * 1.4, 0, 1).toFixed(3);
+    $('statShine').style.transform = `rotate(18deg) translateX(${(1100 * ss(0.32, 0.7, tl)).toFixed(1)}px)`;
+  },
+  /* ---------- the dive: Instagram -> phone ---------- */
+  f4(u, tl, t) {
+    $('f4ring').style.transform = `rotate(${(t * 30).toFixed(1)}deg)`;
+    const n = Math.floor(9512 + 456 * ss(0.05, 0.55, u));
+    $('f4count').textContent = thou(n);
+    const b = spr(tl - 0.18, 5, .6);
+    $('f4btn').style.transform = `scale(${(0.92 + 0.08 * clamp(b, 0, 1.15)).toFixed(4)})`;
+    const zv = Math.pow(ss(0.42, 0.75, tl), 1.7);
+    const zoom = 1 + zv * 9;
+    const tx = (540 - 189) * ss(0, 0.6, zv), ty = (960 - 375) * ss(0, 0.6, zv);
+    const inn = $('f4in');
+    inn.style.transformOrigin = '189px 375px';
+    inn.style.transform = `translate(${tx.toFixed(1)}px,${ty.toFixed(1)}px) scale(${zoom.toFixed(4)}) rotate(${(zv * 2.5).toFixed(2)}deg)`;
+    $('f4ringO').style.opacity = ss(0.08, 0.4, zv).toFixed(3);
+    $('f4rack').style.opacity = ss(0.38, 0.52, tl).toFixed(3);
+  },
+  f5(u, tl, t) {
+    const pull = 1 + 0.9 * Math.pow(1 - u, 1.8);
+    const inn = $('f5in');
+    inn.style.transformOrigin = '540px 700px';
+    inn.style.transform = `scale(${pull.toFixed(4)})`;
+    $('f5ph').style.transform = `translateY(${(5 * Math.sin(t * 2.1)).toFixed(1)}px) rotate(-2deg)`;
+    $('f5sheen').style.transform = `rotate(16deg) translateX(${(tl * 1100).toFixed(1)}px)`;
+    $('f5n1').textContent = '+' + Math.round(248 * ss(0.3, 0.62, u)) + '%';
+    $('f5n2').textContent = Math.round(98 * ss(0.48, 0.8, u));
+    const c = spr(tl - 0.28, 4.5, .62);
+    $('f5cta').style.transform = `scale(${(0.9 + 0.1 * clamp(c, 0, 1.12)).toFixed(4)})`;
+    [['f5c1', 0.2], ['f5c2', 0.33]].forEach(([id, d]) => {
+      const p = spr(tl - d, 4.6, .72);
+      $(id).style.transform = `translateY(${((1 - p) * 50).toFixed(1)}px)`;
+      $(id).style.opacity = clamp(p * 1.4, 0, 1).toFixed(3);
+    });
+  },
+  /* ---------- ACT II — MARKETING ---------- */
+  ch2(u, tl) { chapter('ch2', tl); },
+  dash(u, tl) {
+    const e = spr(tl, 3.6, .84);
+    $('dashP').style.transform = `translateY(${((1 - e) * 120).toFixed(1)}px)`;
+    document.querySelectorAll('.dkt').forEach((k, i) => {
+      const p = spr(tl - 0.06 - i * 0.05, 4.4, .8);
+      k.style.opacity = clamp(p * 1.4, 0, 1).toFixed(3);
+      k.style.transform = `translateY(${((1 - p) * 30).toFixed(1)}px)`;
+    });
+    const c = i => ss(0.12 + i * 0.06, 0.7 + i * 0.06, tl);
+    $('dashV0').textContent = 'R$ ' + br(248.9 * c(0)) + ' mil';
+    $('dashV1').textContent = br(6.4 * c(1)) + 'x';
+    $('dashV2').textContent = thou(Math.round(1284 * c(2)));
+    $('dashV3').textContent = br(3.8 * c(3)) + '%';
+    const dr = ss(0.25, 1.1, tl);
+    const line = $('dashLine');
+    line.setAttribute('stroke-dashoffset', (1 - dr).toFixed(4));
+    const L = line.getTotalLength(), p = line.getPointAtLength(L * dr);
+    $('dashArea').style.clipPath = `inset(0 ${(884 - p.x).toFixed(1)}px 0 0)`;
+    $('dashDot').setAttribute('cx', p.x.toFixed(1));
+    $('dashDot').setAttribute('cy', p.y.toFixed(1));
+    $('dashDot').style.opacity = dr > 0.01 ? 1 : 0;
+  },
+  fun(u, tl) {
+    document.querySelectorAll('.funb').forEach((b, i) => {
+      const e = spr(tl - i * 0.07, 4.2, .8);
+      const p = (1 - clamp(e, 0, 1)) * 36;
+      b.style.clipPath = `inset(0 ${p.toFixed(2)}% 0 ${p.toFixed(2)}% round 30px)`;
+      b.style.opacity = clamp(e * 1.6, 0, 1).toFixed(3);
+    });
+    document.querySelectorAll('.func').forEach((c, i) => { c.style.opacity = ss(0.25 + i * 0.07, 0.4 + i * 0.07, tl).toFixed(3); });
+    const c = i => ss(0.05 + i * 0.05, 0.4 + i * 0.05, tl);
+    $('funN0').textContent = br(1.2 * c(0)) + ' mi';
+    $('funN1').textContent = Math.round(186 * c(1)) + ' mil';
+    $('funN2').textContent = br(12.4 * c(2)) + ' mil';
+    $('funN3').textContent = thou(Math.round(3180 * c(3)));
+  },
+  ads(u, tl) {
+    const e = spr(tl, 3.6, .82);
+    $('adsCard').style.transform = `translateY(${((1 - e) * 160).toFixed(1)}px)`;
+    $('adsLikes').textContent = thou(Math.round(11874 + 564 * ss(0.1, 0.95, u)));
+    const h = tl > 0.28 ? 0.6 + 0.4 * spr(tl - 0.28, 6, .45) : 1;
+    $('adsHeart').style.transform = `scale(${h.toFixed(4)})`;
+    const A = [0.18, 0.4, 0.62];
+    document.querySelectorAll('.adn').forEach((n, k) => {
+      const inK = spr(tl - A[k], 4.2, .8);
+      let push = 0;
+      for (let j = k + 1; j < 3; j++) push += spr(tl - A[j], 4.2, .82);
+      n.style.transform = `translateY(${(lerp(-180, 150, inK) + 146 * push).toFixed(1)}px) scale(${(1 - 0.03 * push).toFixed(4)})`;
+      n.style.opacity = clamp(inK * 2, 0, 1).toFixed(3);
+    });
+  },
+  goo(u, tl) {
+    const n = Math.floor(QUERY.length * clamp((tl - 0.02) / 0.3, 0, 1));
+    $('gooQ').textContent = QUERY.slice(0, n);
+    $('gooCaret').style.opacity = (Math.sin(tl * 30) > -0.3 ? 1 : 0);
+    const r = spr(tl - 0.28, 4.4, .8);
+    $('gooR1').style.transform = `translateY(${((1 - r) * 70).toFixed(1)}px)`;
+    $('gooR1').style.opacity = clamp(r * 1.5, 0, 1).toFixed(3);
+    document.querySelectorAll('.goosk').forEach((s, k) => {
+      const p = spr(tl - 0.34 - k * 0.06, 4.4, .82);
+      s.style.transform = `translateY(${((1 - p) * 70).toFixed(1)}px)`;
+      s.style.opacity = clamp(p * 1.3, 0, 1).toFixed(3);
+    });
+    const bp = spr(tl - 0.45, 6, .5);
+    $('gooBadge').style.transform = `scale(${(tl > 0.45 ? 0.5 + 0.5 * bp : 0).toFixed(4)})`;
+    const inn = $('goo').querySelector('.in');
+    inn.style.transformOrigin = '540px 635px';
+    inn.style.transform = `scale(${(1 + 0.09 * Math.pow(u, 1.6)).toFixed(4)})`;
+  },
+  /* ---------- ACT III ---------- */
+  f6(u, tl) {
+    const SPD = [-250, 215, -290, 235, -195], OFF = [-900, -2400, -600, -1900, -1400];
+    document.querySelectorAll('.f6row').forEach((row, i) => {
+      const e = spr(tl - i * 0.03, 5, .82);
+      row.style.opacity = clamp(0.25 + e * 1.3, 0, 1).toFixed(3);
+      row.style.transform = `translateX(${((1 - e) * (i % 2 ? 110 : -110)).toFixed(1)}px)`;
+      row.querySelector('.f6roll').style.transform = `translateX(${(OFF[i] + SPD[i] * tl).toFixed(1)}px)`;
+    });
+    const bl = ss(0.92, 1.14, tl);
+    const blast = $('f6blast');
+    blast.style.transform = `scale(${(Math.pow(bl, 1.6) * 15).toFixed(3)}) rotate(${(bl * -6).toFixed(2)}deg)`;
+    blast.style.opacity = bl > 0.001 ? 1 : 0;
+    blast.style.filter = bl > 0.5 ? `blur(${((bl - 0.5) * 16).toFixed(1)}px)` : 'none';
+    $('f6seal').style.transform = `scale(${(Math.pow(ss(0.98, 1.17, tl), 1.6) * 9).toFixed(3)})`;
+  },
+  f7(u, tl, t) {
+    const shake = 16 * Math.exp(-tl * 11);
+    const sx = shake * Math.sin(t * 91.7), sy = shake * Math.cos(t * 73.3);
+    const settle = 1.3 - 0.3 * ss(0, 0.32, tl);
+    $('f7macro').style.transform = `translate(${(-40 + 110 * u + sx).toFixed(1)}px,${(30 - 70 * u + sy).toFixed(1)}px) rotate(-6deg) scale(${settle.toFixed(4)})`;
+    $('f7macro').style.backgroundPosition = `${(-130 + 260 * ss(0.05, 0.97, u)).toFixed(1)}% 50%, 0 0`;
+    ['f7lock', 'f7l1', 'f7l2'].forEach(id => { $(id).style.opacity = 0; });
+    document.querySelectorAll('.f7tick').forEach(el => { el.style.opacity = 0; });
+    $('f7').querySelector('.in').style.transform = `scale(${(1 + 0.04 * u).toFixed(5)})`;
+  },
+  man1(u, tl) { manifesto('man1', tl); },
+  man2(u, tl) { manifesto('man2', tl); },
+  end(u, tl, t) {
+    const m = spr(tl, 3.6, .72);
+    $('endMark').style.transform = `scale(${(0.7 + 0.3 * m).toFixed(4)})`;
+    const w = ss(0.1, 0.36, tl);
+    $('endWord').style.opacity = w.toFixed(3);
+    $('endWord').style.transform = `translateX(${((1 - w) * 30).toFixed(1)}px)`;
+    $('endTag').style.opacity = ss(0.3, 0.55, tl).toFixed(3);
+    const c = spr(tl - 0.42, 4.6, .6);
+    $('endCta').style.transform = `scale(${(tl > 0.42 ? 0.6 + 0.4 * c : 0).toFixed(4)})`;
+    $('endShine').style.transform = `rotate(20deg) translateX(${(800 * ss(0.95, 1.35, tl)).toFixed(1)}px)`;
+    $('endUrl').style.opacity = ss(0.6, 0.85, tl).toFixed(3);
+    $('endUrl').style.transform = `translateY(${((1 - ss(0.6, 0.9, tl)) * 14).toFixed(1)}px)`;
+    $('endGhost').style.transform = `rotate(${(-4 + 6 * u).toFixed(2)}deg) scale(${(1 + 0.05 * u).toFixed(4)})`;
+    ['endl1', 'endl2'].forEach((id, i) => { $(id).style.opacity = ss(0.5 + i * 0.06, 0.75 + i * 0.06, tl).toFixed(3); });
+    document.querySelectorAll('.endtick').forEach((el, i) => { el.style.opacity = ss(0.4 + i * 0.05, 0.6 + i * 0.05, tl).toFixed(3); });
+    $('end').querySelector('.in').style.transform = `scale(${(1 + 0.04 * u).toFixed(5)})`;
+  }
+};
+
+function chapter(id, tl) {
+  document.querySelectorAll(`#${id}word .lt`).forEach((l, i) => {
+    const e = spr(tl - 0.02 - i * 0.025, 5.2, .8);
+    l.style.transform = `translateY(${((1 - e) * 190).toFixed(1)}px)`;
+  });
+  const n = spr(tl, 4, .82);
+  $(id + 'num').style.transform = `scale(${(1.08 - 0.08 * n).toFixed(4)})`;
+  $(id + 'num').style.opacity = clamp(n * 1.6, 0, 1).toFixed(3);
+  $(id + 'rule').style.width = (920 * ss(0.12, 0.45, tl)).toFixed(1) + 'px';
+  $(id + 'ghost').style.transform = `translate(${(-30 * tl).toFixed(1)}px,${(-20 * tl).toFixed(1)}px) rotate(${(-4 + 6 * tl).toFixed(2)}deg)`;
+  const g = ss(0.22, 0.42, tl);
+  $(id + 'tag').style.opacity = g.toFixed(3);
+  $(id + 'tag').style.transform = `translateY(${((1 - g) * 24).toFixed(1)}px)`;
+}
+
+function manifesto(id, tl) {
+  document.querySelectorAll(`#${id} .mw`).forEach((w, k) => {
+    const e = spr(tl - 0.02 - k * 0.055, 5, .82);
+    w.style.transform = `translateY(${((1 - e) * 170).toFixed(1)}px)`;
+  });
+}
+
+function seek(t) {
+  t = ((t % DUR) + DUR) % DUR;
+  let ci = 0;
+  for (let i = 0; i < CUTS.length - 1; i++) if (t >= CUTS[i][0]) ci = i;
+  const [t0, id] = CUTS[ci];
+  const t1 = CUTS[ci + 1][0];
+  const u = clamp((t - t0) / (t1 - t0), 0, 1);
+  const tl = t - t0;
+  document.querySelectorAll('section').forEach(sc => { sc.style.display = sc.id === id ? 'block' : 'none'; });
+  if (!CUSTOM_CAM.has(id)) {
+    const inn = $(id).querySelector('.in');
+    inn.style.transformOrigin = '50% 50%';
+    inn.style.transform = `scale(${(1 + 0.035 * outQ(u)).toFixed(5)})`;
+  }
+  SCENES[id](u, tl, t);
+  let fl = 0, fo = 0;
+  WHITE_FLASH.forEach(([tc, a]) => { if (t >= tc) fl = Math.max(fl, a * Math.exp(-(t - tc) * 26)); });
+  ORANGE_FLASH.forEach(([tc, a]) => { if (t >= tc) fo = Math.max(fo, a * Math.exp(-(t - tc) * 15)); });
+  $('flash').style.opacity = fl > 0.01 ? fl.toFixed(3) : 0;
+  $('flashO').style.opacity = fo > 0.01 ? fo.toFixed(3) : 0;
+}
+window.seek = seek;
+
+if (!window.__RENDER__) {
+  const t0 = performance.now();
+  (function loop() { seek(((performance.now() - t0) / 1000) % DUR); requestAnimationFrame(loop); })();
+} else { seek(0); }
+</script>
+</body>
+</html>
