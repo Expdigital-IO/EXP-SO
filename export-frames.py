@@ -108,6 +108,7 @@ def main():
 
         page.add_script_tag(path=os.path.join(ROOT, "canva-prep.js"))
         page.evaluate("window.__canvaPrep()")
+        page.wait_for_timeout(300)
         canva_pages = []
         for t, _ in SCENES:
             page.evaluate(f"seek({t})")

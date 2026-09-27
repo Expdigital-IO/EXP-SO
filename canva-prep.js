@@ -1,7 +1,9 @@
 /* Makes a frozen film page import cleanly into Canva's PDF importer:
    - CSS-masked logos (.mk .mk2 .ol .wd) become tinted PNG <img>s (Canva drops masks)
    - outlined text (-webkit-text-stroke) becomes a transparent PNG (Canva fills it)
-   - kerning/ligatures off so text arrives as whole words, not split glyph runs */
+   - kerning/ligatures off so text arrives as whole words, not split glyph runs
+   - live text switches to fonts Canva has natively (Inter for Geist, Roboto Mono
+     for Geist Mono) so weights and word spacing survive the import */
 window.__canvaPrep = async function () {
   const st = document.createElement('style');
   st.textContent = '*{font-kerning:none!important;font-variant-ligatures:none!important}';
@@ -47,8 +49,9 @@ window.__canvaPrep = async function () {
       const text = el.textContent;
       const inline = cs.display === 'inline';
       const w = el.offsetWidth, h = el.offsetHeight;
+      const pad = Math.round(h * 0.25);
       const c = document.createElement('canvas');
-      c.width = Math.round(w * S); c.height = Math.round(h * S);
+      c.width = Math.round(w * S); c.height = Math.round((h + 2 * pad) * S);
       const ctx = c.getContext('2d');
       ctx.scale(S, S);
       ctx.font = `${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;
@@ -58,10 +61,10 @@ window.__canvaPrep = async function () {
       const y = (h - (asc + desc)) / 2 + asc;
       ctx.lineWidth = parseFloat(cs.webkitTextStrokeWidth);
       ctx.strokeStyle = cs.webkitTextStrokeColor;
-      ctx.strokeText(text, 0, y);
+      ctx.strokeText(text, 0, y + pad);
       const out = document.createElement('img');
       out.src = c.toDataURL('image/png');
-      out.style.cssText = `display:block;width:${w}px;height:${h}px`;
+      out.style.cssText = `display:block;width:${w}px;height:${h + 2 * pad}px;margin:${-pad}px 0`;
       el.textContent = '';
       el.style.webkitTextStroke = '0';
       if (inline) { el.style.display = 'inline-block'; el.style.verticalAlign = `${-desc}px`; }
@@ -69,5 +72,14 @@ window.__canvaPrep = async function () {
     }
     sec.style.display = prev;
   }
+  const ff = document.createElement('style');
+  ff.textContent = [400, 500, 600, 700].map(w =>
+      `@font-face{font-family:Inter;src:url(fonts/canva/inter-latin-${w}-normal.woff2) format('woff2');font-weight:${w}}`).join('') +
+    [400, 500].map(w =>
+      `@font-face{font-family:'Roboto Mono';src:url(fonts/canva/roboto-mono-latin-${w}-normal.woff2) format('woff2');font-weight:${w}}`).join('') +
+    `*{font-family:Inter,sans-serif!important}.mono,.mono *{font-family:'Roboto Mono',monospace!important}`;
+  document.head.appendChild(ff);
+  await Promise.all([400, 500, 600, 700].map(w => document.fonts.load(`${w} 40px Inter`))
+    .concat([400, 500].map(w => document.fonts.load(`${w} 40px "Roboto Mono"`))));
   return true;
 };
