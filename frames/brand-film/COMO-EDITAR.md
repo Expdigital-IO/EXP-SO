@@ -12,7 +12,24 @@ o *layout final* e eu reconstruo a animação em cima dele.
 | `brand-film-cenas.pdf` | as 20 cenas em páginas vetoriais: **os textos continuam editáveis** |
 | `guia.png` | visão geral com número e segundo de cada cena |
 
-## Como editar
+## No Canva (recomendado)
+
+Pasta **EXP Brand Film — Quadros para edição** (https://www.canva.com/folder/FAHWbb6rgUU):
+
+| Design | ID | Uso |
+|---|---|---|
+| ★ EXP Brand Film — EDITAR AQUI (20 cenas) | `DAHWbVB9dU0` | edite aqui: uma página por cena |
+| EXP Brand Film — REFERÊNCIA (visual original) | `DAHWbajWAMg` | só para comparar; imagens planas |
+
+No arquivo de edição, os textos estão em **Inter** e os rótulos em **Roboto Mono**, fontes
+nativas do Canva e quase gêmeas da Geist. No vídeo final continua a Geist. Logos e textos
+vazados são imagens: dá para mover, redimensionar, trocar ou apagar.
+
+**Replicação:** `canva-baseline.json` guarda o estado inicial de cada elemento (texto, posição,
+tamanho, cor). Quando as edições terminarem, o design é lido de novo, comparado com essa base
+e cada mudança é aplicada em `brand-film.html`; depois o vídeo é renderizado de novo.
+
+## Outros programas
 
 - **Canva:** *Criar design → Importar arquivo →* `brand-film-cenas.pdf`. Cada página vira um design com textos e formas editáveis.
 - **Illustrator / Affinity:** abra o PDF direto; o texto é texto de verdade.
