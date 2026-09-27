@@ -6,6 +6,9 @@ Outputs, per page:
   frames/<name>/<name>-cenas.pdf      vector PDF, one scene per page (text stays editable)
   frames/<name>/guia.png              contact sheet with scene numbers and times
 
+  frames/<name>/<name>-canva.pdf       same scenes prepared for Canva's PDF import (logos as images)
+  frames/<name>/<name>-referencia.pdf  pixel-perfect image-only PDF, for comparing and annotating
+
 Usage: python3 export-frames.py brand-film.html brand-film
 """
 import http.server
@@ -70,6 +73,20 @@ def serve():
         httpd.serve_forever()
 
 
+def pdf_page(page):
+    return page.pdf(width="1080px", height="1920px", print_background=True,
+                    margin={"top": "0", "right": "0", "bottom": "0", "left": "0"}, page_ranges="1")
+
+
+def merge(blobs, filename):
+    merged = pdfium.PdfDocument.new()
+    for blob in blobs:
+        merged.import_pages(pdfium.PdfDocument(io.BytesIO(blob)))
+    path = os.path.join(OUT, filename)
+    merged.save(path)
+    return path
+
+
 def main():
     os.makedirs(OUT, exist_ok=True)
     threading.Thread(target=serve, daemon=True).start()
@@ -86,17 +103,22 @@ def main():
             fn = os.path.join(OUT, f"{i:02d}_{t:05.2f}s_{slug(title)}.png")
             page.screenshot(path=fn)
             pngs.append((i, t, title, fn))
-            pdf_pages.append(page.pdf(width="1080px", height="1920px", print_background=True,
-                                      margin={"top": "0", "right": "0", "bottom": "0", "left": "0"},
-                                      page_ranges="1"))
+            pdf_pages.append(pdf_page(page))
             print(f"{i:02d} {t:5.2f}s {title}")
+
+        page.add_script_tag(path=os.path.join(ROOT, "canva-prep.js"))
+        page.evaluate("window.__canvaPrep()")
+        canva_pages = []
+        for t, _ in SCENES:
+            page.evaluate(f"seek({t})")
+            canva_pages.append(pdf_page(page))
         browser.close()
 
-    merged = pdfium.PdfDocument.new()
-    for blob in pdf_pages:
-        merged.import_pages(pdfium.PdfDocument(io.BytesIO(blob)))
-    pdf_path = os.path.join(OUT, f"{NAME}-cenas.pdf")
-    merged.save(pdf_path)
+    pdf_path = merge(pdf_pages, f"{NAME}-cenas.pdf")
+    merge(canva_pages, f"{NAME}-canva.pdf")
+    first, *rest = [Image.open(fn).convert("RGB") for _, _, _, fn in pngs]
+    first.save(os.path.join(OUT, f"{NAME}-referencia.pdf"), save_all=True, append_images=rest,
+               resolution=96, quality=92)
 
     cols, cw, ch = 5, 324, 576
     rows = (len(pngs) + cols - 1) // cols
