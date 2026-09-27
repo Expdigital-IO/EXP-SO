@@ -6,7 +6,7 @@
      for Geist Mono) so weights and word spacing survive the import */
 window.__canvaPrep = async function () {
   const st = document.createElement('style');
-  st.textContent = '*{font-kerning:none!important;font-variant-ligatures:none!important;word-spacing:.08em!important}';
+  st.textContent = '*{font-kerning:none!important;font-variant-ligatures:none!important;}';
   document.head.appendChild(st);
   const cache = {};
   const load = url => cache[url] || (cache[url] = new Promise((ok, err) => {
@@ -71,6 +71,13 @@ window.__canvaPrep = async function () {
       el.appendChild(out);
     }
     sec.style.display = prev;
+  }
+  /* Chrome emits some spaces as run seams that Canva drops; a no-break space is a real glyph */
+  for (const sec of sections) {
+    const walker = document.createTreeWalker(sec, NodeFilter.SHOW_TEXT);
+    for (let n = walker.nextNode(); n; n = walker.nextNode()) {
+      if (n.textContent.includes(' ')) n.textContent = n.textContent.replace(/ /g, '\u00A0');
+    }
   }
   const ff = document.createElement('style');
   ff.textContent = [400, 500, 600, 700].map(w =>
