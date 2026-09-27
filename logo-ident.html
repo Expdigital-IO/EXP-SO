@@ -45,7 +45,7 @@
 <!-- F2: white outline -->
 <section id="f2" style="background:#FDFDFD">
   <div class="in"><div class="anch ol" style="background:#C43F00"></div>
-  <div class="abs mono" style="left:64px;top:70px;font-size:20px;color:#C9BFB8;letter-spacing:.18em">EXP&#174; / S&#205;MBOLO</div></div>
+</div>
 </section>
 
 <!-- F3: billboard -->
@@ -84,6 +84,7 @@
     <div class="abs" style="left:0;top:104px;width:1080px;height:88px;display:flex;align-items:center;justify-content:center;font-size:38px;font-weight:700">expdigital.io
       <svg width="22" height="14" viewBox="0 0 22 14" style="margin-left:10px"><path d="M2 2l9 9 9-9" fill="none" stroke="#141414" stroke-width="3.5" stroke-linecap="round"/></svg></div>
     <div class="abs" id="f4ring" style="left:64px;top:250px;width:250px;height:250px;border-radius:50%;background:conic-gradient(#FEDA75,#FA7E1E,#D62976,#962FBF,#4F5BD5,#FEDA75)"></div>
+    <div class="abs" id="f4ringO" style="left:64px;top:250px;width:250px;height:250px;border-radius:50%;background:#FF4C00;opacity:0"></div>
     <div class="abs" style="left:72px;top:258px;width:234px;height:234px;border-radius:50%;background:#fff"></div>
     <div class="abs" style="left:79px;top:265px;width:220px;height:220px;border-radius:50%;background:#1E1E1E;display:flex;align-items:center;justify-content:center">
       <div class="mk" style="width:126px;height:105px;background:#FF4C00"></div>
@@ -101,6 +102,7 @@
     <div class="abs" style="left:0;top:1058px;width:1080px;height:2px;background:rgba(0,0,0,.08)"></div>
     <div class="abs" style="left:0;top:1060px;width:360px;height:5px;background:#141414"></div>
     <div class="abs" id="f4grid" style="left:0;top:1140px;width:1080px;display:grid;grid-template-columns:repeat(3,1fr);gap:3px"></div>
+    <div class="abs" id="f4rack" style="left:-400px;top:-400px;width:1880px;height:2720px;opacity:0;background:radial-gradient(circle at 589px 775px, rgba(255,255,255,0) 0px, rgba(255,255,255,0) 128px, #fff 168px)"></div>
   </div>
 </section>
 
@@ -171,12 +173,12 @@
       <div class="abs mk" style="left:322px;top:880px;width:150px;height:125px;background:#fff;filter:drop-shadow(0 6px 30px rgba(0,0,0,.6))"></div>
       <div class="abs wd" style="left:494px;top:903px;width:264px;height:97px;background:#fff;filter:drop-shadow(0 6px 30px rgba(0,0,0,.6))"></div>
       <div class="abs mono" id="f7tag" style="left:0;top:1050px;width:1080px;text-align:center;font-size:21px;color:rgba(255,255,255,.75);letter-spacing:.38em">HUB DE SERVI&#199;OS DIGITAIS</div>
+      <div class="abs" id="f7url" style="left:0;top:1108px;width:1080px;text-align:center;font-size:30px;font-weight:700;color:#fff">expdigital.io</div>
     </div>
     <div id="f7corners"></div>
-    <div class="abs mono" id="f7l1" style="left:64px;top:64px;font-size:20px;color:rgba(255,255,255,.55);letter-spacing:.18em">EXP&#174; &#8212; BRAND SYSTEM</div>
-    <div class="abs mono" id="f7l2" style="right:64px;top:64px;font-size:20px;color:rgba(255,255,255,.55);letter-spacing:.18em">&#169; 2026</div>
-    <div class="abs mono" id="f7l3" style="left:64px;bottom:290px;font-size:20px;color:rgba(255,255,255,.55);letter-spacing:.14em">DESIGN. TECNOLOGIA. ESTRAT&#201;GIA.</div>
-    <div class="abs mono" id="f7l4" style="right:64px;bottom:290px;font-size:20px;color:#FFD9C4;letter-spacing:.14em">EXPDIGITAL.IO</div>
+    <div class="abs mono" id="f7l1" style="left:80px;top:190px;font-size:24px;color:rgba(255,255,255,.6);letter-spacing:.18em">EXP&#174; &#8212; BRAND SYSTEM</div>
+    <div class="abs mono" id="f7l2" style="right:80px;top:190px;font-size:24px;color:rgba(255,255,255,.6);letter-spacing:.18em">&#169; 2026</div>
+
   </div>
 </section>
 
@@ -271,28 +273,30 @@ const SCENES = {
     $('f4count').textContent = n.toLocaleString('pt-BR').replace(/ /g, '.');
     const b = spr(tl - 0.18, 5, .6);
     $('f4btn').style.transform = `scale(${(0.92 + 0.08 * clamp(b, 0, 1.15)).toFixed(4)})`;
-    /* CINEMA DIVE: camera zooms into the avatar mark (center 189,375) */
+    /* CINEMA DIVE: track the avatar mark to screen center while zooming in */
     const zv = Math.pow(ss(0.42, 0.75, tl), 1.7);
     const zoom = 1 + zv * 9;
+    const tx = (540 - 189) * ss(0, 0.6, zv), ty = (960 - 375) * ss(0, 0.6, zv);
     const inn = $('f4in');
     inn.style.transformOrigin = '189px 375px';
-    inn.style.transform = `scale(${zoom.toFixed(4)}) rotate(${(zv * 2.5).toFixed(2)}deg)`;
-    inn.style.filter = zv > 0.55 ? `blur(${((zv - 0.55) * 12).toFixed(1)}px)` : 'none';
+    inn.style.transform = `translate(${tx.toFixed(1)}px,${ty.toFixed(1)}px) scale(${zoom.toFixed(4)}) rotate(${(zv * 2.5).toFixed(2)}deg)`;
+    $('f4ringO').style.opacity = ss(0.08, 0.4, zv).toFixed(3);
+    $('f4rack').style.opacity = ss(0.38, 0.52, tl).toFixed(3);
   },
   f5(u, tl, t) {
-    /* CINEMA PULL-OUT: born inside the hero card mark, camera settles back */
-    const pull = 1.9 - 0.9 * spr(tl, 3.4, .88);
+    /* CINEMA PULL-OUT: continuous ease across the whole beat, never dead-stops */
+    const pull = 1 + 0.9 * Math.pow(1 - u, 1.8);
     const inn = $('f5in');
     inn.style.transformOrigin = '540px 700px';
     inn.style.transform = `scale(${pull.toFixed(4)})`;
     const float = 5 * Math.sin(t * 2.1);
     $('f5ph').style.transform = `translateY(${float.toFixed(1)}px) rotate(-2deg)`;
     $('f5sheen').style.transform = `rotate(16deg) translateX(${(tl * 1100).toFixed(1)}px)`;
-    $('f5n1').textContent = '+' + Math.round(248 * ss(0.1, 0.6, u)) + '%';
-    $('f5n2').textContent = Math.round(98 * ss(0.15, 0.65, u));
+    $('f5n1').textContent = '+' + Math.round(248 * ss(0.3, 0.62, u)) + '%';
+    $('f5n2').textContent = Math.round(98 * ss(0.48, 0.8, u));
     const c = spr(tl - 0.28, 4.5, .62);
     $('f5cta').style.transform = `scale(${(0.9 + 0.1 * clamp(c, 0, 1.12)).toFixed(4)})`;
-    [['f5c1', 0.15], ['f5c2', 0.24]].forEach(([id, d]) => {
+    [['f5c1', 0.2], ['f5c2', 0.33]].forEach(([id, d]) => {
       const p = spr(tl - d, 4.6, .72);
       $(id).style.transform = `translateY(${((1 - p) * 50).toFixed(1)}px)`;
       $(id).style.opacity = clamp(p * 1.4, 0, 1).toFixed(3);
@@ -306,24 +310,26 @@ const SCENES = {
       row.style.transform = `translateX(${((1 - e) * (i % 2 ? 110 : -110)).toFixed(1)}px)`;
       row.querySelector('.f6roll').style.transform = `translateX(${(OFF[i] + SPD[i] * tl).toFixed(1)}px)`;
     });
-    const bl = ss(0.8, 1.05, tl);
+    const bl = ss(0.72, 0.94, tl);
     const blast = $('f6blast');
     blast.style.transform = `scale(${(Math.pow(bl, 1.6) * 15).toFixed(3)}) rotate(${(bl * -6).toFixed(2)}deg)`;
     blast.style.opacity = bl > 0.001 ? 1 : 0;
     blast.style.filter = bl > 0.5 ? `blur(${((bl - 0.5) * 16).toFixed(1)}px)` : 'none';
-    $('f6seal').style.transform = `scale(${(Math.pow(ss(0.86, 1.05, tl), 1.6) * 9).toFixed(3)})`;
+    $('f6seal').style.transform = `scale(${(Math.pow(ss(0.78, 0.97, tl), 1.6) * 9).toFixed(3)})`;
   },
   f7(u, tl, t) {
     const shake = 16 * Math.exp(-tl * 11);
     const sx = shake * Math.sin(t * 91.7), sy = shake * Math.cos(t * 73.3);
     const settle = 1.3 - 0.3 * ss(0, 0.32, tl);
     $('f7macro').style.transform = `translate(${(-40 + 90 * u + sx).toFixed(1)}px,${(30 - 60 * u + sy).toFixed(1)}px) rotate(-6deg) scale(${settle.toFixed(4)})`;
-    $('f7macro').style.backgroundPosition = `${(-130 + 260 * ss(0.1, 0.8, u)).toFixed(1)}% 50%, 0 0`;
+    $('f7macro').style.backgroundPosition = `${(-130 + 260 * ss(0.05, 0.97, u)).toFixed(1)}% 50%, 0 0`;
     const e = ss(0.12, 0.35, tl);
     $('f7lock').style.opacity = e.toFixed(3);
     $('f7lock').style.transform = `translateY(${((1 - e) * 20).toFixed(1)}px)`;
     $('f7tag').style.opacity = ss(0.3, 0.55, tl).toFixed(3);
-    ['f7l1', 'f7l2', 'f7l3', 'f7l4'].forEach((id, i) => {
+    $('f7url').style.opacity = ss(0.4, 0.65, tl).toFixed(3);
+    $('f7url').style.transform = `translateY(${((1 - ss(0.4, 0.7, tl)) * 12).toFixed(1)}px)`;
+    ['f7l1', 'f7l2'].forEach((id, i) => {
       $(id).style.opacity = ss(0.35 + i * 0.06, 0.55 + i * 0.06, tl).toFixed(3);
     });
     document.querySelectorAll('.f7tick').forEach((el, i) => {
@@ -341,17 +347,20 @@ function seek(t) {
   const u = clamp((t - t0) / (t1 - t0), 0, 1);
   const tl = t - t0;
   document.querySelectorAll('section').forEach(sc => { sc.style.display = sc.id === id ? 'block' : 'none'; });
-  if (id !== 'f4' && id !== 'f5') {
+  if (id === 'f7') {
+    $(id).querySelector('.in').style.transform = `scale(${(1 + 0.05 * u).toFixed(5)})`;
+  } else if (id !== 'f4' && id !== 'f5') {
     const inn = $(id).querySelector('.in');
     inn.style.transformOrigin = '50% 50%';
     inn.style.transform = `scale(${(1 + 0.035 * outQ(u)).toFixed(5)})`;
   }
   SCENES[id](u, tl, t);
-  let fl = t >= 0.45 ? 0.85 * Math.exp(-(t - 0.45) * 26) : 0;
+  let fl = 0;
+  [[0.45, .85], [0.70, .5], [1.00, .4]].forEach(([tc, a]) => { if (t >= tc) fl = Math.max(fl, a * Math.exp(-(t - tc) * 26)); });
   $('flash').style.opacity = fl > 0.01 ? fl.toFixed(3) : 0;
   /* orange flashes: on the dive cut (mark fills frame) and on the blast */
   let fo = 0;
-  [1.75, 3.55].forEach(tc => { if (t >= tc) fo = Math.max(fo, 0.85 * Math.exp(-(t - tc) * 15)); });
+  [[1.75, .85], [2.50, .4], [3.55, .85]].forEach(([tc, a]) => { if (t >= tc) fo = Math.max(fo, a * Math.exp(-(t - tc) * 15)); });
   $('flashO').style.opacity = fo > 0.01 ? fo.toFixed(3) : 0;
 }
 window.seek = seek;

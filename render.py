@@ -20,7 +20,7 @@ CHROMIUM = "/opt/pw-browsers/chromium"
 FFMPEG = "/usr/local/lib/python3.11/dist-packages/imageio_ffmpeg/binaries/ffmpeg-linux-x86_64-v7.0.2"
 PORT = 8741
 FPS = 60
-SUB = 4
+SUB = int(os.environ.get("RENDER_SUB", "4"))
 
 OUT = sys.argv[1] if len(sys.argv) > 1 else "/tmp/exp-video.mp4"
 PAGE = sys.argv[2] if len(sys.argv) > 2 else "index.html"
