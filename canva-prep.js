@@ -77,7 +77,7 @@ window.__canvaPrep = async function () {
   for (const sec of sections) {
     const walker = document.createTreeWalker(sec, NodeFilter.SHOW_TEXT);
     for (let n = walker.nextNode(); n; n = walker.nextNode()) {
-      if (n.textContent.includes(' ')) n.textContent = n.textContent.replace(/ /g, '\u00A0');
+      if (n.textContent.trim()) n.textContent = n.textContent.replace(/(\S) (?=\S)/g, '$1\u00A0');
     }
   }
   const ff = document.createElement('style');
