@@ -8,7 +8,7 @@ import numpy as np
 import wave
 
 SR = 44100
-DUR = 12.0
+DUR = 15.0
 BEAT = 0.5
 N = int(SR * DUR)
 
@@ -141,19 +141,23 @@ def chime(freqs, dur=0.7):
 
 # ---------------- groove: kick 4/4, hats, claps, driving sub ----------------
 A1, E1, F1 = 55.0, 41.2, 43.65
-for b in range(24):
+for b in range(30):
     tb = b * BEAT
-    put(kick(punch=1.0), tb, 0.95, drums=True)
-    put(hat(), tb + 0.25, 0.30, pan=0.35)
+    if b < 28:                                      # bar 8 breathes before the loop
+        put(kick(punch=1.0), tb, 0.95, drums=True)
+    put(hat(), tb + 0.25, 0.30 if b < 28 else 0.16, pan=0.35)
     if b >= 2:
         put(hat(dur=0.03, tone=9500), tb + 0.375, 0.13, pan=-0.4)
-    if b % 4 in (1, 3):
+    if b % 4 in (1, 3) and b < 27:
         put(clap(), tb, 0.5, pan=-0.08)
 
-SUBP = {0: A1, 1: A1, 2: F1, 3: A1, 4: F1, 5: A1}   # per bar
+SUBP = {0: A1, 1: A1, 2: F1, 3: A1, 4: F1, 5: A1, 6: F1}   # per bar
 for bar, f in SUBP.items():
     for off in (0, 0.75, 1.5, 2.5, 3.0, 3.75):
         put(sub_note(f if off < 3 else A1, 0.32), bar * 2 + off * BEAT, 0.55)
+# marquee section shaker (9.0-11.5): rolling 16ths
+for k in range(20):
+    put(hat(dur=0.03, tone=8200), 9.0 + k * 0.125, 0.10, pan=(-1) ** k * 0.3)
 
 # ---------------- scene-cut hits ----------------
 CUTS = [0, 1, 2, 2.25, 2.5, 3, 4, 5, 6, 7, 8, 9, 10, 10.5, 11]  # seconds
@@ -175,17 +179,23 @@ put(whoosh(0.3, 400, 3000), 6.0, 0.5)         # type blueprint
 put(boom(0.7, 50), 6.972, 0.65, drums=True)                 # totem
 put(whoosh(0.3, 500, 3600), 8.0, 0.5)         # browser
 put(tick(2400, 0.05), 8.45, 0.4)              # cta pop
-put(whoosh(0.4, 600, 5000), 9.0, 0.55)        # tapes sweep in
-put(chime([523, 784], 0.35), 10.0, 0.3)       # peach
-put(boom(0.6, 48), 10.478, 0.7, drums=True)                 # macro bass drop
-put(riser(0.95), 10.05, 0.4)                  # riser into the outro
-put(boom(0.9, 55), 10.975, 0.75, drums=True)                # final lockup hit
-put(chime([440, 554, 659], 0.9), 11.02, 0.5)  # brand chime
-put(whoosh(0.3, 400, 2800), 11.85, 0.35)      # tail into the loop cut
+put(whoosh(0.4, 600, 5000), 9.0, 0.55)        # marquee wall sweeps in
+put(riser(1.15), 10.35, 0.55)                 # long riser into the blast
+def crash(dur=1.3):
+    n = int(dur * SR)
+    x = np.arange(n) / SR
+    return highpass(rng.standard_normal(n), 4200) * np.exp(-x * 4.5) * 0.9
+put(boom(1.0, 46), 11.472, 0.95, drums=True)  # THE BOOM (blast cut)
+put(crash(), 11.5, 0.32)
+put(sub_note(A1, 0.9), 11.5, 0.5)
+put(chime([523, 784], 0.35), 12.5, 0.3)       # peach
+put(boom(0.8, 55), 13.225, 0.7, drums=True)   # final lockup hit
+put(chime([440, 554, 659], 1.0), 13.27, 0.5)  # brand chime
+put(whoosh(0.3, 400, 2800), 14.55, 0.35)      # tail into the loop cut
 
 # ---------------- sidechain ----------------
 duck = np.ones(N)
-for b in range(24):
+for b in range(30):
     i0 = int(b * BEAT * SR)
     n = int(0.28 * SR)
     x = np.arange(min(n, N - i0)) / SR
@@ -218,7 +228,7 @@ hop = 256
 e = np.array([np.sqrt(np.mean(mono[i * hop:(i + 1) * hop] ** 2)) for i in range(len(mono) // hop)])
 onset = np.maximum(np.diff(e), 0)
 errs = []
-for b in range(24):
+for b in range(28):
     c = int(b * BEAT * SR / hop)
     win = onset[max(0, c - 8):c + 9]
     if len(win):
