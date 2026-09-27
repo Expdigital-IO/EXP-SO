@@ -23,6 +23,7 @@ window.__canvaPrep = async function () {
       const m = (cs.webkitMaskImage || cs.maskImage || '').match(/url\("?(.*?)"?\)/);
       const w = el.offsetWidth, h = el.offsetHeight;
       if (!m || !w || !h) continue;
+      if (cs.backgroundImage !== 'none') continue;          // gradient fills are baked per scene (__bake*)
       const img = await load(m[1]);
       const c = document.createElement('canvas');
       c.width = Math.round(w * S); c.height = Math.round(h * S);
@@ -89,4 +90,34 @@ window.__canvaPrep = async function () {
   await Promise.all([400, 500, 600, 700].map(w => document.fonts.load(`${w} 40px Inter`))
     .concat([400, 500].map(w => document.fonts.load(`${w} 40px "Roboto Mono"`))));
   return true;
+};
+
+/* Gradient-filled masked elements (e.g. the metallic macro) cannot be tinted with
+   one colour: export-frames.py screenshots them in isolation at the scene's key
+   time and pins the result as a full-frame image. */
+window.__bakePending = function () {
+  const sec = [...document.querySelectorAll('section')].find(s => s.style.display === 'block');
+  if (!sec) return 0;
+  const els = [...sec.querySelectorAll('.mk,.mk2,.ol,.wd')].filter(el =>
+    !el.dataset.bake && getComputedStyle(el).backgroundImage !== 'none');
+  els.forEach(el => { el.dataset.bake = 'pending'; });
+  return els.length;
+};
+window.__isolate = function (on) {
+  let st = document.getElementById('__iso');
+  if (on && !st) {
+    st = document.createElement('style'); st.id = '__iso';
+    st.textContent = 'html,body,section{background:transparent!important}' +
+      'body *{visibility:hidden!important}[data-bake=pending],[data-bake=pending] *{visibility:visible!important}';
+    document.head.appendChild(st);
+  } else if (!on && st) st.remove();
+};
+window.__bakeInsert = function (dataUrl) {
+  const sec = [...document.querySelectorAll('section')].find(s => s.style.display === 'block');
+  const im = document.createElement('img');
+  im.src = dataUrl;
+  im.style.cssText = 'position:absolute;left:0;top:0;width:1080px;height:1920px;z-index:0';
+  sec.insertBefore(im, sec.firstChild);
+  sec.querySelectorAll('[data-bake=pending]').forEach(el => { el.style.visibility = 'hidden'; el.dataset.bake = 'done'; });
+  return new Promise(ok => im.complete ? ok(true) : (im.onload = () => ok(true)));
 };

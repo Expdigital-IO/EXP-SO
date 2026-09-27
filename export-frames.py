@@ -11,6 +11,7 @@ Outputs, per page:
 
 Usage: python3 export-frames.py brand-film.html brand-film
 """
+import base64
 import http.server
 import io
 import os
@@ -112,6 +113,12 @@ def main():
         canva_pages = []
         for t, _ in SCENES:
             page.evaluate(f"seek({t})")
+            if page.evaluate("window.__bakePending()"):
+                page.evaluate("window.__isolate(true)")
+                shot = page.screenshot(omit_background=True)
+                page.evaluate("window.__isolate(false)")
+                url = "data:image/png;base64," + base64.b64encode(shot).decode()
+                page.evaluate("u => window.__bakeInsert(u)", url)
             canva_pages.append(pdf_page(page))
         browser.close()
 
