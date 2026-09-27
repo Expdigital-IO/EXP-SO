@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<title>EXP Ident</title>
+<style>
+  @font-face{font-family:Geist;src:url(fonts/Geist-Regular.woff2) format('woff2');font-weight:400}
+  @font-face{font-family:Geist;src:url(fonts/Geist-Medium.woff2) format('woff2');font-weight:500}
+  @font-face{font-family:Geist;src:url(fonts/Geist-SemiBold.woff2) format('woff2');font-weight:600}
+  @font-face{font-family:Geist;src:url(fonts/Geist-Bold.woff2) format('woff2');font-weight:700}
+  @font-face{font-family:GeistMono;src:url(fonts/GeistMono-Regular.woff2) format('woff2');font-weight:400}
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1080px;height:1920px;overflow:hidden;background:#0D0B0A}
+  body{font-family:Geist,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  section{position:absolute;inset:0;display:none;overflow:hidden}
+  .in{position:absolute;inset:0;transform-origin:50% 50%}
+  .abs{position:absolute}
+  .mk{-webkit-mask-image:url(assets/mark-mask.png);mask-image:url(assets/mark-mask.png);
+      -webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center}
+  .mk2{-webkit-mask-image:url(assets/mark-mask-2x.png);mask-image:url(assets/mark-mask-2x.png);
+      -webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center}
+  .ol{-webkit-mask-image:url(assets/mark-outline.png);mask-image:url(assets/mark-outline.png);
+      -webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center}
+  .wd{-webkit-mask-image:url(assets/wordmark-mask.png);mask-image:url(assets/wordmark-mask.png);
+      -webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center}
+  .mono{font-family:GeistMono,monospace}
+  .anch{position:absolute;left:330px;top:630px;width:420px;height:351px}
+  .sbar{position:absolute;left:0;top:0;width:1080px;height:100px;display:flex;align-items:center;justify-content:space-between;padding:14px 56px 0}
+  .sbar .tm{font-size:34px;font-weight:600}
+  .igstat{text-align:center}
+  .igstat b{display:block;font-size:34px;font-weight:700;color:#141414}
+  .igstat span{font-size:24px;color:#3A3A3A}
+</style>
+</head>
+<body>
+
+<!-- F1: neon outline over waves -->
+<section id="f1" style="background:#120C08">
+  <div class="in">
+    <div id="f1waves"></div>
+    <div class="anch ol" id="f1mark" style="background:#FF7A3A;filter:drop-shadow(0 0 26px rgba(255,76,0,.85)) drop-shadow(0 0 70px rgba(255,76,0,.35))"></div>
+  </div>
+</section>
+
+<!-- F2: white outline -->
+<section id="f2" style="background:#FDFDFD">
+  <div class="in"><div class="anch ol" style="background:#C43F00"></div>
+  <div class="abs mono" style="left:64px;top:70px;font-size:20px;color:#C9BFB8;letter-spacing:.18em">EXP&#174; / S&#205;MBOLO</div></div>
+</section>
+
+<!-- F3: billboard -->
+<section id="f3" style="background:#050505">
+  <div class="in">
+    <div class="abs" style="left:0;top:1620px;width:1080px;height:300px;background:linear-gradient(rgba(255,255,255,.045),transparent 65%)"></div>
+    <div class="abs" style="left:170px;top:1650px;width:740px;height:200px;background:#0B0B0B;transform:scaleY(-1);opacity:.35;border-radius:8px"></div>
+    <div class="abs" id="f3bb" style="left:190px;top:240px;width:700px;height:1310px;background:#0A0A0A;border:3px solid #1E1E1E;border-radius:10px;transform:perspective(1800px) rotateY(5deg);box-shadow:0 50px 120px rgba(0,0,0,.75)">
+      <div class="abs" style="left:16px;top:16px;right:16px;bottom:110px;background:#050505;border-radius:4px;overflow:hidden">
+        <div class="abs" style="inset:0;background:radial-gradient(ellipse 640px 620px at 334px 240px, rgba(255,76,0,.55), rgba(255,76,0,.12) 55%, transparent 78%)"></div>
+        <div class="abs" style="left:0;top:56px;width:668px;display:flex;justify-content:center">
+          <div style="display:flex;align-items:center;gap:10px;border:1.5px solid rgba(255,255,255,.25);border-radius:22px;padding:8px 20px">
+            <div class="mk" style="width:34px;height:28px;background:#fff"></div>
+            <span style="font-size:19px;color:#fff;font-weight:500">exp digital</span>
+          </div>
+        </div>
+        <div class="abs mk" style="left:174px;top:430px;width:320px;height:267px;background:#fff;filter:drop-shadow(0 0 34px rgba(255,110,40,.95)) drop-shadow(0 0 90px rgba(255,76,0,.5))"></div>
+        <div class="abs wd" style="left:234px;top:1010px;width:200px;height:73px;background:rgba(255,255,255,.85)"></div>
+      </div>
+      <div class="abs" style="left:0;bottom:0;width:100%;height:96px;background:#0D0D0D;border-top:2px solid #1A1A1A"></div>
+    </div>
+  </div>
+</section>
+
+<!-- F4: Instagram profile (camera dives INTO the avatar mark at the end) -->
+<section id="f4" style="background:#fff">
+  <div class="in" id="f4in" style="color:#141414">
+    <div class="sbar" style="color:#141414">
+      <div class="tm">9:41</div>
+      <div style="display:flex;gap:12px;align-items:center">
+        <svg width="34" height="24" viewBox="0 0 34 24" fill="#141414"><rect x="0" y="14" width="6" height="10" rx="1.5"/><rect x="9" y="10" width="6" height="14" rx="1.5"/><rect x="18" y="5" width="6" height="19" rx="1.5"/><rect x="27" y="0" width="6" height="24" rx="1.5"/></svg>
+        <svg width="32" height="24" viewBox="0 0 32 24" fill="none" stroke="#141414" stroke-width="3" stroke-linecap="round"><path d="M4 9a18 18 0 0 1 24 0"/><path d="M9 14.5a11 11 0 0 1 14 0"/><circle cx="16" cy="20" r="2.6" fill="#141414" stroke="none"/></svg>
+        <svg width="44" height="24" viewBox="0 0 44 24"><rect x="1" y="2" width="36" height="20" rx="6" fill="none" stroke="#141414" stroke-width="2.4" opacity=".5"/><rect x="4" y="5" width="30" height="14" rx="3.5" fill="#141414"/><rect x="39" y="8" width="4" height="8" rx="2" fill="#141414" opacity=".5"/></svg>
+      </div>
+    </div>
+    <div class="abs" style="left:0;top:104px;width:1080px;height:88px;display:flex;align-items:center;justify-content:center;font-size:38px;font-weight:700">expdigital.io
+      <svg width="22" height="14" viewBox="0 0 22 14" style="margin-left:10px"><path d="M2 2l9 9 9-9" fill="none" stroke="#141414" stroke-width="3.5" stroke-linecap="round"/></svg></div>
+    <div class="abs" id="f4ring" style="left:64px;top:250px;width:250px;height:250px;border-radius:50%;background:conic-gradient(#FEDA75,#FA7E1E,#D62976,#962FBF,#4F5BD5,#FEDA75)"></div>
+    <div class="abs" style="left:72px;top:258px;width:234px;height:234px;border-radius:50%;background:#fff"></div>
+    <div class="abs" style="left:79px;top:265px;width:220px;height:220px;border-radius:50%;background:#1E1E1E;display:flex;align-items:center;justify-content:center">
+      <div class="mk" style="width:126px;height:105px;background:#FF4C00"></div>
+    </div>
+    <div class="abs" style="left:380px;top:330px;width:640px;display:flex;justify-content:space-between;padding-right:70px">
+      <div class="igstat"><b>248</b><span>publica&#231;&#245;es</span></div>
+      <div class="igstat"><b id="f4count">9.885</b><span>seguidores</span></div>
+      <div class="igstat"><b>512</b><span>a seguir</span></div>
+    </div>
+    <div class="abs" style="left:64px;top:530px;font-size:32px;font-weight:700">exp digital</div>
+    <div class="abs" style="left:64px;top:576px;font-size:27px;line-height:1.45;color:#262626">Hub de servi&#231;os digitais<br>Design. Tecnologia. Estrat&#233;gia.<br><span style="color:#00376B">expdigital.io</span></div>
+    <div class="abs" id="f4btn" style="left:64px;top:720px;width:452px;height:70px;border-radius:16px;background:#FF4C00;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600;font-size:28px">Seguir</div>
+    <div class="abs" style="left:532px;top:720px;width:452px;height:70px;border-radius:16px;background:#EFEFEF;display:flex;align-items:center;justify-content:center;color:#141414;font-weight:600;font-size:28px">Mensagem</div>
+    <div class="abs" id="f4hl" style="left:64px;top:840px;display:flex;gap:44px"></div>
+    <div class="abs" style="left:0;top:1058px;width:1080px;height:2px;background:rgba(0,0,0,.08)"></div>
+    <div class="abs" style="left:0;top:1060px;width:360px;height:5px;background:#141414"></div>
+    <div class="abs" id="f4grid" style="left:0;top:1140px;width:1080px;display:grid;grid-template-columns:repeat(3,1fr);gap:3px"></div>
+  </div>
+</section>
+
+<!-- F5: premium iPhone (camera pulls OUT of the hero mark) -->
+<section id="f5" style="background:#0C0A09">
+  <div class="in" id="f5in">
+    <div class="abs" style="inset:0;background:radial-gradient(ellipse 980px 900px at 540px 900px, rgba(255,76,0,.16), transparent 68%)"></div>
+    <div class="abs mk" style="left:-200px;top:300px;width:1500px;height:1253px;background:#FF4C00;opacity:.05;filter:blur(6px)"></div>
+    <div class="abs" style="left:190px;top:1660px;width:700px;height:80px;border-radius:50%;background:radial-gradient(ellipse at center, rgba(0,0,0,.85) 0%, rgba(0,0,0,0) 70%)"></div>
+    <div class="abs" id="f5ph" style="left:220px;top:270px;width:640px;height:1330px;border-radius:100px;background:#1A1A1A;border:3px solid rgba(255,255,255,.22);box-shadow:0 60px 140px rgba(0,0,0,.7), inset 0 0 0 7px #060606">
+      <div class="abs" style="left:-6px;top:300px;width:5px;height:70px;border-radius:3px;background:#3A3A3A"></div>
+      <div class="abs" style="left:-6px;top:400px;width:5px;height:110px;border-radius:3px;background:#3A3A3A"></div>
+      <div class="abs" style="right:-6px;top:360px;width:5px;height:150px;border-radius:3px;background:#3A3A3A"></div>
+      <div class="abs" style="left:16px;top:16px;right:16px;bottom:16px;border-radius:84px;background:#0E0D0C;overflow:hidden">
+        <div class="abs" style="left:50%;top:24px;width:210px;height:60px;margin-left:-105px;border-radius:30px;background:#000;z-index:5"></div>
+        <div class="abs" style="left:54px;top:34px;font-size:28px;font-weight:600;color:#fff">9:41</div>
+        <div class="abs" style="right:48px;top:38px;display:flex;gap:10px;align-items:center">
+          <svg width="28" height="20" viewBox="0 0 34 24" fill="#fff"><rect x="0" y="14" width="6" height="10" rx="1.5"/><rect x="9" y="10" width="6" height="14" rx="1.5"/><rect x="18" y="5" width="6" height="19" rx="1.5"/><rect x="27" y="0" width="6" height="24" rx="1.5"/></svg>
+          <svg width="36" height="20" viewBox="0 0 44 24"><rect x="1" y="2" width="36" height="20" rx="6" fill="none" stroke="#fff" stroke-width="2.4" opacity=".5"/><rect x="4" y="5" width="30" height="14" rx="3.5" fill="#fff"/></svg>
+        </div>
+        <div class="abs" style="left:48px;top:130px;display:flex;align-items:center;gap:18px">
+          <div class="mk" style="width:64px;height:53px;background:#FF4C00"></div>
+          <div style="font-size:32px;font-weight:700;color:#F4F1EE">exp <span style="font-weight:400;font-size:22px;color:#8B8B8B">digital</span></div>
+        </div>
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#8B8B8B" stroke-width="2.2" stroke-linecap="round" style="position:absolute;right:52px;top:138px"><path d="M4 7h16M4 12h16M4 17h10"/></svg>
+        <div class="abs" id="f5hero" style="left:40px;top:232px;width:528px;height:520px;border-radius:40px;background:#FF4C00;overflow:hidden">
+          <div class="abs" style="left:44px;top:52px;font-size:52px;line-height:1.15;font-weight:700;color:#fff;letter-spacing:-.01em">HUB DE<br>SERVI&#199;OS<br>DIGITAIS.</div>
+          <div class="abs" style="left:44px;top:290px;font-size:22px;color:rgba(255,255,255,.85);line-height:1.5">Design, tecnologia e estrat&#233;gia<br>em um &#250;nico ecossistema.</div>
+          <div class="abs" id="f5cta" style="left:44px;top:392px;width:250px;height:64px;border-radius:32px;background:#fff;display:flex;align-items:center;justify-content:center;color:#FF4C00;font-size:20px;font-weight:700;letter-spacing:.06em">CONHE&#199;A A EXP</div>
+          <div class="abs mk" style="right:-70px;bottom:-60px;width:280px;height:234px;background:rgba(255,255,255,.2)"></div>
+        </div>
+        <div class="abs" id="f5c1" style="left:40px;top:786px;width:252px;height:230px;border-radius:32px;background:#181614;border:1.5px solid rgba(255,255,255,.09)">
+          <div class="abs" id="f5n1" style="left:32px;top:44px;font-size:56px;font-weight:700;color:#FF4C00;letter-spacing:-.02em">+0%</div>
+          <div class="abs" style="left:32px;top:126px;font-size:21px;color:#9A938C;line-height:1.4">crescimento<br>m&#233;dio</div>
+        </div>
+        <div class="abs" id="f5c2" style="left:316px;top:786px;width:252px;height:230px;border-radius:32px;background:#181614;border:1.5px solid rgba(255,255,255,.09)">
+          <div class="abs" id="f5n2" style="left:32px;top:44px;font-size:56px;font-weight:700;color:#F4F1EE;letter-spacing:-.02em">0</div>
+          <div class="abs" style="left:32px;top:126px;font-size:21px;color:#9A938C;line-height:1.4">projetos<br>entregues</div>
+        </div>
+        <div class="abs" style="left:40px;bottom:44px;width:528px;height:96px;border-radius:48px;background:#181614;border:1.5px solid rgba(255,255,255,.09);display:flex;align-items:center;justify-content:space-around">
+          <div class="mk" style="width:44px;height:37px;background:#FF4C00"></div>
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#6E675F" stroke-width="2"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/></svg>
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#6E675F" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#6E675F" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="9" r="3.4"/><path d="M5 20c1.5-3.5 4-5 7-5s5.5 1.5 7 5"/></svg>
+        </div>
+        <div class="abs" id="f5sheen" style="left:-220px;top:-120px;width:170px;height:1700px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.07),transparent);transform:rotate(16deg)"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- F6: marquee wall + sealed blast -->
+<section id="f6" style="background:#161616">
+  <div class="in">
+    <div id="f6wrap" style="position:absolute;left:-220px;top:-220px;width:1520px;height:2360px;transform:rotate(-5deg)"></div>
+    <div class="abs" id="f6seal" style="left:390px;top:810px;width:300px;height:300px;border-radius:50%;background:#FF4C00;transform:scale(0)"></div>
+    <div class="abs mk" id="f6blast" style="left:240px;top:710px;width:600px;height:501px;background:#FF4C00;transform:scale(0)"></div>
+  </div>
+</section>
+
+<!-- F7: metallic macro + lockup + composition -->
+<section id="f7" style="background:#060504">
+  <div class="in">
+    <div class="abs mk2" id="f7macro" style="left:-760px;top:-120px;width:2600px;height:2172px;
+      background-image:linear-gradient(120deg, rgba(255,255,255,0) 42%, rgba(255,210,180,.5) 50%, rgba(255,255,255,0) 58%),linear-gradient(150deg,#FF8A4A 0%,#F25500 26%,#9E3000 52%,#E24C00 74%,#FF7A3A 100%);
+      background-size:260% 260%, 100% 100%;filter:drop-shadow(0 60px 90px rgba(0,0,0,.6))"></div>
+    <div class="abs" id="f7lock" style="left:0;top:0;width:1080px;height:1920px">
+      <div class="abs mk" style="left:322px;top:880px;width:150px;height:125px;background:#fff;filter:drop-shadow(0 6px 30px rgba(0,0,0,.6))"></div>
+      <div class="abs wd" style="left:494px;top:903px;width:264px;height:97px;background:#fff;filter:drop-shadow(0 6px 30px rgba(0,0,0,.6))"></div>
+      <div class="abs mono" id="f7tag" style="left:0;top:1050px;width:1080px;text-align:center;font-size:21px;color:rgba(255,255,255,.75);letter-spacing:.38em">HUB DE SERVI&#199;OS DIGITAIS</div>
+    </div>
+    <div id="f7corners"></div>
+    <div class="abs mono" id="f7l1" style="left:64px;top:64px;font-size:20px;color:rgba(255,255,255,.55);letter-spacing:.18em">EXP&#174; &#8212; BRAND SYSTEM</div>
+    <div class="abs mono" id="f7l2" style="right:64px;top:64px;font-size:20px;color:rgba(255,255,255,.55);letter-spacing:.18em">&#169; 2026</div>
+    <div class="abs mono" id="f7l3" style="left:64px;bottom:290px;font-size:20px;color:rgba(255,255,255,.55);letter-spacing:.14em">DESIGN. TECNOLOGIA. ESTRAT&#201;GIA.</div>
+    <div class="abs mono" id="f7l4" style="right:64px;bottom:290px;font-size:20px;color:#FFD9C4;letter-spacing:.14em">EXPDIGITAL.IO</div>
+  </div>
+</section>
+
+<div id="flash" style="position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none;z-index:99"></div>
+<div id="flashO" style="position:absolute;inset:0;background:#FF4C00;opacity:0;pointer-events:none;z-index:98"></div>
+
+<script>
+'use strict';
+/* ============================================================
+   EXP IDENT — 5.0 s. The best scenes of videos 002 and 003
+   stitched with cinema camera moves: the cut between scenes is a
+   dive INTO the logo (the camera zooms into the Instagram avatar
+   mark until it fills the frame, and the next scene is born pulling
+   back out of the phone's hero). Pure function of time.
+   ============================================================ */
+const DUR = 5.0;
+const clamp = (x, a, b) => Math.min(b, Math.max(a, x));
+const ss = (a, b, x) => { x = clamp((x - a) / (b - a), 0, 1); return x * x * (3 - 2 * x); };
+const outQ = x => 1 - (1 - x) * (1 - x);
+function spr(u, f = 4, z = .75) {
+  if (u <= 0) return 0;
+  const w = 2 * Math.PI * f;
+  if (z < 0.999) { const wd = w * Math.sqrt(1 - z * z);
+    return 1 - Math.exp(-z * w * u) * (Math.cos(wd * u) + (z * w / wd) * Math.sin(wd * u)); }
+  return 1 - Math.exp(-w * u) * (1 + w * u);
+}
+const $ = id => document.getElementById(id);
+
+const CUTS = [
+  [0.00, 'f1'], [0.45, 'f2'], [0.70, 'f3'], [1.00, 'f4'],
+  [1.75, 'f5'], [2.50, 'f6'], [3.55, 'f7'], [5.00, null]
+];
+
+(function build() {
+  $('f1waves').innerHTML = [0,1,2,3,4,5].map(i =>
+    `<div class="abs f1w" style="left:${-450-i*180}px;top:${-350-i*180}px;width:${(520+i*180)*2}px;height:${(520+i*180)*2}px;border-radius:50%;border:2.5px solid rgba(255,76,0,${(.16-i*.022).toFixed(3)})"></div>`).join('');
+  const HL = ['Design','Sites','Growth','Cases'];
+  $('f4hl').innerHTML = HL.map((h,i) =>
+    `<div style="text-align:center">
+      <div style="width:132px;height:132px;border-radius:50%;border:2.5px solid rgba(0,0,0,.15);display:flex;align-items:center;justify-content:center;background:${i%2?'#FF4C00':'#1E1E1E'}">
+        <div class="mk" style="width:56px;height:47px;background:${i%2?'#fff':'#FF4C00'}"></div></div>
+      <div style="font-size:22px;margin-top:10px;color:#141414">${h}</div></div>`).join('');
+  const TILES = [
+    ['#1E1E1E','<div class="mk" style="width:170px;height:142px;background:#FF4C00"></div>'],
+    ['#FF4C00','<div style="font-size:34px;font-weight:700;color:#fff;letter-spacing:.04em;text-align:center;line-height:1.4">CONHE&#199;A<br>A EXP</div>'],
+    ['#FFE4D9','<div class="mk" style="width:170px;height:142px;background:#FF4C00"></div>'],
+    ['#1E1E1E','<div style="font-size:52px;font-weight:700;color:#FF4C00">+248%</div>'],
+    ['#FF4C00','<div class="mk" style="width:170px;height:142px;background:#1E1E1E"></div>'],
+    ['#F4F1EE','<div class="wd" style="width:220px;height:81px;background:#1E1E1E"></div>']
+  ];
+  $('f4grid').innerHTML = TILES.map(t =>
+    `<div style="height:358px;background:${t[0]};display:flex;align-items:center;justify-content:center">${t[1]}</div>`).join('');
+  const sep = c => `<span style="display:inline-block;width:110px;height:92px;margin:0 60px;vertical-align:-6px" class="mk sepmk" data-c="${c}"></span>`;
+  const ROWS = [
+    { txt: 'HUB DE SERVIÇOS DIGITAIS', st: 'color:#FF4C00', sc: '#F4F1EE' },
+    { txt: 'DESIGN — TECNOLOGIA — ESTRATÉGIA', st: '-webkit-text-stroke:3.5px #F4F1EE;color:transparent', sc: '#FF4C00' },
+    { txt: 'EXP DIGITAL', st: 'color:#F4F1EE', sc: '#FF4C00' },
+    { txt: 'EXPDIGITAL.IO', st: '-webkit-text-stroke:3.5px #FF4C00;color:transparent', sc: '#F4F1EE' },
+    { txt: 'HUB DE SERVIÇOS DIGITAIS', st: 'color:#FF4C00', sc: '#F4F1EE' },
+  ];
+  $('f6wrap').innerHTML = ROWS.map((r, i) => {
+    const unit = `<span style="${r.st}">${r.txt}</span>` + sep(r.sc);
+    return `<div class="f6row" style="position:absolute;left:0;top:${140 + i * 424}px;width:1520px;height:360px;overflow:visible">
+      <div class="f6roll" style="position:absolute;white-space:nowrap;font-weight:700;font-size:168px;line-height:360px;letter-spacing:-.01em">${unit.repeat(6)}</div>
+    </div>`;
+  }).join('');
+  document.querySelectorAll('.sepmk').forEach(el => { el.style.background = el.dataset.c; });
+  const TK = [[44,44,0],[1036,44,90],[1036,1636,180],[44,1636,270]];
+  $('f7corners').innerHTML = TK.map(k =>
+    `<div class="f7tick" style="position:absolute;left:${k[0]-2}px;top:${k[1]-2}px;transform:rotate(${k[2]}deg)">
+      <div style="position:absolute;left:0;top:0;width:56px;height:2.5px;background:rgba(255,255,255,.4)"></div>
+      <div style="position:absolute;left:0;top:0;width:2.5px;height:56px;background:rgba(255,255,255,.4)"></div>
+    </div>`).join('');
+})();
+
+const SCENES = {
+  f1(u, tl, t) {
+    document.querySelectorAll('.f1w').forEach((r, i) => {
+      r.style.transform = `scale(${(1 + 0.04 * Math.sin(t * 2 + i * .8)).toFixed(4)})`;
+    });
+    $('f1mark').style.transform = `scale(${(1 + 0.02 * u).toFixed(4)})`;
+  },
+  f2() {},
+  f3(u, tl) {
+    const e = spr(tl, 5.5, .8);
+    $('f3bb').style.transform = `perspective(1800px) rotateY(${(7 - 2 * e).toFixed(2)}deg) translateY(${((1 - e) * 26).toFixed(1)}px)`;
+  },
+  f4(u, tl, t) {
+    /* content life */
+    $('f4ring').style.transform = `rotate(${(t * 30).toFixed(1)}deg)`;
+    const n = Math.floor(9512 + 456 * ss(0.05, 0.55, u));
+    $('f4count').textContent = n.toLocaleString('pt-BR').replace(/ /g, '.');
+    const b = spr(tl - 0.18, 5, .6);
+    $('f4btn').style.transform = `scale(${(0.92 + 0.08 * clamp(b, 0, 1.15)).toFixed(4)})`;
+    /* CINEMA DIVE: camera zooms into the avatar mark (center 189,375) */
+    const zv = Math.pow(ss(0.42, 0.75, tl), 1.7);
+    const zoom = 1 + zv * 9;
+    const inn = $('f4in');
+    inn.style.transformOrigin = '189px 375px';
+    inn.style.transform = `scale(${zoom.toFixed(4)}) rotate(${(zv * 2.5).toFixed(2)}deg)`;
+    inn.style.filter = zv > 0.55 ? `blur(${((zv - 0.55) * 12).toFixed(1)}px)` : 'none';
+  },
+  f5(u, tl, t) {
+    /* CINEMA PULL-OUT: born inside the hero card mark, camera settles back */
+    const pull = 1.9 - 0.9 * spr(tl, 3.4, .88);
+    const inn = $('f5in');
+    inn.style.transformOrigin = '540px 700px';
+    inn.style.transform = `scale(${pull.toFixed(4)})`;
+    const float = 5 * Math.sin(t * 2.1);
+    $('f5ph').style.transform = `translateY(${float.toFixed(1)}px) rotate(-2deg)`;
+    $('f5sheen').style.transform = `rotate(16deg) translateX(${(tl * 1100).toFixed(1)}px)`;
+    $('f5n1').textContent = '+' + Math.round(248 * ss(0.1, 0.6, u)) + '%';
+    $('f5n2').textContent = Math.round(98 * ss(0.15, 0.65, u));
+    const c = spr(tl - 0.28, 4.5, .62);
+    $('f5cta').style.transform = `scale(${(0.9 + 0.1 * clamp(c, 0, 1.12)).toFixed(4)})`;
+    [['f5c1', 0.15], ['f5c2', 0.24]].forEach(([id, d]) => {
+      const p = spr(tl - d, 4.6, .72);
+      $(id).style.transform = `translateY(${((1 - p) * 50).toFixed(1)}px)`;
+      $(id).style.opacity = clamp(p * 1.4, 0, 1).toFixed(3);
+    });
+  },
+  f6(u, tl) {
+    const SPD = [-250, 215, -290, 235, -195], OFF = [-900, -2400, -600, -1900, -1400];
+    document.querySelectorAll('.f6row').forEach((row, i) => {
+      const e = spr(tl - i * 0.03, 5, .82);
+      row.style.opacity = clamp(0.25 + e * 1.3, 0, 1).toFixed(3);
+      row.style.transform = `translateX(${((1 - e) * (i % 2 ? 110 : -110)).toFixed(1)}px)`;
+      row.querySelector('.f6roll').style.transform = `translateX(${(OFF[i] + SPD[i] * tl).toFixed(1)}px)`;
+    });
+    const bl = ss(0.8, 1.05, tl);
+    const blast = $('f6blast');
+    blast.style.transform = `scale(${(Math.pow(bl, 1.6) * 15).toFixed(3)}) rotate(${(bl * -6).toFixed(2)}deg)`;
+    blast.style.opacity = bl > 0.001 ? 1 : 0;
+    blast.style.filter = bl > 0.5 ? `blur(${((bl - 0.5) * 16).toFixed(1)}px)` : 'none';
+    $('f6seal').style.transform = `scale(${(Math.pow(ss(0.86, 1.05, tl), 1.6) * 9).toFixed(3)})`;
+  },
+  f7(u, tl, t) {
+    const shake = 16 * Math.exp(-tl * 11);
+    const sx = shake * Math.sin(t * 91.7), sy = shake * Math.cos(t * 73.3);
+    const settle = 1.3 - 0.3 * ss(0, 0.32, tl);
+    $('f7macro').style.transform = `translate(${(-40 + 90 * u + sx).toFixed(1)}px,${(30 - 60 * u + sy).toFixed(1)}px) rotate(-6deg) scale(${settle.toFixed(4)})`;
+    $('f7macro').style.backgroundPosition = `${(-130 + 260 * ss(0.1, 0.8, u)).toFixed(1)}% 50%, 0 0`;
+    const e = ss(0.12, 0.35, tl);
+    $('f7lock').style.opacity = e.toFixed(3);
+    $('f7lock').style.transform = `translateY(${((1 - e) * 20).toFixed(1)}px)`;
+    $('f7tag').style.opacity = ss(0.3, 0.55, tl).toFixed(3);
+    ['f7l1', 'f7l2', 'f7l3', 'f7l4'].forEach((id, i) => {
+      $(id).style.opacity = ss(0.35 + i * 0.06, 0.55 + i * 0.06, tl).toFixed(3);
+    });
+    document.querySelectorAll('.f7tick').forEach((el, i) => {
+      el.style.opacity = ss(0.28 + i * 0.04, 0.45 + i * 0.04, tl).toFixed(3);
+    });
+  }
+};
+
+function seek(t) {
+  t = ((t % DUR) + DUR) % DUR;
+  let ci = 0;
+  for (let i = 0; i < CUTS.length - 1; i++) if (t >= CUTS[i][0]) ci = i;
+  const [t0, id] = CUTS[ci];
+  const t1 = CUTS[ci + 1][0];
+  const u = clamp((t - t0) / (t1 - t0), 0, 1);
+  const tl = t - t0;
+  document.querySelectorAll('section').forEach(sc => { sc.style.display = sc.id === id ? 'block' : 'none'; });
+  if (id !== 'f4' && id !== 'f5') {
+    const inn = $(id).querySelector('.in');
+    inn.style.transformOrigin = '50% 50%';
+    inn.style.transform = `scale(${(1 + 0.035 * outQ(u)).toFixed(5)})`;
+  }
+  SCENES[id](u, tl, t);
+  let fl = t >= 0.45 ? 0.85 * Math.exp(-(t - 0.45) * 26) : 0;
+  $('flash').style.opacity = fl > 0.01 ? fl.toFixed(3) : 0;
+  /* orange flashes: on the dive cut (mark fills frame) and on the blast */
+  let fo = 0;
+  [1.75, 3.55].forEach(tc => { if (t >= tc) fo = Math.max(fo, 0.85 * Math.exp(-(t - tc) * 15)); });
+  $('flashO').style.opacity = fo > 0.01 ? fo.toFixed(3) : 0;
+}
+window.seek = seek;
+
+if (!window.__RENDER__) {
+  const t0 = performance.now();
+  (function loop() { seek(((performance.now() - t0) / 1000) % DUR); requestAnimationFrame(loop); })();
+} else { seek(0); }
+</script>
+</body>
+</html>
