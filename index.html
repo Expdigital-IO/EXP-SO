@@ -1,0 +1,691 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>EXP Brand Motion</title>
+<style>
+  @font-face{font-family:Geist;src:url(fonts/Geist-Regular.woff2) format('woff2');font-weight:400}
+  @font-face{font-family:Geist;src:url(fonts/Geist-Medium.woff2) format('woff2');font-weight:500}
+  @font-face{font-family:Geist;src:url(fonts/Geist-SemiBold.woff2) format('woff2');font-weight:600}
+  @font-face{font-family:Geist;src:url(fonts/Geist-Bold.woff2) format('woff2');font-weight:700}
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1080px;height:1920px;overflow:hidden;background:#0B0908}
+  body{font-family:Geist,system-ui,sans-serif;-webkit-font-smoothing:antialiased;position:relative}
+  #stage{position:absolute;inset:0;overflow:hidden}
+  #world{position:absolute;left:0;top:0;width:0;height:0;transform-origin:0 0}
+  #shape{position:absolute;overflow:hidden}
+  .layer{position:absolute;left:50%;top:50%}
+  .abs{position:absolute}
+  svg{display:block}
+  .hud{position:absolute;z-index:50}
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="world">
+    <div id="shape">
+
+      <!-- CTA BUTTON -->
+      <div class="layer" id="L-btn" style="width:340px;height:100px">
+        <div class="abs" id="btnRow" style="left:0;top:0;width:340px;height:100px;display:flex;align-items:center;justify-content:center;gap:14px">
+          <div style="font-size:23px;font-weight:600;color:#fff;letter-spacing:.09em">CONHE&#199;A A EXP</div>
+          <svg id="btnArrow" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M9 7h8v8"/></svg>
+        </div>
+      </div>
+
+      <!-- LOADER -->
+      <div class="layer" id="L-loader" style="width:100px;height:100px">
+        <svg width="100" height="100" viewBox="0 0 100 100" style="position:absolute;left:0;top:0">
+          <circle id="spinTrack" cx="50" cy="50" r="27" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="7"/>
+          <circle id="spinArc" cx="50" cy="50" r="27" fill="none" stroke="#FF4E10" stroke-width="7" stroke-linecap="round" pathLength="1" stroke-dasharray="0.28 0.72"/>
+        </svg>
+      </div>
+
+      <!-- CHECK -->
+      <div class="layer" id="L-check" style="width:100px;height:100px">
+        <svg width="100" height="100" viewBox="0 0 100 100" style="position:absolute;left:0;top:0">
+          <path id="checkPath" d="M30 52 L44 66 L71 37" fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" pathLength="1" stroke-dasharray="1 1"/>
+        </svg>
+      </div>
+
+      <!-- DYNAMIC ISLAND -->
+      <div class="layer" id="L-island" style="width:440px;height:92px">
+        <div class="abs" style="left:36px;top:0;height:92px;display:flex;align-items:center;gap:14px">
+          <div id="liveDot" style="width:11px;height:11px;border-radius:6px;background:#FF4E10"></div>
+          <div style="font-size:28px;font-weight:600;color:#fff;letter-spacing:.01em">exp<span style="font-size:15px;vertical-align:11px;color:#9A938C">&#174;</span></div>
+        </div>
+        <div class="abs" id="islWave" style="right:38px;top:0;height:92px;display:flex;align-items:center;gap:5px"></div>
+      </div>
+
+      <!-- PLAYER -->
+      <div class="layer" id="L-player" style="width:720px;height:264px">
+        <div class="abs" id="plArt" style="left:28px;top:24px;width:116px;height:116px;border-radius:26px;background:#FF4E10;display:flex;align-items:center;justify-content:center">
+          <div style="color:#fff;font-size:32px;font-weight:600;letter-spacing:-.01em">exp</div>
+        </div>
+        <div class="abs" style="left:170px;top:38px;font-size:30px;font-weight:600;color:#F4F1EE;letter-spacing:-.01em">Brand Anthem</div>
+        <div class="abs" style="left:170px;top:80px;font-size:21px;font-weight:400;color:#9A938C">exp&#174; digital &#8212; 2026</div>
+        <div class="abs" id="plPlayBtn" style="left:604px;top:37px;width:88px;height:88px;border-radius:44px;background:#FF4E10;display:flex;align-items:center;justify-content:center">
+          <svg width="34" height="34" viewBox="0 0 34 34">
+            <path id="plIcoL" fill="#fff" d=""/>
+            <path id="plIcoR" fill="#fff" d=""/>
+          </svg>
+        </div>
+        <div class="abs" style="left:28px;top:172px;width:664px;height:10px;border-radius:5px;background:#2C2723"></div>
+        <div class="abs" id="plFill" style="left:28px;top:172px;width:100px;height:10px;border-radius:5px;background:#FF4E10"></div>
+        <div class="abs" id="plKnob" style="left:0;top:166px;width:22px;height:22px;border-radius:11px;background:#fff;border:2px solid #FF4E10"></div>
+        <div class="abs" id="plTimeL" style="left:28px;top:200px;font-size:18px;font-weight:500;color:#9A938C">0:00</div>
+        <div class="abs" style="right:28px;top:200px;font-size:18px;font-weight:500;color:#57514B">0:45</div>
+      </div>
+
+      <!-- VOLUME -->
+      <div class="layer" id="L-vol" style="width:560px;height:84px">
+        <svg id="volIco" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#F4F1EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="position:absolute;left:26px;top:27px">
+          <path d="M11 5 6.5 9H3v6h3.5L11 19V5z" fill="#F4F1EE" stroke="none"/>
+          <path id="volW1" d="M14.5 9.5a4 4 0 0 1 0 5"/>
+          <path id="volW2" d="M17 7a7.5 7.5 0 0 1 0 10"/>
+        </svg>
+        <div class="abs" style="left:76px;top:36px;width:408px;height:12px;border-radius:6px;background:#2C2723"></div>
+        <div class="abs" id="volFill" style="left:76px;top:36px;width:200px;height:12px;border-radius:6px;background:#FF4E10"></div>
+        <div class="abs" id="volKnob" style="left:0;top:14px;width:56px;height:56px;border-radius:28px;background:#fff;border:2px solid rgba(0,0,0,.12);box-shadow:0 4px 14px rgba(0,0,0,.45)"></div>
+        <div class="abs" id="volPct" style="right:24px;top:29px;text-align:right;font-size:20px;font-weight:600;color:#9A938C">60</div>
+      </div>
+
+      <!-- TOGGLE knob -->
+      <div class="layer" id="L-tgl" style="width:148px;height:84px">
+        <div class="abs" id="tglKnob" style="top:8px;height:68px;border-radius:34px;background:#fff;box-shadow:0 3px 10px rgba(0,0,0,.4)"></div>
+      </div>
+
+      <!-- TABS: the three EXP pillars -->
+      <div class="layer" id="L-tabs" style="width:720px;height:96px">
+        <div class="abs" id="tabInd" style="top:8px;height:80px;border-radius:40px;background:#FF4E10"></div>
+        <div class="abs" id="tabL0" style="left:0;top:0;width:240px;height:96px;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:500;color:#9A938C">Design</div>
+        <div class="abs" id="tabL1" style="left:240px;top:0;width:240px;height:96px;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:500;color:#9A938C">Tecnologia</div>
+        <div class="abs" id="tabL2" style="left:480px;top:0;width:240px;height:96px;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:500;color:#9A938C">Estrat&#233;gia</div>
+      </div>
+
+      <!-- CHART -->
+      <div class="layer" id="L-chart" style="width:880px;height:620px">
+        <div class="abs" style="left:48px;top:44px;font-size:22px;font-weight:500;color:#9A938C">Crescimento anual</div>
+        <div class="abs" id="chartPct" style="left:48px;top:76px;font-size:62px;font-weight:600;color:#F4F1EE;letter-spacing:-.03em">+0%</div>
+        <div class="abs" style="right:48px;top:52px;display:flex;align-items:center;gap:10px">
+          <div style="width:12px;height:12px;border-radius:6px;background:#FF4E10"></div>
+          <div style="font-size:19px;font-weight:500;color:#9A938C">expdigital.io</div>
+        </div>
+        <svg id="chartSvg" width="792" height="380" viewBox="0 0 792 380" style="position:absolute;left:44px;top:186px;overflow:visible">
+          <g id="chartGrid"></g>
+          <path id="chartArea" fill="#FF4E10" fill-opacity="0.13" d=""/>
+          <path id="chartLine" fill="none" stroke="#FF4E10" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" pathLength="1" stroke-dasharray="1 1" d=""/>
+          <line id="chartXline" x1="0" x2="0" y1="0" y2="356" stroke="rgba(255,255,255,.16)" stroke-width="1.5" stroke-dasharray="4 5"/>
+          <circle id="chartDot" cx="0" cy="0" r="9" fill="#FF4E10" stroke="#fff" stroke-width="4"/>
+        </svg>
+        <div class="abs" id="chartMonths" style="left:44px;top:566px;width:792px;display:flex;justify-content:space-between;font-size:14px;font-weight:500;color:#6E675F"></div>
+        <div class="abs" id="chartTip" style="left:0;top:0;width:150px;height:66px;border-radius:16px;background:#fff;box-shadow:0 8px 24px rgba(0,0,0,.5)">
+          <div id="chartTipV" style="position:absolute;left:20px;top:10px;font-size:23px;font-weight:600;color:#101010">1.9M</div>
+          <div id="chartTipM" style="position:absolute;left:20px;top:38px;font-size:15px;font-weight:500;color:#8A8680">Setembro</div>
+        </div>
+      </div>
+
+      <!-- COMMAND PALETTE -->
+      <div class="layer" id="L-cmdk" style="width:680px;height:430px">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#9A938C" stroke-width="2.2" stroke-linecap="round" style="position:absolute;left:30px;top:35px"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <div class="abs" id="ckPlaceholder" style="left:74px;top:33px;font-size:25px;font-weight:400;color:#6E675F">Buscar na EXP&#8230;</div>
+        <div class="abs" id="ckTyped" style="left:74px;top:33px;font-size:25px;font-weight:500;color:#F4F1EE"></div>
+        <div class="abs" id="ckCaret" style="left:74px;top:32px;width:2.5px;height:32px;background:#FF4E10"></div>
+        <div class="abs" id="ckKeys" style="right:26px;top:30px;display:flex;gap:6px">
+          <div style="min-width:36px;height:36px;padding:0 9px;border-radius:9px;border:1.5px solid rgba(255,255,255,.09);background:#221D19;display:flex;align-items:center;justify-content:center;font-size:18px;color:#9A938C">&#8984;</div>
+          <div style="min-width:36px;height:36px;padding:0 9px;border-radius:9px;border:1.5px solid rgba(255,255,255,.09);background:#221D19;display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:500;color:#9A938C">K</div>
+        </div>
+        <div class="abs" id="ckDiv" style="left:0;top:96px;width:680px;height:1.5px;background:rgba(255,255,255,.08)"></div>
+        <div class="abs" id="ckRows" style="left:12px;top:110px;width:656px"></div>
+      </div>
+
+      <!-- TOAST -->
+      <div class="layer" id="L-toast" style="width:560px;height:96px">
+        <div class="abs" id="toastCk" style="left:22px;top:26px;width:44px;height:44px;border-radius:22px;background:#FF4E10;display:flex;align-items:center;justify-content:center">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 12.5 10 17l8.5-9.5"/></svg>
+        </div>
+        <div class="abs" style="left:86px;top:20px;font-size:24px;font-weight:600;color:#F4F1EE">Projeto lan&#231;ado</div>
+        <div class="abs" style="left:86px;top:53px;font-size:17px;font-weight:400;color:#9A938C">agora mesmo &#8212; expdigital.io</div>
+        <div class="abs" id="toastBar" style="left:0;bottom:0;height:4px;background:#FF4E10;border-radius:2px"></div>
+      </div>
+
+    </div><!-- /shape -->
+
+    <div id="ripples"></div>
+    <div id="cursor" style="position:absolute;left:0;top:0">
+      <svg width="34" height="38" viewBox="0 0 34 38" style="overflow:visible">
+        <path d="M6 3 L6 29 L12.2 23.4 L16.4 33.4 L21.4 31.3 L17.2 21.6 L25.6 21.2 Z"
+              fill="#fff" stroke="#101010" stroke-width="2.4" stroke-linejoin="round"/>
+      </svg>
+    </div>
+  </div><!-- /world -->
+
+  <!-- static chrome, mirrors the EXP creative layout (identical first/last frame) -->
+  <div class="hud" style="left:52px;top:56px;display:flex;align-items:baseline;gap:9px">
+    <span style="font-size:34px;font-weight:700;color:#F4F1EE;letter-spacing:-.02em">exp</span>
+    <span style="font-size:16px;font-weight:400;color:#9A938C">digital</span>
+  </div>
+  <div class="hud" style="right:52px;top:70px;font-size:14px;font-weight:500;color:#9A938C;letter-spacing:.16em">HUB DE SERVI&#199;OS DIGITAIS</div>
+  <div class="hud" style="left:52px;bottom:60px;font-size:14px;font-weight:500;color:#9A938C;letter-spacing:.14em">DESIGN. TECNOLOGIA. ESTRAT&#201;GIA.</div>
+  <div class="hud" style="right:52px;bottom:58px;font-size:17px;font-weight:500;color:#FF4E10">expdigital.io</div>
+</div>
+
+<script>
+'use strict';
+/* ============================================================
+   EXP BRAND MOTION — one shape, never cut. 120 BPM · 7 bars · 14 s loop.
+   Reels 1080x1920. Every style is a pure function of time in seek(t):
+   no CSS transitions, no timers, no state carried between frames.
+   ============================================================ */
+
+const BPM = 120, BEAT = 60 / BPM, DUR = 14;
+const B = b => b * BEAT;
+const ORANGE = [255, 78, 16];      // EXP orange
+const CARD   = [27, 23, 20];       // dark warm card
+const DEEP   = [20, 16, 13];       // island / deepest pill
+const OFFD   = [42, 37, 33];       // toggle off track
+const clamp = (x, a, b) => Math.min(b, Math.max(a, x));
+const lerp = (a, b, x) => a + (b - a) * x;
+const ss = (a, b, x) => { x = clamp((x - a) / (b - a), 0, 1); return x * x * (3 - 2 * x); };
+
+/* ---------- closed-form springs ---------- */
+function stepU(u, f, z) {
+  if (u <= 0) return 0;
+  const w = 2 * Math.PI * f;
+  if (z < 0.999) {
+    const wd = w * Math.sqrt(1 - z * z);
+    return 1 - Math.exp(-z * w * u) * (Math.cos(wd * u) + (z * w / wd) * Math.sin(wd * u));
+  }
+  return 1 - Math.exp(-w * u) * (1 + w * u);
+}
+function freeU(u, d0, v0, f, z) {
+  if (u <= 0) return d0;
+  const w = 2 * Math.PI * f;
+  if (z < 0.999) {
+    const wd = w * Math.sqrt(1 - z * z);
+    return Math.exp(-z * w * u) * (d0 * Math.cos(wd * u) + ((v0 + z * w * d0) / wd) * Math.sin(wd * u));
+  }
+  return Math.exp(-w * u) * (d0 + (v0 + w * d0) * u);
+}
+function track(keys, F = 3.2, Z = 0.9) {
+  return t => {
+    let v = keys[0][1];
+    for (let i = 1; i < keys.length; i++) {
+      const k = keys[i];
+      v += (k[1] - keys[i - 1][1]) * stepU(t - k[0], k[2] !== undefined ? k[2] : F, k[3] !== undefined ? k[3] : Z);
+    }
+    return v;
+  };
+}
+function rgbTrack(keys, F = 3.4, Z = 1) {
+  const ch = i => track(keys.map(k => [k[0], k[1][i], k[2], k[3]]), F, Z);
+  const r = ch(0), g = ch(1), b = ch(2);
+  return t => `rgb(${Math.round(clamp(r(t),0,255))},${Math.round(clamp(g(t),0,255))},${Math.round(clamp(b(t),0,255))})`;
+}
+
+/* ---------- content swap: separate enter / exit timing ---------- */
+function layerVis(t, wins, inD = 0.20, outD = 0.15, dy = 12) {
+  for (const [ti, to] of wins) {
+    if (t < ti - 0.02 || t > to + outD + 0.02) continue;
+    const ein = ss(ti, ti + inD, t);
+    const eout = 1 - ss(to, to + outD, t);
+    const o = Math.min(ein, eout);
+    if (o <= 0.001) continue;
+    const entering = ein < 1;
+    const blur = (1 - o) * 10;
+    const y = entering ? (1 - ein) * dy : -(1 - eout) * dy * 0.6;
+    const sc = 0.985 + 0.015 * o;
+    return { o, blur, y, sc };
+  }
+  return { o: 0, blur: 10, y: dy, sc: 0.985 };
+}
+
+/* ============================================================
+   TIMELINE — the shape
+   ============================================================ */
+const shapeW = track([
+  [0, 340], [B(1.5), 100, 3.4, .78], [B(4), 440, 3.2, .8], [B(5), 720, 3.0, .82],
+  [B(10), 560, 3.2, .8], [B(12), 148, 3.2, .78], [B(14), 720, 3.0, .82],
+  [B(16), 880, 3.0, .84], [B(20), 680, 3.2, .82], [B(24), 560, 3.2, .78], [B(26), 340, 3.0, .8]
+]);
+const shapeH = track([
+  [0, 100], [B(4), 92, 3.2, .8], [B(5), 264, 3.0, .82],
+  [B(10), 84, 3.2, .8], [B(14), 96, 3.0, .82],
+  [B(16), 620, 3.0, .84], [B(20), 96, 3.2, .8], [B(21), 430, 3.4, .8],
+  [B(22.5), 262, 3.4, .82], [B(24), 96, 3.2, .78], [B(26), 100, 3.0, .8]
+]);
+const shapeR = track([
+  [0, 50], [B(4), 46], [B(5), 36], [B(10), 42], [B(12), 42], [B(14), 48],
+  [B(16), 40], [B(20), 30], [B(24), 28], [B(26), 50]
+], 3.2, 1);
+const shapeBG = rgbTrack([
+  [0, ORANGE], [B(1.5), CARD, 3.6, 1], [B(3), ORANGE, 4.2, .7], [B(4), DEEP, 5.5, 1],
+  [B(5), CARD, 3.2, 1], [B(12), OFFD, 3.4, 1], [B(13), ORANGE, 4.4, .8],
+  [B(14), CARD, 3.2, 1], [B(24), DEEP, 3.6, 1], [B(26), ORANGE, 3.2, 1]
+]);
+/* 1 while the shape is a solid orange element (button/check/toggle-on) */
+const orangeAmt = track([
+  [0, 1], [B(1.5), 0, 3.6, 1], [B(3), 1, 4, 1], [B(4), 0, 5, 1],
+  [B(13), 1, 4, 1], [B(14), 0, 3.2, 1], [B(26), 1, 3.2, 1]
+]);
+
+/* camera (1080-wide frame) */
+const camS = track([
+  [0, 1.9], [B(1.5), 3.15, 2.6, .86], [B(4), 1.9, 2.6, .86], [B(5), 1.28, 2.5, .88],
+  [B(8), 1.5, 2.4, .9], [B(10), 1.58, 2.5, .88], [B(11.6), 1.48, 2.6, .88], [B(12), 2.9, 2.5, .86],
+  [B(14), 1.28, 2.4, .88], [B(16), 1.08, 2.4, .9], [B(20), 1.38, 2.5, .88],
+  [B(21), 1.28, 2.6, .9], [B(24), 1.62, 2.5, .86], [B(26), 1.9, 2.4, .9]
+]);
+const camY = track([
+  [0, 0], [B(8), 46, 2.4, .9], [B(10), 0, 2.4, .9], [B(16), 10, 2.4, .9],
+  [B(18), -8, 2.4, .9], [B(20), 0, 2.4, .9]
+]);
+
+/* ============================================================
+   CURSOR
+   ============================================================ */
+const CW = [
+  [0,     230, 320, 2.0],
+  [0.06,   74,   6, 1.9],
+  [0.90,   86,  66, 1.5],
+  [2.30,  150,  56, 1.6],
+  [2.55,  290, -34, 1.9],
+  [3.55, -218,  45, 1.9],
+  [4.05,  -60,  45, 1.7],
+  [4.28,  148,  46, 1.7],
+  [4.58,  132,  45, 2.4],
+  [4.95,   41,   2, 1.9],
+  [5.48,  260,   2, 2.3],
+  [5.66,  342,   4, 2.0],
+  [6.02,    0,   6, 1.9],
+  [6.90,   80,  70, 1.5],
+  [7.12,  240,   4, 1.9],
+  [7.90,  330, 160, 1.6],
+  [8.52,   44, 100, 1.7],
+  [9.12,  330, -38, 1.7],
+  [9.95,  300, 250, 1.6],
+  [10.6,  320, 300, 1.4],
+  [12.1,  240, 316, 1.4],
+  [13.0,  230, 320, 1.6]
+];
+const curX = track(CW.map(k => [k[0], k[1], k[3], .92]));
+const curY = track(CW.map(k => [k[0], k[2], k[3] * 1.08, .94]));
+const CLICKS = [0.5, 3.0, 4.0, 5.45, 6.5, 7.5];
+const RELEASES = [0.72, 3.18, 4.75, 5.85, 6.68, 7.68];
+const press = track(CLICKS.flatMap((tc, i) => [[tc, 1, 8, 1], [RELEASES[i], 0, 5, 1]])
+  .sort((a, b) => a[0] - b[0]).reduce((acc, k) => (acc.push(k), acc), [[0, 0]]));
+
+/* ============================================================
+   STATE INTERNALS
+   ============================================================ */
+const P0 = 0.15, RATE = 1 / 45;
+function playerP(t) {
+  if (t < 3.0) return P0;
+  let p = P0 + (t - 3.0) * RATE;
+  if (t >= 4.0 && t < 4.75) return clamp((curX(t) + 332) / 664, 0, 1);
+  if (t >= 4.75) {
+    const pRel = clamp((curX(4.75) + 332) / 664, 0, 1);
+    const vRel = (curX(4.75) - curX(4.70)) / 0.05 / 664;
+    p = pRel + (t - 4.75) * RATE + freeU(t - 4.75, 0, vRel - RATE, 3.2, .62) * 0.5;
+  }
+  return clamp(p, 0, 1);
+}
+
+const VOL_TRACK_X0 = -204, VOL_TRACK_LEN = 408;
+function volume(t) {
+  if (t < 5.45) return 0.6;
+  if (t < 5.85) return clamp((curX(t) - VOL_TRACK_X0) / VOL_TRACK_LEN, 0, 1);
+  return 1;
+}
+function volStretch(t) {
+  const rub = x => Math.max(0, x) * 0.42;
+  if (t >= 5.45 && t < 5.85) return rub(curX(t) - (VOL_TRACK_X0 + VOL_TRACK_LEN));
+  if (t >= 5.85) {
+    const oR = rub(curX(5.85) - VOL_TRACK_X0 - VOL_TRACK_LEN);
+    const vR = (oR - rub(curX(5.80) - VOL_TRACK_X0 - VOL_TRACK_LEN)) / 0.05;
+    return freeU(t - 5.85, oR, vR, 3.4, .5);
+  }
+  return 0;
+}
+
+const tglLead  = track([[0, -32], [6.5, 32, 4.6, .68]]);
+const tglTrail = track([[0, -32], [6.5, 32, 2.9, .9]]);
+
+const tabLead  = track([[0, 32], [B(14.15), 0, 3.4, .8], [7.5, 480 - 240, 4.4, .7]]);
+const tabTrail = track([[0, 32], [B(14.15), 0, 3.4, .8], [7.5, 480 - 240, 2.7, .92]]);
+const tabHalfW = track([[0, 34], [B(14.15), 112, 3.2, .85]]);
+const indBG = rgbTrack([[0, [255, 255, 255]], [B(14.1), ORANGE, 3.6, 1]]);
+
+const CD = [20, 24, 23, 28, 34, 32, 41, 47, 45, 55, 62, 69.6];  // +248%
+const MONTHS = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
+const MONTHS_FULL = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+const chartPt = i => [i * 72, 356 - (CD[i] - 16) / 58 * 330 - 6];
+function chartDraw(t) { const x = ss(B(16.1), B(18), t); return Math.pow(x, 0.85); }
+const tipIdx = track([[0, 6], [9.1, 10, 3.4, .8]]);
+const TIP_WIN = [B(17.8), B(19.85)];
+
+const CK_ROWS = [
+  ['rocket', 'Lançar projeto', true],
+  ['grid',   'Ver portfólio', false],
+  ['chart',  'Growth audit', false],
+  ['chat',   'Contato', false]
+];
+const TYPE_T = [10.75, 11.0];
+const ENTER_T = 11.5;
+
+function toastBarW(t) { return 560 * clamp((t - 12.05) / 0.92, 0, 1); }
+
+const beatPh = t => (t / BEAT) % 1;
+const pulse = t => Math.exp(-beatPh(t) * 6.5);
+const hash = n => { const s = Math.sin(n * 127.1 + 311.7) * 43758.5453; return s - Math.floor(s); };
+
+/* ============================================================
+   DOM
+   ============================================================ */
+const $ = id => document.getElementById(id);
+const world = $('world'), shape = $('shape'), cursor = $('cursor');
+const LAYERS = {
+  btn: $('L-btn'), loader: $('L-loader'), check: $('L-check'), island: $('L-island'),
+  player: $('L-player'), vol: $('L-vol'), tgl: $('L-tgl'), tabs: $('L-tabs'),
+  chart: $('L-chart'), cmdk: $('L-cmdk'), toast: $('L-toast')
+};
+const WINS = {
+  btn:    [[-.5, B(1.35)], [B(26.15), DUR + .5]],
+  loader: [[B(1.75), B(2.92)]],
+  check:  [[B(3.0), B(3.85)]],
+  island: [[B(4.1), B(4.9)]],
+  player: [[B(5.12), B(9.82)]],
+  vol:    [[B(10.12), B(11.82)]],
+  tgl:    [[B(12.05), B(13.95)]],
+  tabs:   [[B(14.05), B(15.85)]],
+  chart:  [[B(16.12), B(19.82)]],
+  cmdk:   [[B(20.15), B(23.85)]],
+  toast:  [[B(24.12), B(25.85)]]
+};
+const VIS_OPTS = { check: [0.08, 0.12, 4], loader: [0.12, 0.15, 6] };
+
+(function buildStatic() {
+  const wave = $('islWave');
+  for (let i = 0; i < 5; i++) {
+    const b = document.createElement('div');
+    b.style.cssText = 'width:6px;border-radius:3px;background:#fff';
+    wave.appendChild(b);
+  }
+  const grid = $('chartGrid');
+  for (let i = 0; i < 4; i++) {
+    const y = 30 + i * 100;
+    grid.innerHTML += `<line x1="0" x2="792" y1="${y}" y2="${y}" stroke="rgba(255,255,255,.06)" stroke-width="1.5"/>`;
+  }
+  $('chartMonths').innerHTML = MONTHS.map(m => `<span>${m}</span>`).join('');
+  let d = '';
+  for (let i = 0; i < 12; i++) {
+    const [x, y] = chartPt(i);
+    d += (i ? ' L' : 'M') + x.toFixed(1) + ' ' + y.toFixed(1);
+  }
+  $('chartLine').setAttribute('d', d);
+  $('chartArea').setAttribute('d', d + ' L792 380 L0 380 Z');
+  const ICO = {
+    rocket: '<path d="M5 15c-1.5 1.2-2 5-2 5s3.8-.5 5-2"/><path d="M12.5 14.5 9.5 11.5c1.5-4 4.5-7.5 9.5-8.5-.9 5-4.5 8-9.5 11.5z" /><path d="M9.5 11.5H5.8L4 8.8C5.5 7.8 7.5 7.6 9 8.3"/><path d="M12.5 14.5v3.7l2.7 1.8c1-1.5 1.2-3.5.5-5"/>',
+    grid: '<rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/>',
+    chart: '<path d="M3.5 20.5v-17"/><path d="M3.5 20.5h17"/><path d="M7 15.5 11 11l2.8 2.8 6-6.8"/>',
+    chat: '<path d="M20.5 11.5a8 8 0 0 1-11.7 7.1L3.5 20l1.4-5.3A8 8 0 1 1 20.5 11.5z"/>'
+  };
+  const rows = $('ckRows');
+  CK_ROWS.forEach((r, i) => {
+    const el = document.createElement('div');
+    el.id = 'ckRow' + i;
+    el.style.cssText = 'position:absolute;left:0;width:656px;height:74px;border-radius:16px;display:flex;align-items:center;gap:18px;padding:0 20px';
+    el.innerHTML =
+      `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="${i===0?'#FF4E10':'#9A938C'}" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">${ICO[r[0]]}</svg>` +
+      `<div style="font-size:24px;font-weight:500;color:${i===0?'#F4F1EE':'#B6AFA8'}">${r[1]}</div>` +
+      (i===0 ? '<div style="margin-left:auto;min-width:34px;height:34px;border-radius:8px;border:1.5px solid rgba(255,255,255,.1);background:#221D19;display:flex;align-items:center;justify-content:center;font-size:17px;color:#9A938C">&#9166;</div>' : '');
+    rows.appendChild(el);
+  });
+})();
+
+/* ============================================================
+   seek(t)
+   ============================================================ */
+function seek(t) {
+  t = ((t % DUR) + DUR) % DUR;
+
+  /* ---- shape ---- */
+  const w = shapeW(t), h = shapeH(t), r = Math.min(shapeR(t), w / 2, h / 2);
+  const breath = 1 + 0.007 * Math.sin(2 * Math.PI * t / 3.5);
+  const dip = (t >= 0.5 && t < 1.2) || (t >= 6.5 && t < 7.1) || (t >= 7.5 && t < 8.05) || (t >= ENTER_T && t < ENTER_T + .45)
+    ? 1 - 0.045 * Math.max(press(t), t >= ENTER_T && t < ENTER_T + .45 ? Math.exp(-(t - ENTER_T) * 9) : 0) : 1;
+  const stretch = volStretch(t);
+  const sx = (w + stretch) / w, sy = 1 - (stretch / w) * 0.45;
+  shape.style.left = (-w / 2) + 'px';
+  shape.style.top = (-h / 2) + 'px';
+  shape.style.width = w + 'px';
+  shape.style.height = h + 'px';
+  shape.style.borderRadius = r + 'px';
+  shape.style.background = shapeBG(t);
+  const oa = orangeAmt(t);
+  shape.style.border = `2px solid rgba(255,255,255,${(0.075 * (1 - oa)).toFixed(3)})`;
+  shape.style.boxShadow = `0 ${lerp(18, 24, oa)}px ${lerp(50, 70, oa)}px rgba(0,0,0,${lerp(.45, .5, oa).toFixed(3)}), 0 2px 10px rgba(0,0,0,.3)`;
+  const volAnchored = t >= B(10) && t < B(12.2);
+  shape.style.transformOrigin = volAnchored ? `${w * 0.1}px 50%` : '50% 50%';
+  shape.style.transform = `scaleX(${(sx * breath * dip).toFixed(5)}) scaleY(${(sy * breath * dip).toFixed(5)})`;
+
+  /* ---- camera ---- */
+  const s = camS(t);
+  const cx = curX(t) * 0.045, cy = camY(t) + curY(t) * 0.03;
+  world.style.transform = `translate(540px,960px) scale(${s.toFixed(5)}) translate(${(-cx).toFixed(2)}px,${(-cy).toFixed(2)}px)`;
+
+  /* ---- layers ---- */
+  const vis = {};
+  for (const k in LAYERS) {
+    const op = VIS_OPTS[k];
+    const v = op ? layerVis(t, WINS[k], op[0], op[1], op[2]) : layerVis(t, WINS[k]);
+    vis[k] = v;
+    const L = LAYERS[k];
+    if (v.o <= 0.001) { L.style.display = 'none'; continue; }
+    L.style.display = 'block';
+    const bw = parseFloat(L.style.width), bh = parseFloat(L.style.height);
+    const anchor = k === 'cmdk' ? Math.max(0, (bh - h) / 2) : 0;
+    L.style.marginLeft = (-bw / 2) + 'px';
+    L.style.marginTop = (-bh / 2) + 'px';
+    L.style.opacity = v.o.toFixed(3);
+    L.style.filter = v.blur > 0.1 ? `blur(${v.blur.toFixed(2)}px)` : 'none';
+    L.style.transform = `translateY(${(v.y + anchor).toFixed(2)}px) scale(${v.sc.toFixed(4)})`;
+  }
+
+  /* ---- button ---- */
+  if (vis.btn.o > 0.001) {
+    const nudge = t < 2 ? press(t) * 4 : 0;
+    $('btnArrow').style.transform = `translate(${nudge}px,${-nudge}px)`;
+  }
+
+  /* ---- loader ---- */
+  if (vis.loader.o > 0.001) {
+    const u = t - B(1.5);
+    const closeIn = ss(B(2.6), B(2.95), t);
+    const arc = lerp(0.22 + 0.14 * Math.sin(u * 5.2), 1, closeIn);
+    const rot = u * 1.9 * 360 * (1 - closeIn * 0.65);
+    $('spinArc').setAttribute('stroke-dasharray', `${arc.toFixed(4)} ${(1 - arc).toFixed(4)}`);
+    $('spinArc').setAttribute('transform', `rotate(${(rot % 360).toFixed(2)} 50 50)`);
+  }
+
+  /* ---- check ---- */
+  if (vis.check.o > 0.001) {
+    const dr = ss(B(3.06), B(3.62), t);
+    $('checkPath').setAttribute('stroke-dashoffset', (1 - dr).toFixed(4));
+  }
+
+  /* ---- island ---- */
+  if (vis.island.o > 0.001) {
+    $('liveDot').style.transform = `scale(${1 + 0.5 * pulse(t)})`;
+    const bars = $('islWave').children;
+    for (let i = 0; i < bars.length; i++) {
+      const hgt = 10 + 26 * (0.35 + 0.65 * hash(i + Math.floor(t / BEAT) * 7)) * (0.45 + 0.55 * pulse(t + i * 0.03));
+      bars[i].style.height = hgt.toFixed(1) + 'px';
+    }
+  }
+
+  /* ---- player ---- */
+  if (vis.player.o > 0.001) {
+    const p = playerP(t);
+    const playing = t >= 3.0;
+    $('plFill').style.width = (664 * p).toFixed(1) + 'px';
+    $('plKnob').style.left = (28 + 664 * p - 11).toFixed(1) + 'px';
+    const secs = Math.floor(p * 45);
+    $('plTimeL').textContent = `0:${String(secs).padStart(2, '0')}`;
+    const m = ss(3.0, 3.22, t);
+    const xL = lerp(9, 6.5, m), xR = lerp(17.5, 18.5, m);
+    $('plIcoL').setAttribute('d',
+      `M${xL} ${lerp(4, 5, m)} L${lerp(17.5, 15.5, m)} ${lerp(10.5, 5, m)} L${lerp(17.5, 15.5, m)} ${lerp(23.5, 29, m)} L${xL} ${lerp(30, 29, m)} Z`);
+    $('plIcoR').setAttribute('d',
+      `M${xR} ${lerp(10.5, 5, m)} L${lerp(26, 27.5, m)} ${lerp(17, 5, m)} L${lerp(26, 27.5, m)} ${lerp(17, 29, m)} L${xR} ${lerp(23.5, 29, m)} Z`);
+    const artP = playing ? 1 + 0.05 * pulse(t) : 1;
+    $('plArt').style.transform = `scale(${artP.toFixed(4)})`;
+    $('plPlayBtn').style.transform = `scale(${(1 - 0.1 * (t >= 3 && t < 3.5 ? press(t) : 0)).toFixed(4)})`;
+    const grab = t >= 4.0 && t < 4.75;
+    $('plKnob').style.transform = `scale(${grab ? 1.35 : 1})`;
+  }
+
+  /* ---- volume ---- */
+  if (vis.vol.o > 0.001) {
+    const v = volume(t);
+    const fillW = 408 * v + Math.max(0, stretch * 0.9);
+    $('volFill').style.width = fillW.toFixed(1) + 'px';
+    $('volKnob').style.left = (76 + 408 * v - 28 + stretch * 0.9).toFixed(1) + 'px';
+    const pct = Math.min(100, Math.round(v * 100 + stretch * 0.18));
+    const pctEl = $('volPct');
+    pctEl.textContent = pct;
+    pctEl.style.color = stretch > 2 ? '#FF4E10' : '#9A938C';
+    pctEl.style.transform = `scale(${1 + Math.min(stretch, 60) * 0.004})`;
+    $('volIco').style.transform = `rotate(${(-Math.min(stretch, 80) * 0.12).toFixed(2)}deg)`;
+    const grab2 = t >= 5.45 && t < 5.85;
+    $('volKnob').style.transform = `scale(${grab2 ? 1.12 : 1})`;
+  }
+
+  /* ---- toggle knob ---- */
+  if (vis.tgl.o > 0.001) {
+    const Lx = tglTrail(t) - 34 + 74, Rx = tglLead(t) + 34 + 74;
+    const knob = $('tglKnob');
+    knob.style.left = Math.min(Lx, Rx - 20).toFixed(1) + 'px';
+    knob.style.width = Math.max(20, Rx - Lx).toFixed(1) + 'px';
+  }
+
+  /* ---- tabs ---- */
+  if (vis.tabs.o > 0.001) {
+    const cL = tabTrail(t), cR = tabLead(t), hw = tabHalfW(t);
+    const left = 360 + Math.min(cL, cR) - hw, right = 360 + Math.max(cL, cR) + hw;
+    const ind = $('tabInd');
+    ind.style.left = left.toFixed(1) + 'px';
+    ind.style.width = (right - left).toFixed(1) + 'px';
+    ind.style.background = indBG(t);
+    const centers = [-240, 0, 240];
+    const mid = (cL + cR) / 2;
+    for (let i = 0; i < 3; i++) {
+      const on = clamp(1 - Math.abs(mid - centers[i]) / 150, 0, 1);
+      $('tabL' + i).style.color = `rgb(${Math.round(lerp(154, 255, on))},${Math.round(lerp(147, 255, on))},${Math.round(lerp(140, 255, on))})`;
+      $('tabL' + i).style.fontWeight = on > 0.5 ? 600 : 500;
+    }
+  }
+
+  /* ---- chart ---- */
+  if (vis.chart.o > 0.001) {
+    const dr = chartDraw(t);
+    $('chartLine').setAttribute('stroke-dashoffset', (1 - dr).toFixed(4));
+    const clipX = 792 * dr;
+    $('chartArea').style.opacity = (0.25 + 0.75 * dr).toFixed(3);
+    $('chartArea').style.clipPath = `inset(0 ${(792 - clipX).toFixed(1)}px 0 0)`;
+    $('chartPct').textContent = '+' + Math.round(248 * ss(0, 1, dr)) + '%';
+    const tv = layerVis(t, [TIP_WIN], 0.16, 0.14, 8);
+    const tip = $('chartTip'), dot = $('chartDot'), xl = $('chartXline');
+    const idxF = tipIdx(t);
+    const i0 = clamp(Math.floor(idxF), 0, 10), fr = idxF - i0;
+    const [xA, yA] = chartPt(i0), [xB, yB] = chartPt(Math.min(i0 + 1, 11));
+    const px = lerp(xA, xB, fr), py = lerp(yA, yB, fr);
+    const iN = clamp(Math.round(idxF), 0, 11);
+    if (tv.o > 0.001) {
+      tip.style.display = 'block'; dot.style.display = 'block'; xl.style.display = 'block';
+      tip.style.opacity = tv.o.toFixed(3);
+      tip.style.filter = tv.blur > .1 ? `blur(${tv.blur.toFixed(1)}px)` : 'none';
+      tip.style.left = (44 + px - 75).toFixed(1) + 'px';
+      tip.style.top = (186 + py - 96).toFixed(1) + 'px';
+      $('chartTipV').textContent = (CD[iN] / 24).toFixed(1) + 'M';
+      $('chartTipM').textContent = MONTHS_FULL[iN];
+      dot.setAttribute('cx', px.toFixed(1)); dot.setAttribute('cy', py.toFixed(1));
+      dot.style.opacity = tv.o.toFixed(3);
+      xl.setAttribute('x1', px.toFixed(1)); xl.setAttribute('x2', px.toFixed(1));
+      xl.style.opacity = (tv.o * 0.9).toFixed(3);
+    } else {
+      tip.style.display = 'none'; dot.style.display = 'none'; xl.style.display = 'none';
+    }
+  }
+
+  /* ---- cmdk ---- */
+  if (vis.cmdk.o > 0.001) {
+    const expandE = ss(B(21), B(21) + 0.3, t);
+    const typed = TYPE_T.filter(x => t >= x).length;
+    $('ckTyped').textContent = 'la'.slice(0, typed);
+    $('ckPlaceholder').style.opacity = typed ? 0 : 1;
+    const ck = $('ckCaret');
+    ck.style.left = (74 + (typed === 1 ? 13 : typed === 2 ? 27 : 0)) + 'px';
+    ck.style.opacity = (Math.sin(2 * Math.PI * t * 1.6) > -0.2 ? 1 : 0) * (t > B(20.3) ? 1 : 0);
+    let popS = 1;
+    TYPE_T.forEach(x => { if (t >= x && t < x + 0.3) popS = 1 + 0.25 * Math.exp(-(t - x) * 14); });
+    $('ckTyped').style.transform = `scale(${popS.toFixed(3)})`;
+    $('ckTyped').style.transformOrigin = 'left center';
+    $('ckDiv').style.opacity = expandE;
+    const filt = ss(11.0, 11.3, t);
+    for (let i = 0; i < 4; i++) {
+      const row = $('ckRow' + i);
+      const enterD = 0.05 * i;
+      const eo = ss(B(21) + 0.02 + enterD, B(21) + 0.26 + enterD, t);
+      let o = eo, y = i * 78 + (1 - eo) * 16, bl = (1 - eo) * 8;
+      if (i > 0) { o *= (1 - filt); bl += filt * 8; y -= filt * (i * 78 - 78); }
+      row.style.opacity = o.toFixed(3);
+      row.style.top = y.toFixed(1) + 'px';
+      row.style.filter = bl > .1 ? `blur(${bl.toFixed(1)}px)` : 'none';
+      if (i === 0) {
+        const flash = t >= ENTER_T && t < ENTER_T + 0.4 ? Math.exp(-(t - ENTER_T) * 10) : 0;
+        row.style.background = flash > 0.02
+          ? `rgba(255,78,16,${(0.16 + 0.3 * flash).toFixed(3)})`
+          : `rgba(255,255,255,${(0.045 + 0.015 * Math.sin(2 * Math.PI * t)).toFixed(3)})`;
+        row.style.transform = `scale(${(1 - 0.02 * flash).toFixed(4)})`;
+      }
+    }
+  }
+
+  /* ---- toast ---- */
+  if (vis.toast.o > 0.001) {
+    $('toastBar').style.width = toastBarW(t).toFixed(1) + 'px';
+    const ckPop = t >= 12.02 ? 1 + 0.35 * Math.exp(-(t - 12.02) * 7) * Math.sin((t - 12.02) * 24) : 0.4;
+    $('toastCk').style.transform = `scale(${clamp(ckPop, 0.4, 1.4).toFixed(3)})`;
+  }
+
+  /* ---- cursor + ripples ---- */
+  const cxp = curX(t), cyp = curY(t);
+  cursor.style.transform = `translate(${cxp.toFixed(2)}px,${cyp.toFixed(2)}px) scale(${(1 - 0.16 * press(t)).toFixed(4)})`;
+  const rip = $('ripples');
+  let ripHTML = '';
+  CLICKS.forEach(tc => {
+    const u = t - tc;
+    if (u > 0 && u < 0.5) {
+      const rr = 14 + 46 * ss(0, 0.5, u);
+      const ro = 0.55 * (1 - ss(0, 0.5, u));
+      ripHTML += `<div style="position:absolute;left:${(curX(tc + 0.001) - rr).toFixed(1)}px;top:${(curY(tc + 0.001) - rr).toFixed(1)}px;width:${(rr * 2).toFixed(1)}px;height:${(rr * 2).toFixed(1)}px;border-radius:50%;border:3px solid rgba(255,255,255,${ro.toFixed(3)})"></div>`;
+    }
+  });
+  rip.innerHTML = ripHTML;
+}
+window.seek = seek;
+
+if (!window.__RENDER__) {
+  const t0 = performance.now();
+  (function loop() {
+    seek(((performance.now() - t0) / 1000) % DUR);
+    requestAnimationFrame(loop);
+  })();
+} else {
+  seek(0);
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+# EXP Brand Motion — Motion System 001
+
+Vídeo de apresentação da marca **exp digital** feito 100% em código.
+Zero After Effects: um arquivo HTML, uma trilha composta em numpy e um
+pipeline de render com Playwright + ffmpeg.
+
+**Formato:** Reels 1080×1920 · 60 fps · 14 s · loop perfeito · 120 BPM · 7 compassos
+
+## O conceito
+
+Um único elemento — nunca há corte. O mesmo shape se transforma em cada
+estado de UI mudando tamanho, raio e cor, enquanto o conteúdo troca com um
+blur curto. Um cursor real dirige cada mudança com cliques e drags de
+verdade. A câmera dá zoom para cada estado preencher o frame. O último
+frame é idêntico ao primeiro, então o vídeo loopa sem costura.
+
+### A narrativa no grid de batidas (algo acontece em todo beat)
+
+| Beat | Estado |
+|---|---|
+| 0 | CTA **CONHEÇA A EXP** (laranja, o botão real da marca) |
+| 1 | clique → vira **loader** |
+| 3 | loader fecha → **check** (pop) |
+| 4 | check → **dynamic island** `exp®` |
+| 5–9 | **player** "Brand Anthem — exp® digital" · play/pause morph · scrub real da barra |
+| 10–11 | player → **slider de volume** · drag além do máximo estica o pill (rubber band) |
+| 13 | **toggle** flipa no beat (knob com molas de duas bordas) |
+| 14–15 | knob vira **indicador líquido de tabs**: Design · Tecnologia · Estratégia |
+| 16–19 | tabs abrem em **gráfico** que se desenha (+248%) com tooltip no hover |
+| 20–23 | colapsa em **⌘K** · digita "la" · filtra · Enter em "Lançar projeto" |
+| 24–25 | **toast** "Projeto lançado" |
+| 26–27 | toast morfa de volta ao CTA · cursor volta ao início → **loop** |
+
+## Identidade
+
+- Canvas preto quente `#0B0908`, cards dark `#1B1714`, texto `#F4F1EE`/`#9A938C`
+- Acento único: **laranja EXP** `#FF4E10`
+- Tipografia: **Geist** (única família, 4 pesos)
+- HUD replica o layout dos criativos: `exp digital` (topo esq.),
+  `HUB DE SERVIÇOS DIGITAIS` (topo dir.), `DESIGN. TECNOLOGIA. ESTRATÉGIA.`
+  (rodapé esq.), `expdigital.io` (rodapé dir.)
+
+## Engenharia
+
+- `index.html` — toda a animação é uma função pura do tempo dentro de
+  `seek(t)`: sem transições CSS, sem timers, sem estado entre frames.
+  Springs são respostas ao degrau em forma fechada; um valor que muda de
+  alvo várias vezes é a soma de uma mola por mudança. Drags são manipulação
+  direta (o valor vem da posição do cursor enquanto pressionado; no release
+  entra uma mola livre a partir da posição e velocidade do soltar).
+  Abrir o arquivo no navegador dá o preview em tempo real.
+- `audio.py` — trilha 120 BPM composta em numpy (royalty-free por
+  construção), começa no downbeat, cada som de UI colocado no tempo exato
+  do evento, validação do grid de batidas por detecção de onsets.
+- `render.py` — 4 subframes por frame a 240 fps virtuais, blended com
+  `ffmpeg tmix` para motion blur, encode x264 CRF 16.
+- `beatsheet.py` — um frame por beat como contact sheet, para revisar o
+  grid antes do render completo.
+
+## Como renderizar
+
+```bash
+pip install numpy playwright imageio-ffmpeg pillow
+python3 audio.py                       # → /tmp/exp-anthem.wav
+python3 render.py /tmp/exp-mute.mp4    # → vídeo sem áudio
+FF=$(python3 -c "import imageio_ffmpeg;print(imageio_ffmpeg.get_ffmpeg_exe())")
+$FF -i /tmp/exp-mute.mp4 -i /tmp/exp-anthem.wav -c:v copy -c:a aac -b:a 192k -shortest exp-brand-motion.mp4
+```
+
+As fontes Geist (SIL OFL, ver `fonts/OFL-LICENSE.txt`) são servidas
+localmente — nenhuma dependência externa no render.
