@@ -16,68 +16,78 @@
   section{position:absolute;inset:0;display:none;overflow:hidden}
   .in{position:absolute;inset:0;transform-origin:50% 50%}
   .abs{position:absolute}
-  /* official EXP marks, recolorable via alpha masks */
   .mk{-webkit-mask-image:url(assets/mark-mask.png);mask-image:url(assets/mark-mask.png);
+      -webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+      -webkit-mask-position:center;mask-position:center}
+  .mk2{-webkit-mask-image:url(assets/mark-mask-2x.png);mask-image:url(assets/mark-mask-2x.png);
       -webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
       -webkit-mask-position:center;mask-position:center}
   .wd{-webkit-mask-image:url(assets/wordmark-mask.png);mask-image:url(assets/wordmark-mask.png);
       -webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
       -webkit-mask-position:center;mask-position:center}
-  .lk{-webkit-mask-image:url(assets/lockup-mask.png);mask-image:url(assets/lockup-mask.png);
-      -webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
-      -webkit-mask-position:center;mask-position:center}
-  .mk2{-webkit-mask-image:url(assets/mark-mask-2x.png);mask-image:url(assets/mark-mask-2x.png);-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center}
   .mono{font-family:GeistMono,monospace}
   .hair{position:absolute;background:rgba(255,255,255,.14)}
   .dot{position:absolute;width:12px;height:12px;border-radius:6px;border:2.5px solid #fff;background:#161616}
+  /* the ANCHOR: through every cut of the strobe section (0-3s) the mark
+     occupies exactly this box, only background/ink swap */
+  .anchor{position:absolute;left:260px;top:646px;width:560px;height:468px}
+  /* iOS status bar */
+  .sbar{position:absolute;left:0;top:0;width:1080px;height:100px;display:flex;align-items:center;justify-content:space-between;padding:14px 56px 0}
+  .sbar .tm{font-size:34px;font-weight:600}
+  .igstat{text-align:center}
+  .igstat b{display:block;font-size:34px;font-weight:700;color:#141414}
+  .igstat span{font-size:24px;color:#3A3A3A}
 </style>
 </head>
 <body>
 
-<!-- S1: blueprint do símbolo -->
+<!-- ===== STROBE SECTION: mark pixel-anchored through the cuts ===== -->
+
+<!-- S1: blueprint -->
 <section id="s1" style="background:#161616">
   <div class="in">
     <div class="abs" id="s1grid" style="inset:-200px;background-image:linear-gradient(rgba(255,255,255,.05) 1.5px,transparent 1.5px),linear-gradient(90deg,rgba(255,255,255,.05) 1.5px,transparent 1.5px);background-size:96px 96px"></div>
-    <div class="abs mk" id="s1mark" style="left:220px;top:640px;width:640px;height:534px;background:#FF4C00"></div>
+    <div class="anchor mk" id="s1mark" style="background:#FF4C00"></div>
     <div id="s1dots"></div>
-    <div class="hair" id="s1dimh" style="left:220px;top:580px;height:1.5px"></div>
-    <div class="hair" style="left:220px;top:568px;width:1.5px;height:24px"></div>
-    <div class="hair" id="s1dimv2" style="top:568px;width:1.5px;height:24px"></div>
-    <div class="abs mono" id="s1dim" style="left:0;top:526px;width:1080px;text-align:center;font-size:21px;color:#8B8B8B;letter-spacing:.08em">1281 &#215; 1070</div>
+    <div class="hair" id="s1dimh" style="left:260px;top:592px;height:1.5px"></div>
+    <div class="hair" style="left:260px;top:580px;width:1.5px;height:24px"></div>
+    <div class="hair" id="s1dimv2" style="top:580px;width:1.5px;height:24px"></div>
+    <div class="abs mono" id="s1dim" style="left:0;top:538px;width:1080px;text-align:center;font-size:21px;color:#8B8B8B;letter-spacing:.08em">1281 &#215; 1070</div>
     <div class="abs mono" style="left:84px;top:150px;font-size:22px;color:#8B8B8B;letter-spacing:.14em">EXP&#174; &#8212; CONSTRU&#199;&#195;O DO S&#205;MBOLO</div>
     <div class="abs mono" style="left:84px;top:186px;font-size:22px;color:#4A4A4A;letter-spacing:.14em">FIG. 01 / GRID 96</div>
     <div class="abs mono" id="s1pct" style="right:84px;top:150px;font-size:22px;color:#FF4C00;letter-spacing:.1em">0%</div>
   </div>
 </section>
 
-<!-- S2: ondas concêntricas -->
+<!-- S2: waves, same anchor -->
 <section id="s2" style="background:#141414">
   <div class="in">
     <div id="s2rings"></div>
-    <div class="abs mk" id="s2mark" style="left:300px;top:720px;width:480px;height:401px;background:#FF4C00"></div>
+    <div class="anchor mk" id="s2mark" style="background:#FF4C00"></div>
     <div class="abs mono" style="left:0;bottom:290px;width:1080px;text-align:center;font-size:22px;color:#5A5A5A;letter-spacing:.34em">EXPDIGITAL.IO</div>
   </div>
 </section>
 
-<!-- S3/S4: cortes brancos -->
+<!-- S3: white flash cut, same anchor -->
 <section id="s3" style="background:#fff">
-  <div class="in"><div class="abs mk" id="s3mark" style="left:150px;top:600px;width:780px;height:651px;background:#FF4C00"></div></div>
+  <div class="in"><div class="anchor mk" style="background:#FF4C00"></div>
+  <div class="abs mono" style="left:0;bottom:290px;width:1080px;text-align:center;font-size:22px;color:#B9B0AA;letter-spacing:.34em">POSITIVO</div></div>
 </section>
-<section id="s4" style="background:#fff">
-  <div class="in"><div class="abs mk" id="s4mark" style="left:560px;top:1090px;width:400px;height:334px;background:#FF4C00"></div>
-  <div class="abs mono" style="left:120px;top:640px;font-size:24px;color:#B9B0AA;letter-spacing:.12em">S&#205;MBOLO / POSITIVO</div></div>
+<!-- S4: dark negative, same anchor -->
+<section id="s4" style="background:#1E1E1E">
+  <div class="in"><div class="anchor mk" style="background:#F4F1EE"></div>
+  <div class="abs mono" style="left:0;bottom:290px;width:1080px;text-align:center;font-size:22px;color:#5A5A5A;letter-spacing:.34em">NEGATIVO</div></div>
 </section>
-
-<!-- S5: mark preto sobre laranja -->
+<!-- S5: on-color, same anchor -->
 <section id="s5" style="background:#FF4C00">
-  <div class="in"><div class="abs mk" id="s5mark" style="left:240px;top:680px;width:600px;height:501px;background:#1E1E1E"></div>
-  <div class="abs mono" style="left:0;bottom:290px;width:1080px;text-align:center;font-size:22px;color:rgba(30,30,30,.65);letter-spacing:.3em">VERS&#195;O SOBRE COR</div></div>
+  <div class="in"><div class="anchor mk" style="background:#1E1E1E"></div>
+  <div class="abs mono" style="left:0;bottom:290px;width:1080px;text-align:center;font-size:22px;color:rgba(30,30,30,.65);letter-spacing:.34em">SOBRE COR</div></div>
 </section>
 
-<!-- S6: lockup dark -->
+<!-- S6: match-move — the anchored mark glides into the lockup -->
 <section id="s6" style="background:#1E1E1E">
   <div class="in">
-    <div class="abs mk" id="s6mark" style="left:148px;top:822px;width:310px;height:259px;background:#FF4C00"></div>
+    <div class="abs mk" id="s6mark" style="left:260px;top:646px;width:560px;height:468px;background:#FF4C00"></div>
     <div class="abs" id="s6wipe" style="left:493px;top:872px;width:440px;height:161px;overflow:hidden">
       <div class="wd" style="width:440px;height:161px;background:#F4F1EE"></div>
     </div>
@@ -85,49 +95,117 @@
   </div>
 </section>
 
-<!-- S7: instagram -->
-<section id="s7" style="background:#FAFAFA">
-  <div class="in" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0">
-    <div class="abs" id="s7ring" style="left:390px;top:600px;width:300px;height:300px;border-radius:50%;background:conic-gradient(#FEDA75,#FA7E1E,#D62976,#962FBF,#4F5BD5,#FEDA75)"></div>
-    <div class="abs" style="left:399px;top:609px;width:282px;height:282px;border-radius:50%;background:#FAFAFA"></div>
-    <div class="abs" style="left:408px;top:618px;width:264px;height:264px;border-radius:50%;background:#1E1E1E;display:flex;align-items:center;justify-content:center">
-      <div class="mk" style="width:150px;height:125px;background:#FF4C00"></div>
-    </div>
-    <div class="abs" style="left:0;top:952px;width:1080px;text-align:center;font-size:38px;font-weight:600;color:#141414">@expdigital.io</div>
-    <div class="abs" style="left:0;top:1010px;width:1080px;text-align:center;font-size:26px;color:#8A8A8A"><span id="s7count" style="color:#141414;font-weight:600">12.437</span> seguidores</div>
-    <div class="abs" id="s7btn" style="left:445px;top:1080px;width:190px;height:64px;border-radius:14px;background:#FF4C00;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600;font-size:24px">Seguir</div>
-  </div>
-</section>
+<!-- ===== MOCKUP SECTION ===== -->
 
-<!-- S8: app store -->
-<section id="s8" style="background:#FF4C00">
-  <div class="in">
-    <div class="abs" id="s8card" style="left:120px;top:640px;width:840px;height:600px;border-radius:40px;background:#fff;box-shadow:0 40px 90px rgba(0,0,0,.28)">
-      <div class="abs" style="left:56px;top:56px;width:176px;height:176px;border-radius:42px;background:#1E1E1E;display:flex;align-items:center;justify-content:center">
-        <div class="mk" style="width:108px;height:90px;background:#FF4C00"></div>
+<!-- S7: full Instagram profile screen -->
+<section id="s7" style="background:#fff">
+  <div class="in" style="color:#141414">
+    <div class="sbar" style="color:#141414">
+      <div class="tm">9:41</div>
+      <div style="display:flex;gap:12px;align-items:center">
+        <svg width="34" height="24" viewBox="0 0 34 24" fill="#141414"><rect x="0" y="14" width="6" height="10" rx="1.5"/><rect x="9" y="10" width="6" height="14" rx="1.5"/><rect x="18" y="5" width="6" height="19" rx="1.5"/><rect x="27" y="0" width="6" height="24" rx="1.5"/></svg>
+        <svg width="32" height="24" viewBox="0 0 32 24" fill="none" stroke="#141414" stroke-width="3" stroke-linecap="round"><path d="M4 9a18 18 0 0 1 24 0"/><path d="M9 14.5a11 11 0 0 1 14 0"/><circle cx="16" cy="20" r="2.6" fill="#141414" stroke="none"/></svg>
+        <svg width="44" height="24" viewBox="0 0 44 24"><rect x="1" y="2" width="36" height="20" rx="6" fill="none" stroke="#141414" stroke-width="2.4" opacity=".5"/><rect x="4" y="5" width="30" height="14" rx="3.5" fill="#141414"/><rect x="39" y="8" width="4" height="8" rx="2" fill="#141414" opacity=".5"/></svg>
       </div>
-      <div class="abs" style="left:268px;top:70px;font-size:42px;font-weight:600;color:#141414">exp digital</div>
-      <div class="abs" style="left:268px;top:128px;font-size:25px;color:#8A8A8A">Hub de servi&#231;os digitais</div>
-      <div class="abs" id="s8get" style="left:268px;top:172px;width:132px;height:52px;border-radius:26px;background:#1E1E1E;display:flex;align-items:center;justify-content:center;color:#fff;font-size:22px;font-weight:600;letter-spacing:.04em">OBTER</div>
-      <div class="hair" style="left:56px;top:292px;width:728px;background:rgba(0,0,0,.08)"></div>
-      <div class="abs" id="s8score" style="left:56px;top:340px;font-size:78px;font-weight:700;color:#141414;letter-spacing:-.02em">0,0</div>
-      <div class="abs" id="s8stars" style="left:56px;top:448px;display:flex;gap:10px"></div>
-      <div class="abs mono" style="left:56px;top:500px;font-size:20px;color:#9A9A9A;letter-spacing:.12em">278 AVALIA&#199;&#213;ES</div>
-      <div class="abs" style="right:56px;top:352px;text-align:right;font-size:24px;color:#8A8A8A;line-height:1.6">Design<br>Tecnologia<br>Estrat&#233;gia</div>
+    </div>
+    <div class="abs" style="left:0;top:104px;width:1080px;height:88px;display:flex;align-items:center;justify-content:center;font-size:38px;font-weight:700">expdigital.io
+      <svg width="22" height="14" viewBox="0 0 22 14" style="margin-left:10px"><path d="M2 2l9 9 9-9" fill="none" stroke="#141414" stroke-width="3.5" stroke-linecap="round"/></svg></div>
+    <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="2" style="position:absolute;right:150px;top:130px"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M12 8v8M8 12h8"/></svg>
+    <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="2.4" stroke-linecap="round" style="position:absolute;right:64px;top:130px"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+    <!-- header -->
+    <div class="abs" id="s7ring" style="left:64px;top:250px;width:250px;height:250px;border-radius:50%;background:conic-gradient(#FEDA75,#FA7E1E,#D62976,#962FBF,#4F5BD5,#FEDA75)"></div>
+    <div class="abs" style="left:72px;top:258px;width:234px;height:234px;border-radius:50%;background:#fff"></div>
+    <div class="abs" style="left:79px;top:265px;width:220px;height:220px;border-radius:50%;background:#1E1E1E;display:flex;align-items:center;justify-content:center">
+      <div class="mk" style="width:126px;height:105px;background:#FF4C00"></div>
+    </div>
+    <div class="abs" style="left:380px;top:330px;width:640px;display:flex;justify-content:space-between;padding-right:70px">
+      <div class="igstat"><b>248</b><span>publica&#231;&#245;es</span></div>
+      <div class="igstat"><b id="s7count">9.885</b><span>seguidores</span></div>
+      <div class="igstat"><b>512</b><span>a seguir</span></div>
+    </div>
+    <div class="abs" style="left:64px;top:530px;font-size:32px;font-weight:700">exp digital</div>
+    <div class="abs" style="left:64px;top:576px;font-size:27px;line-height:1.45;color:#262626">Hub de servi&#231;os digitais<br>Design. Tecnologia. Estrat&#233;gia.<br><span style="color:#00376B">expdigital.io</span></div>
+    <div class="abs" id="s7btn" style="left:64px;top:720px;width:452px;height:70px;border-radius:16px;background:#FF4C00;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600;font-size:28px">Seguir</div>
+    <div class="abs" style="left:532px;top:720px;width:452px;height:70px;border-radius:16px;background:#EFEFEF;display:flex;align-items:center;justify-content:center;color:#141414;font-weight:600;font-size:28px">Mensagem</div>
+    <!-- highlights -->
+    <div class="abs" id="s7hl" style="left:64px;top:840px;display:flex;gap:44px"></div>
+    <!-- tabs -->
+    <div class="abs" style="left:0;top:1058px;width:1080px;height:2px;background:rgba(0,0,0,.08)"></div>
+    <div class="abs" style="left:0;top:1060px;width:360px;height:5px;background:#141414"></div>
+    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="1.8" style="position:absolute;left:160px;top:1078px"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg>
+    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#8A8A8A" stroke-width="1.8" style="position:absolute;left:520px;top:1078px"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M10 8.5l6 3.5-6 3.5z" fill="#8A8A8A" stroke="none"/></svg>
+    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#8A8A8A" stroke-width="1.8" style="position:absolute;left:880px;top:1078px"><circle cx="12" cy="9" r="3.4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/><rect x="2.5" y="2.5" width="19" height="19" rx="4"/></svg>
+    <!-- grid -->
+    <div class="abs" id="s7grid" style="left:0;top:1140px;width:1080px;display:grid;grid-template-columns:repeat(3,1fr);gap:3px"></div>
+  </div>
+</section>
+
+<!-- S8: full App Store product page -->
+<section id="s8" style="background:#fff">
+  <div class="in" style="color:#141414">
+    <div class="sbar" style="color:#141414">
+      <div class="tm">9:41</div>
+      <div style="display:flex;gap:12px;align-items:center">
+        <svg width="34" height="24" viewBox="0 0 34 24" fill="#141414"><rect x="0" y="14" width="6" height="10" rx="1.5"/><rect x="9" y="10" width="6" height="14" rx="1.5"/><rect x="18" y="5" width="6" height="19" rx="1.5"/><rect x="27" y="0" width="6" height="24" rx="1.5"/></svg>
+        <svg width="32" height="24" viewBox="0 0 32 24" fill="none" stroke="#141414" stroke-width="3" stroke-linecap="round"><path d="M4 9a18 18 0 0 1 24 0"/><path d="M9 14.5a11 11 0 0 1 14 0"/><circle cx="16" cy="20" r="2.6" fill="#141414" stroke="none"/></svg>
+        <svg width="44" height="24" viewBox="0 0 44 24"><rect x="1" y="2" width="36" height="20" rx="6" fill="none" stroke="#141414" stroke-width="2.4" opacity=".5"/><rect x="4" y="5" width="30" height="14" rx="3.5" fill="#141414"/><rect x="39" y="8" width="4" height="8" rx="2" fill="#141414" opacity=".5"/></svg>
+      </div>
+    </div>
+    <div class="abs" style="left:44px;top:128px;display:flex;align-items:center;gap:6px;color:#007AFF;font-size:30px">
+      <svg width="20" height="34" viewBox="0 0 20 34"><path d="M16 3 4 17l12 14" fill="none" stroke="#007AFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>Apps</div>
+    <!-- app header -->
+    <div class="abs" id="s8head" style="left:0;top:210px;width:1080px;height:300px">
+      <div class="abs" style="left:56px;top:0;width:250px;height:250px;border-radius:56px;background:#1E1E1E;box-shadow:0 18px 40px rgba(0,0,0,.18);display:flex;align-items:center;justify-content:center">
+        <div class="mk" style="width:150px;height:125px;background:#FF4C00"></div>
+      </div>
+      <div class="abs" style="left:346px;top:14px;font-size:44px;font-weight:700;letter-spacing:-.01em">exp digital</div>
+      <div class="abs" style="left:346px;top:76px;font-size:28px;color:#8A8A8A">Hub de servi&#231;os digitais</div>
+      <div class="abs" id="s8get" style="left:346px;top:168px;width:172px;height:64px;border-radius:32px;background:#007AFF;display:flex;align-items:center;justify-content:center;color:#fff;font-size:27px;font-weight:700;letter-spacing:.02em">OBTER</div>
+      <svg width="40" height="46" viewBox="0 0 24 28" fill="none" stroke="#007AFF" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="position:absolute;right:70px;top:172px"><path d="M12 2v14M7 7l5-5 5 5"/><path d="M5 12v11a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V12"/></svg>
+    </div>
+    <div class="abs" style="left:56px;top:520px;width:968px;height:1.5px;background:rgba(0,0,0,.1)"></div>
+    <!-- metrics row -->
+    <div class="abs" id="s8met" style="left:0;top:556px;width:1080px;display:flex;justify-content:space-between;padding:0 90px;text-align:center;color:#8A8A8A">
+      <div><div style="font-size:24px;font-weight:600;letter-spacing:.06em">278 AVALIA&#199;&#213;ES</div>
+        <div id="s8score" style="font-size:52px;font-weight:700;color:#555;margin-top:6px">0,0</div>
+        <div id="s8stars" style="display:flex;gap:7px;justify-content:center;margin-top:8px"></div></div>
+      <div><div style="font-size:24px;font-weight:600;letter-spacing:.06em">IDADE</div>
+        <div style="font-size:52px;font-weight:700;color:#555;margin-top:6px">4+</div>
+        <div style="font-size:24px;margin-top:14px">Anos</div></div>
+      <div><div style="font-size:24px;font-weight:600;letter-spacing:.06em">GR&#193;FICO</div>
+        <div style="font-size:52px;font-weight:700;color:#555;margin-top:6px">N.&#186; 1</div>
+        <div style="font-size:24px;margin-top:14px">Produtividade</div></div>
+    </div>
+    <!-- screenshots carousel -->
+    <div class="abs" id="s8shots" style="left:0;top:850px;width:1600px;display:flex;gap:32px;padding-left:56px">
+      <div style="width:470px;height:840px;border-radius:38px;background:#1E1E1E;flex:none;box-shadow:0 24px 60px rgba(0,0,0,.22);overflow:hidden;position:relative">
+        <div class="mk abs" style="left:135px;top:210px;width:200px;height:167px;background:#FF4C00"></div>
+        <div class="wd abs" style="left:105px;top:420px;width:260px;height:95px;background:#F4F1EE"></div>
+        <div class="abs mono" style="left:0;top:560px;width:470px;text-align:center;font-size:17px;color:#8B8B8B;letter-spacing:.26em;line-height:1.8">HUB DE SERVI&#199;OS<br>DIGITAIS</div>
+        <div class="abs" style="left:135px;top:690px;width:200px;height:58px;border-radius:29px;background:#FF4C00;display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;font-weight:600;letter-spacing:.06em">CONHE&#199;A</div>
+      </div>
+      <div style="width:470px;height:840px;border-radius:38px;background:#FF4C00;flex:none;box-shadow:0 24px 60px rgba(0,0,0,.22);overflow:hidden;position:relative">
+        <div class="abs" style="left:48px;top:120px;font-size:78px;font-weight:700;color:#fff;letter-spacing:-.02em">+248%</div>
+        <div class="abs" style="left:48px;top:225px;font-size:26px;color:rgba(255,255,255,.85);line-height:1.5">de crescimento<br>para nossos clientes</div>
+        <svg width="380" height="300" viewBox="0 0 380 300" style="position:absolute;left:45px;top:400px">
+          <path d="M10 270 L70 240 L120 250 L180 180 L240 150 L300 80 L370 30" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="370" cy="30" r="12" fill="#fff"/>
+        </svg>
+        <div class="mk abs" style="left:340px;top:700px;width:90px;height:75px;background:rgba(255,255,255,.92)"></div>
+      </div>
+      <div style="width:470px;height:840px;border-radius:38px;background:#FFE4D9;flex:none;box-shadow:0 24px 60px rgba(0,0,0,.22)"></div>
     </div>
   </div>
 </section>
 
-<!-- S9: blueprint da tipografia -->
+<!-- S9: typography blueprint -->
 <section id="s9" style="background:#161616">
   <div class="in">
     <div class="abs" id="s9grid" style="inset:-200px;background-image:linear-gradient(rgba(255,255,255,.045) 1.5px,transparent 1.5px),linear-gradient(90deg,rgba(255,255,255,.045) 1.5px,transparent 1.5px);background-size:96px 96px"></div>
-    
     <div class="hair" id="s9xh"   style="left:60px;width:960px;top:886px"></div>
     <div class="hair" id="s9basl" style="left:60px;width:960px;top:1117px"></div>
     <div class="hair" id="s9desc" style="left:60px;width:960px;top:1180px"></div>
     <div class="abs" id="s9word" style="left:0;top:812px;width:1080px;text-align:center;font-size:420px;line-height:.75;font-weight:700;color:#F4F1EE;letter-spacing:-.04em">exp</div>
-    
     <div class="abs mono" style="left:64px;top:846px;font-size:20px;color:#666;letter-spacing:.1em">ALTURA-X</div>
     <div class="abs mono" style="left:64px;top:1077px;font-size:20px;color:#666;letter-spacing:.1em">LINHA DE BASE</div>
     <div class="abs mono" style="left:84px;top:150px;font-size:22px;color:#8B8B8B;letter-spacing:.14em">TIPOGRAFIA &#8212; GEIST</div>
@@ -137,17 +215,24 @@
   </div>
 </section>
 
-<!-- S10: totem -->
-<section id="s10" style="background:#0E0E0E">
+<!-- S10: street totem, lit -->
+<section id="s10" style="background:#0A0A0A">
   <div class="in">
-    <div class="hair" style="left:0;top:1560px;width:1080px;background:rgba(255,255,255,.15)"></div>
-    <div class="abs" style="left:280px;top:1528px;width:520px;height:64px;border-radius:50%;background:radial-gradient(ellipse at center, rgba(0,0,0,.65) 0%, rgba(0,0,0,0) 70%)"></div>
-    <div class="abs" id="s10totem" style="left:290px;top:330px;width:500px;height:1230px;background:#080808;border:2px solid rgba(255,255,255,.10);border-radius:14px;transform:perspective(1600px) rotateY(-9deg)">
+    <div class="abs" style="inset:0;background:radial-gradient(ellipse 900px 700px at 540px 1000px, rgba(255,76,0,.10), transparent 70%)"></div>
+    <div class="abs" style="left:0;top:1560px;width:1080px;height:360px;background:linear-gradient(rgba(255,255,255,.05), transparent 60%)"></div>
+    <div class="hair" style="left:0;top:1560px;width:1080px;background:rgba(255,255,255,.16)"></div>
+    <!-- reflection -->
+    <div class="abs" id="s10refl" style="left:290px;top:1575px;width:500px;height:520px;background:#0F0F0F;border-radius:14px;transform:perspective(1600px) rotateY(-9deg) scaleY(-1);opacity:.10;-webkit-mask-image:linear-gradient(#fff,transparent 75%);mask-image:linear-gradient(#fff,transparent 75%)">
+      <div class="abs" style="left:22px;top:22px;right:22px;height:470px;background:#1E1E1E;border-radius:6px"></div>
+    </div>
+    <div class="abs" style="left:250px;top:1528px;width:580px;height:70px;border-radius:50%;background:radial-gradient(ellipse at center, rgba(0,0,0,.8) 0%, rgba(0,0,0,0) 70%)"></div>
+    <div class="abs" id="s10totem" style="left:290px;top:330px;width:500px;height:1230px;background:linear-gradient(100deg,#0C0C0C,#050505);border:2px solid rgba(255,255,255,.14);border-top-color:rgba(255,255,255,.28);border-radius:14px;transform:perspective(1600px) rotateY(-9deg);box-shadow:20px 30px 80px rgba(0,0,0,.6)">
       <div class="abs" style="left:22px;top:22px;right:22px;bottom:22px;background:#1E1E1E;border-radius:6px;overflow:hidden">
+        <div class="abs" style="inset:0;background:radial-gradient(ellipse 420px 500px at 228px 400px, rgba(255,76,0,.13), transparent 70%)"></div>
         <div class="abs mk" style="left:118px;top:270px;width:220px;height:184px;background:#FF4C00"></div>
         <div class="abs wd" style="left:98px;top:500px;width:260px;height:96px;background:#F4F1EE"></div>
         <div class="abs mono" style="left:0;top:664px;width:456px;text-align:center;font-size:17px;color:#6E6E6E;letter-spacing:.28em">HUB DE SERVI&#199;OS DIGITAIS</div>
-        <div class="abs" id="s10sheen" style="left:-140px;top:-100px;width:120px;height:1400px;background:rgba(255,255,255,.05);transform:rotate(14deg)"></div>
+        <div class="abs" id="s10sheen" style="left:-180px;top:-100px;width:150px;height:1400px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.09),transparent);transform:rotate(14deg)"></div>
         <div class="abs" style="left:0;bottom:56px;width:456px;text-align:center;font-size:20px;color:#FF4C00;font-weight:500">expdigital.io</div>
       </div>
     </div>
@@ -155,43 +240,53 @@
   </div>
 </section>
 
-<!-- S11: browser -->
+<!-- S11: macOS browser -->
 <section id="s11" style="background:#0D0D0D">
   <div class="in">
-    <div class="abs" id="s11win" style="left:70px;top:560px;width:940px;height:800px;border-radius:22px;background:#1E1E1E;border:2px solid rgba(255,255,255,.09);overflow:hidden;box-shadow:0 40px 90px rgba(0,0,0,.5)">
-      <div class="abs" style="left:0;top:0;width:940px;height:78px;background:#171717;border-bottom:1.5px solid rgba(255,255,255,.07)">
-        <div class="abs" style="left:28px;top:30px;width:16px;height:16px;border-radius:8px;background:#FF4C00"></div>
-        <div class="abs" style="left:54px;top:30px;width:16px;height:16px;border-radius:8px;background:#3A3A3A"></div>
-        <div class="abs" style="left:80px;top:30px;width:16px;height:16px;border-radius:8px;background:#3A3A3A"></div>
-        <div class="abs mono" style="left:320px;top:22px;width:300px;height:36px;border-radius:9px;background:#101010;text-align:center;line-height:36px;font-size:18px;color:#9A9A9A">expdigital.io</div>
+    <div class="abs" style="inset:0;background:radial-gradient(ellipse 1000px 800px at 540px 900px, rgba(255,76,0,.06), transparent 70%)"></div>
+    <div class="abs" id="s11win" style="left:60px;top:540px;width:960px;height:840px;border-radius:24px;background:#1E1E1E;border:1.5px solid rgba(255,255,255,.10);overflow:hidden;box-shadow:0 60px 120px rgba(0,0,0,.65)">
+      <div class="abs" style="left:0;top:0;width:960px;height:84px;background:#171717;border-bottom:1.5px solid rgba(255,255,255,.07)">
+        <div class="abs" style="left:30px;top:32px;width:20px;height:20px;border-radius:10px;background:#FF5F57"></div>
+        <div class="abs" style="left:62px;top:32px;width:20px;height:20px;border-radius:10px;background:#FEBC2E"></div>
+        <div class="abs" style="left:94px;top:32px;width:20px;height:20px;border-radius:10px;background:#28C840"></div>
+        <div class="abs" style="left:300px;top:20px;width:360px;height:44px;border-radius:11px;background:#101010;display:flex;align-items:center;justify-content:center;gap:10px">
+          <svg width="17" height="20" viewBox="0 0 14 17"><rect x="1" y="7" width="12" height="9" rx="2.5" fill="none" stroke="#9A9A9A" stroke-width="1.8"/><path d="M4 7V5a3 3 0 0 1 6 0v2" fill="none" stroke="#9A9A9A" stroke-width="1.8"/></svg>
+          <span class="mono" style="font-size:19px;color:#C9C9C9">expdigital.io</span>
+        </div>
       </div>
-      <div class="abs" id="s11body" style="left:0;top:78px;width:940px;height:900px">
-        <div class="abs" style="left:64px;top:96px;font-size:74px;line-height:1.08;font-weight:700;color:#F4F1EE;letter-spacing:-.02em">HUB DE<br>SERVI&#199;OS<br><span style="color:#FF4C00">DIGITAIS.</span></div>
-        <div class="abs" style="left:64px;top:430px;font-size:25px;color:#9A9A9A;width:420px;line-height:1.5">Design, tecnologia e estrat&#233;gia em um &#250;nico ecossistema.</div>
-        <div class="abs" id="s11cta" style="left:64px;top:560px;width:300px;height:78px;border-radius:39px;background:#FF4C00;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600;font-size:23px;letter-spacing:.08em">CONHE&#199;A A EXP</div>
-        <div class="abs mk" style="left:600px;top:200px;width:480px;height:401px;background:#FF4C00;opacity:.94"></div>
+      <div class="abs" id="s11body" style="left:0;top:84px;width:960px;height:940px">
+        <div class="abs" style="left:0;top:0;width:960px;height:92px;border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;padding:0 56px;gap:40px">
+          <div class="mk" style="width:56px;height:47px;background:#FF4C00"></div>
+          <div style="margin-left:auto;display:flex;gap:38px;font-size:20px;color:#B9B9B9">
+            <span>Design</span><span>Tecnologia</span><span>Estrat&#233;gia</span><span>Cases</span></div>
+          <div style="width:150px;height:52px;border-radius:26px;background:#FF4C00;display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;font-weight:600">Contato</div>
+        </div>
+        <div class="abs" style="left:56px;top:180px;font-size:76px;line-height:1.08;font-weight:700;color:#F4F1EE;letter-spacing:-.02em">HUB DE<br>SERVI&#199;OS<br><span style="color:#FF4C00">DIGITAIS.</span></div>
+        <div class="abs" style="left:56px;top:520px;font-size:25px;color:#9A9A9A;width:420px;line-height:1.5">Design, tecnologia e estrat&#233;gia em um &#250;nico ecossistema.</div>
+        <div class="abs" id="s11cta" style="left:56px;top:650px;width:300px;height:78px;border-radius:39px;background:#FF4C00;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600;font-size:23px;letter-spacing:.08em">CONHE&#199;A A EXP</div>
+        <div class="abs mk" style="left:620px;top:260px;width:480px;height:401px;background:#FF4C00;opacity:.95"></div>
       </div>
     </div>
     <div class="abs mono" style="left:0;bottom:280px;width:1080px;text-align:center;font-size:21px;color:#5A5A5A;letter-spacing:.3em">APLICA&#199;&#195;O &#8212; WEB</div>
   </div>
 </section>
 
-<!-- S12: fitas -->
+<!-- S12: tapes with depth -->
 <section id="s12" style="background:#141414">
   <div class="in">
-    <div class="abs" id="s12t1" style="left:-400px;top:640px;width:2200px;height:150px;background:#FF4C00;transform:rotate(-13deg);overflow:hidden">
+    <div class="abs" id="s12t1" style="left:-400px;top:640px;width:2200px;height:150px;background:#FF4C00;transform:rotate(-14deg);overflow:hidden;box-shadow:0 26px 60px rgba(0,0,0,.5)">
       <div id="s12x1" style="position:absolute;top:0;white-space:nowrap;font-weight:700;font-size:74px;line-height:150px;color:#1E1E1E;letter-spacing:.02em"></div>
     </div>
-    <div class="abs" id="s12t2" style="left:-400px;top:900px;width:2200px;height:150px;background:#F4F1EE;transform:rotate(-13deg);overflow:hidden">
+    <div class="abs" id="s12t2" style="left:-400px;top:900px;width:2200px;height:150px;background:#F4F1EE;transform:rotate(-12deg);overflow:hidden;box-shadow:0 26px 60px rgba(0,0,0,.5)">
       <div id="s12x2" style="position:absolute;top:0;white-space:nowrap;font-weight:700;font-size:74px;line-height:150px;color:#1E1E1E;letter-spacing:.02em"></div>
     </div>
-    <div class="abs" id="s12t3" style="left:-400px;top:1160px;width:2200px;height:150px;background:#1E1E1E;border:2px solid rgba(255,255,255,.09);transform:rotate(-13deg);overflow:hidden">
+    <div class="abs" id="s12t3" style="left:-400px;top:1160px;width:2200px;height:150px;background:#1E1E1E;border:2px solid rgba(255,255,255,.1);transform:rotate(-13deg);overflow:hidden;box-shadow:0 26px 60px rgba(0,0,0,.55)">
       <div id="s12x3" style="position:absolute;top:0;white-space:nowrap;font-weight:700;font-size:74px;line-height:150px;color:#FF4C00;letter-spacing:.02em"></div>
     </div>
   </div>
 </section>
 
-<!-- S13: pêssego -->
+<!-- S13: peach -->
 <section id="s13" style="background:#FFE4D9">
   <div class="in">
     <div class="abs mk" id="s13mark" style="left:340px;top:800px;width:180px;height:150px;background:#FF4C00"></div>
@@ -203,7 +298,7 @@
 <!-- S14: macro -->
 <section id="s14" style="background:#1E1E1E">
   <div class="in">
-    <div class="abs mk2 " id="s14mark" style="left:-620px;top:-140px;width:2300px;height:1921px;background:#FF4C00"></div>
+    <div class="abs mk2" id="s14mark" style="left:-620px;top:-140px;width:2300px;height:1921px;background:#FF4C00"></div>
     <div class="abs mono" style="left:84px;bottom:280px;font-size:22px;color:rgba(255,255,255,.5);letter-spacing:.2em">EXP&#174; 2026</div>
   </div>
 </section>
@@ -218,11 +313,17 @@
   </div>
 </section>
 
+<!-- shutter flash overlay -->
+<div id="flash" style="position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none;z-index:99"></div>
+
 <script>
 'use strict';
 /* ============================================================
-   EXP LOGO REEL — brand identity flash montage.
+   EXP LOGO REEL v2 — brand identity flash montage.
    120 BPM · 24 beats · 12.0 s · hard cuts on the grid · loops.
+   0-3 s: the mark is PIXEL-ANCHORED through every cut (match cut),
+   with one continuous push-in across the whole strobe section;
+   then it match-moves into the lockup and the mockup section runs.
    Every style is a pure function of time inside seek(t).
    ============================================================ */
 const BPM = 120, BEAT = 60 / BPM, DUR = 12;
@@ -230,7 +331,7 @@ const clamp = (x, a, b) => Math.min(b, Math.max(a, x));
 const lerp = (a, b, x) => a + (b - a) * x;
 const ss = (a, b, x) => { x = clamp((x - a) / (b - a), 0, 1); return x * x * (3 - 2 * x); };
 const outQ = x => 1 - (1 - x) * (1 - x);
-function spr(u, f = 3.4, z = .72) {           // spring step response
+function spr(u, f = 3.4, z = .72) {
   if (u <= 0) return 0;
   const w = 2 * Math.PI * f;
   if (z < 0.999) { const wd = w * Math.sqrt(1 - z * z);
@@ -240,51 +341,61 @@ function spr(u, f = 3.4, z = .72) {           // spring step response
 const pulse = t => Math.exp(-((t / BEAT) % 1) * 6.5);
 const $ = id => document.getElementById(id);
 
-/* cuts on the beat grid: [beat, scene id, push amount] */
 const CUTS = [
-  [0,  's1',  .05], [2,  's2',  .06], [4,  's3',  .04], [4.5,'s4',  .04],
-  [5,  's5',  .06], [6,  's6',  .05], [8,  's7',  .05], [10, 's8',  .05],
+  [0,  's1',  0], [2,  's2',  0], [4,  's3',  0], [4.5,'s4',  0],
+  [5,  's5',  0], [6,  's6',  .04], [8,  's7',  .05], [10, 's8',  .05],
   [12, 's9',  .05], [14, 's10', .08], [16, 's11', .06], [18, 's12', .04],
   [20, 's13', .05], [21, 's14', .10], [22, 's15', .05], [24, null, 0]
 ];
+const ANCHOR_SET = new Set(['s1', 's2', 's3', 's4', 's5']);
+const FLASH_CUTS = [2.0, 2.25];
 
-/* ---------- static builders ---------- */
 (function build() {
-  /* s1: bezier dots roughly on the mark's key corners (design-space 640x534 at 220,640) */
   const DOTS = [[0,.62],[.16,.13],[.52,0],[.82,0],[.82,.30],[.52,.30],[.36,.44],[.30,.60],[.52,.78],[.86,.62],[1,.86],[.62,1]];
   $('s1dots').innerHTML = DOTS.map(d =>
-    `<div class="dot s1dot" style="left:${220 + d[0]*640 - 8}px;top:${640 + d[1]*534 - 8}px"></div>`).join('');
-  /* s2 rings */
+    `<div class="dot s1dot" style="left:${260 + d[0]*560 - 8}px;top:${646 + d[1]*468 - 8}px"></div>`).join('');
   $('s2rings').innerHTML = [0,1,2,3,4].map(i =>
-    `<div class="abs s2ring" style="left:${540-260-i*170}px;top:${920-260-i*170}px;width:${(260+i*170)*2}px;height:${(260+i*170)*2}px;border-radius:50%;border:2.5px solid rgba(255,76,0,${.24-i*.04})"></div>`).join('');
-  /* s8 stars */
-  const star = '<svg width="40" height="40" viewBox="0 0 24 24" fill="#FF4C00"><path d="M12 2.5l2.9 6.2 6.6.8-4.9 4.6 1.3 6.6L12 17.4l-5.9 3.3 1.3-6.6L2.5 9.5l6.6-.8z"/></svg>';
+    `<div class="abs s2ring" style="left:${540-260-i*170}px;top:${880-260-i*170}px;width:${(260+i*170)*2}px;height:${(260+i*170)*2}px;border-radius:50%;border:2.5px solid rgba(255,76,0,${.24-i*.04})"></div>`).join('');
+  const HL = ['Design','Sites','Growth','Cases'];
+  $('s7hl').innerHTML = HL.map((h,i) =>
+    `<div style="text-align:center">
+      <div style="width:132px;height:132px;border-radius:50%;border:2.5px solid rgba(0,0,0,.15);display:flex;align-items:center;justify-content:center;background:${i%2?'#FF4C00':'#1E1E1E'}">
+        <div class="mk" style="width:56px;height:47px;background:${i%2?'#fff':'#FF4C00'}"></div></div>
+      <div style="font-size:22px;margin-top:10px;color:#141414">${h}</div></div>`).join('');
+  const TILES = [
+    ['#1E1E1E','<div class="mk" style="width:170px;height:142px;background:#FF4C00"></div>'],
+    ['#FF4C00','<div style="font-size:34px;font-weight:700;color:#fff;letter-spacing:.04em;text-align:center;line-height:1.4">CONHE&#199;A<br>A EXP</div>'],
+    ['#FFE4D9','<div class="mk" style="width:170px;height:142px;background:#FF4C00"></div>'],
+    ['#1E1E1E','<div style="font-size:52px;font-weight:700;color:#FF4C00">+248%</div>'],
+    ['#FF4C00','<div class="mk" style="width:170px;height:142px;background:#1E1E1E"></div>'],
+    ['#F4F1EE','<div class="wd" style="width:220px;height:81px;background:#1E1E1E"></div>'],
+    ['#1E1E1E','<div style="font-size:30px;font-weight:600;color:#F4F1EE;text-align:center;line-height:1.4">DESIGN.<br>TECNOLOGIA.<br><span style="color:#FF4C00">ESTRAT&#201;GIA.</span></div>'],
+    ['#FF4C00','<div class="wd" style="width:220px;height:81px;background:#fff"></div>'],
+    ['#1E1E1E','<div class="mk" style="width:170px;height:142px;background:#F4F1EE"></div>']
+  ];
+  $('s7grid').innerHTML = TILES.map(t =>
+    `<div class="s7tile" style="height:358px;background:${t[0]};display:flex;align-items:center;justify-content:center">${t[1]}</div>`).join('');
+  const star = '<svg width="34" height="34" viewBox="0 0 24 24" fill="#FF9500"><path d="M12 2.5l2.9 6.2 6.6.8-4.9 4.6 1.3 6.6L12 17.4l-5.9 3.3 1.3-6.6L2.5 9.5l6.6-.8z"/></svg>';
   $('s8stars').innerHTML = [0,1,2,3,4].map(() => `<div class="s8star">${star}</div>`).join('');
-  /* s9 dots on the type */
   const TD = [[.245,.06],[.205,.52],[.30,.97],[.475,.06],[.62,.06],[.475,.97],[.62,.97],[.70,.06],[.86,.28],[.86,.76],[.70,1.28]];
   $('s9dots').innerHTML = TD.map(d =>
     `<div class="dot s9dot" style="left:${60 + d[0]*960 - 8}px;top:${886 + d[1]*231 - 8}px"></div>`).join('');
-  /* s12 tape text */
   $('s12x1').textContent = ' EXP DIGITAL ✦ HUB DE SERVIÇOS DIGITAIS ✦'.repeat(6);
   $('s12x2').textContent = ' DESIGN. TECNOLOGIA. ESTRATÉGIA. ✦'.repeat(8);
   $('s12x3').textContent = ' EXPDIGITAL.IO ✦'.repeat(12);
 })();
 
-/* ---------- per-scene updates: u = local progress 0..1, tl = local seconds ---------- */
 const SCENES = {
   s1(u, tl, t) {
     $('s1grid').style.transform = `translate(${(-tl * 14).toFixed(2)}px,${(-tl * 9).toFixed(2)}px)`;
-    const e = spr(tl, 3.6, .74);
-    $('s1mark').style.transform = `scale(${(0.94 + 0.06 * e).toFixed(4)})`;
-    $('s1mark').style.opacity = 1;
     document.querySelectorAll('.s1dot').forEach((d, i) => {
-      const p = spr(tl - 0.10 - i * 0.045, 5, .6);
+      const p = spr(tl - 0.08 - i * 0.045, 5, .6);
       d.style.transform = `scale(${p.toFixed(3)})`;
       d.style.opacity = p > .02 ? 1 : 0;
     });
-    const dw = 640 * ss(0.15, 0.75, tl);
+    const dw = 560 * ss(0.12, 0.72, tl);
     $('s1dimh').style.width = dw.toFixed(1) + 'px';
-    $('s1dimv2').style.left = (220 + dw).toFixed(1) + 'px';
+    $('s1dimv2').style.left = (260 + dw).toFixed(1) + 'px';
     $('s1pct').textContent = Math.round(100 * ss(0, 0.9, u)) + '%';
   },
   s2(u, tl, t) {
@@ -293,40 +404,48 @@ const SCENES = {
       r.style.transform = `scale(${(0.88 + 0.30 * ph).toFixed(4)})`;
       r.style.opacity = (1 - ph * 0.75).toFixed(3);
     });
-    const e = spr(tl, 4, .7);
-    $('s2mark').style.transform = `scale(${(0.85 + 0.15 * e + 0.035 * pulse(t)).toFixed(4)})`;
+    $('s2mark').style.transform = `scale(${(1 + 0.022 * pulse(t)).toFixed(4)})`;
   },
-  s3(u, tl) { $('s3mark').style.transform = `translateX(${(-14 + 22 * u).toFixed(2)}px)`; },
-  s4(u, tl) { $('s4mark').style.transform = `translateY(${(10 - 18 * u).toFixed(2)}px)`; },
-  s5(u, tl) {
-    const e = spr(tl, 4.2, .66);
-    $('s5mark').style.transform = `scale(${(0.82 + 0.18 * e).toFixed(4)}) rotate(${((1 - e) * -3).toFixed(2)}deg)`;
-  },
+  s3() {}, s4() {}, s5() {},
   s6(u, tl) {
-    const e = spr(tl, 3.8, .7);
-    $('s6mark').style.transform = `scale(${(0.7 + 0.3 * e).toFixed(4)})`;
-    const wipe = ss(0.12, 0.55, tl);
+    /* match-move: anchor box (260,646,560x468) -> lockup slot (148,822,310x259) */
+    const e = spr(tl, 3.2, .82);
+    const x = lerp(260, 148, e), y = lerp(646, 822, e), w = lerp(560, 310, e);
+    const m = $('s6mark');
+    m.style.left = x.toFixed(1) + 'px';
+    m.style.top = y.toFixed(1) + 'px';
+    m.style.width = w.toFixed(1) + 'px';
+    m.style.height = (w * 468 / 560).toFixed(1) + 'px';
+    const wipe = ss(0.30, 0.72, tl);
     $('s6wipe').style.clipPath = `inset(0 ${(100 - wipe * 100).toFixed(1)}% 0 0)`;
-    $('s6base').style.width = (785 * ss(0.3, 0.85, tl)).toFixed(1) + 'px';
+    $('s6wipe').style.opacity = wipe > 0.001 ? 1 : 0;
+    $('s6base').style.width = (785 * ss(0.45, 0.95, tl)).toFixed(1) + 'px';
   },
   s7(u, tl, t) {
-    $('s7ring').style.transform = `rotate(${(t * 40).toFixed(1)}deg) scale(${(1 + 0.02 * pulse(t)).toFixed(4)})`;
+    $('s7ring').style.transform = `rotate(${(t * 30).toFixed(1)}deg)`;
     const n = Math.floor(9512 + 456 * ss(0.05, 0.8, u));
     $('s7count').textContent = n.toLocaleString('pt-BR').replace(/ /g, '.');
-    const b = spr(tl - 0.55, 4.5, .6);
-    $('s7btn').style.transform = `scale(${(0.9 + 0.1 * clamp(b, 0, 1.15)).toFixed(4)})`;
-    $('s7btn').style.opacity = tl > 0.5 ? 1 : ss(0.35, 0.55, tl);
+    const b = spr(tl - 0.35, 4.5, .6);
+    $('s7btn').style.transform = `scale(${(0.92 + 0.08 * clamp(b, 0, 1.15)).toFixed(4)})`;
+    document.querySelectorAll('.s7tile').forEach((d, i) => {
+      const p = spr(tl - 0.15 - (i % 3) * 0.06 - Math.floor(i / 3) * 0.09, 4.5, .75);
+      d.style.transform = `scale(${(0.92 + 0.08 * clamp(p, 0, 1.1)).toFixed(4)})`;
+      d.style.opacity = clamp(p * 1.4, 0, 1).toFixed(3);
+    });
   },
   s8(u, tl) {
-    const e = spr(tl, 3.6, .72);
-    $('s8card').style.transform = `translateY(${((1 - e) * 60).toFixed(1)}px) scale(${(0.94 + 0.06 * e).toFixed(4)})`;
+    const e = spr(tl, 3.8, .78);
+    $('s8head').style.transform = `translateY(${((1 - e) * 40).toFixed(1)}px)`;
+    $('s8head').style.opacity = clamp(e * 1.3, 0, 1).toFixed(3);
     document.querySelectorAll('.s8star').forEach((s, i) => {
-      const p = spr(tl - 0.25 - i * 0.09, 5, .55);
+      const p = spr(tl - 0.22 - i * 0.09, 5, .55);
       s.style.transform = `scale(${clamp(p, 0, 1.2).toFixed(3)})`;
     });
-    $('s8score').textContent = (5 * ss(0.22, 0.66, tl)).toFixed(1).replace('.', ',');
-    const g = spr(tl - 0.7, 4.5, .65);
-    $('s8get').style.transform = `scale(${(0.85 + 0.15 * clamp(g, 0, 1.1)).toFixed(4)})`;
+    $('s8score').textContent = (5 * ss(0.20, 0.62, tl)).toFixed(1).replace('.', ',');
+    const g = spr(tl - 0.5, 4.5, .65);
+    $('s8get').style.transform = `scale(${(0.88 + 0.12 * clamp(g, 0, 1.1)).toFixed(4)})`;
+    $('s8shots').style.transform = `translateX(${(-40 * ss(0.35, 1, u)).toFixed(1)}px)`;
+    $('s8met').style.opacity = ss(0.12, 0.35, tl).toFixed(3);
   },
   s9(u, tl, t) {
     $('s9grid').style.transform = `translate(${(-tl * 12).toFixed(2)}px,${(tl * 7).toFixed(2)}px)`;
@@ -346,7 +465,9 @@ const SCENES = {
   },
   s10(u, tl) {
     const e = spr(tl, 3.2, .78);
-    $('s10totem').style.transform = `perspective(1600px) rotateY(${(-14 + 5 * e).toFixed(2)}deg) translateY(${((1 - e) * 40).toFixed(1)}px)`;
+    const ry = -14 + 5 * e, ty = (1 - e) * 40;
+    $('s10totem').style.transform = `perspective(1600px) rotateY(${ry.toFixed(2)}deg) translateY(${ty.toFixed(1)}px)`;
+    $('s10refl').style.transform = `perspective(1600px) rotateY(${ry.toFixed(2)}deg) scaleY(-1) translateY(${(-ty).toFixed(1)}px)`;
     $('s10sheen').style.transform = `rotate(14deg) translateX(${(tl * 700).toFixed(1)}px)`;
   },
   s11(u, tl) {
@@ -360,14 +481,14 @@ const SCENES = {
     $('s12x1').style.transform = `translateX(${(-600 - tl * 260).toFixed(1)}px)`;
     $('s12x2').style.transform = `translateX(${(-1400 + tl * 210).toFixed(1)}px)`;
     $('s12x3').style.transform = `translateX(${(-500 - tl * 320).toFixed(1)}px)`;
-    ['s12t1', 's12t2', 's12t3'].forEach((id, i) => {
+    [['s12t1', -14], ['s12t2', -12], ['s12t3', -13]].forEach(([id, rot], i) => {
       const e = spr(tl - i * 0.07, 3.8, .7);
-      $(id).style.transform = `rotate(-13deg) translateY(${((1 - e) * (i % 2 ? -90 : 90)).toFixed(1)}px)`;
+      $(id).style.transform = `rotate(${rot}deg) translateY(${((1 - e) * (i % 2 ? -90 : 90)).toFixed(1)}px)`;
     });
   },
   s13(u, tl) {
     const e = spr(tl, 4, .7);
-    ['s13mark'].forEach(id => $(id).style.transform = `translateY(${((1 - e) * 26).toFixed(1)}px)`);
+    $('s13mark').style.transform = `translateY(${((1 - e) * 26).toFixed(1)}px)`;
   },
   s14(u, tl) {
     $('s14mark').style.transform = `translate(${(-90 + 180 * u).toFixed(1)}px,${(60 - 120 * u).toFixed(1)}px) rotate(-8deg)`;
@@ -387,17 +508,26 @@ const SCENES = {
 function seek(t) {
   t = ((t % DUR) + DUR) % DUR;
   const b = t / BEAT;
-  let cut = CUTS[0];
-  for (let i = 0; i < CUTS.length - 1; i++) if (b >= CUTS[i][0]) cut = CUTS[i];
-  const [b0, id, push] = cut;
-  const bEnd = CUTS[CUTS.indexOf(cut) + 1][0];
+  let ci = 0;
+  for (let i = 0; i < CUTS.length - 1; i++) if (b >= CUTS[i][0]) ci = i;
+  const [b0, id, push] = CUTS[ci];
+  const bEnd = CUTS[ci + 1][0];
   const u = clamp((b - b0) / (bEnd - b0), 0, 1);
   const tl = (b - b0) * BEAT;
   document.querySelectorAll('section').forEach(s => { s.style.display = s.id === id ? 'block' : 'none'; });
-  const sec = $(id);
-  const inn = sec.querySelector('.in');
-  inn.style.transform = `scale(${(1 + push * outQ(u)).toFixed(5)})`;
+  const inn = $(id).querySelector('.in');
+  if (ANCHOR_SET.has(id)) {
+    /* one continuous push-in across the whole strobe section: the anchored
+       mark grows smoothly THROUGH the cuts, like a camera pushing in */
+    inn.style.transform = `scale(${(1 + 0.055 * (t / 3.0)).toFixed(5)})`;
+  } else {
+    const punch = 1 + 0.045 * (1 - spr(tl, 4.2, .9));
+    inn.style.transform = `scale(${((1 + push * outQ(u)) * punch).toFixed(5)})`;
+  }
   SCENES[id](u, tl, t);
+  let fl = 0;
+  FLASH_CUTS.forEach(tc => { if (t >= tc) fl = Math.max(fl, 0.85 * Math.exp(-(t - tc) * 26)); });
+  $('flash').style.opacity = fl > 0.01 ? fl.toFixed(3) : 0;
 }
 window.seek = seek;
 
