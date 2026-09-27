@@ -6,7 +6,7 @@ Zero After Effects: HTML + trilha composta em numpy + render Playwright/ffmpeg.
 | # | Vídeo | Arquivo | Formato |
 |---|---|---|---|
 | 001 | UI Morph Reel (`index.html`) | `exp-brand-motion.mp4` | 1080×1920 · 60fps · 14s · loop |
-| 002 | Logo Flash Reel (`logo-reel.html`) | `exp-logo-reel.mp4` | 1080×1920 · 60fps · 12s · loop |
+| 002 | Logo Flash Reel (`logo-reel.html`) | `exp-logo-reel.mp4` | 1080×1920 · 60fps · 10s · loop |
 
 ## 002 — Logo Flash Reel
 
@@ -16,7 +16,7 @@ arquivos da marca em `assets/`) numa aplicação diferente — blueprint de
 construção do símbolo, ondas concêntricas, cortes sobre branco, versão
 sobre cor, lockup horizontal, perfil do Instagram, card da App Store,
 blueprint da tipografia, totem OOH, site, fitas diagonais, cor secundária
-(pêssego), macro e lockup final. 15 cenas, 24 beats, um hit de som em cada
+(pêssego), macro e lockup final. 14 cenas em ritmo de referência (0,25–0,75s por corte), blast selando a tela para a virada, um hit de som em cada
 corte (`logo-audio.py`).
 
 # 001 — UI Morph Reel

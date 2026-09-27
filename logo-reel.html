@@ -71,16 +71,22 @@
 <!-- S3: white flash cut, same anchor -->
 <section id="s3" style="background:#fff">
   <div class="in"><div class="anchor mk" style="background:#FF4C00"></div>
+  <div class="abs mono" style="left:64px;top:70px;font-size:20px;color:#C9BFB8;letter-spacing:.18em">S&#205;MBOLO / 01</div>
+  <div class="abs mono" style="right:64px;top:70px;font-size:20px;color:#C9BFB8;letter-spacing:.18em">EXP&#174;</div>
   <div class="abs mono" style="left:0;bottom:290px;width:1080px;text-align:center;font-size:22px;color:#B9B0AA;letter-spacing:.34em">POSITIVO</div></div>
 </section>
 <!-- S4: dark negative, same anchor -->
 <section id="s4" style="background:#1E1E1E">
   <div class="in"><div class="anchor mk" style="background:#F4F1EE"></div>
+  <div class="abs mono" style="left:64px;top:70px;font-size:20px;color:#57514B;letter-spacing:.18em">S&#205;MBOLO / 02</div>
+  <div class="abs mono" style="right:64px;top:70px;font-size:20px;color:#57514B;letter-spacing:.18em">EXP&#174;</div>
   <div class="abs mono" style="left:0;bottom:290px;width:1080px;text-align:center;font-size:22px;color:#5A5A5A;letter-spacing:.34em">NEGATIVO</div></div>
 </section>
 <!-- S5: on-color, same anchor -->
 <section id="s5" style="background:#FF4C00">
   <div class="in"><div class="anchor mk" style="background:#1E1E1E"></div>
+  <div class="abs mono" style="left:64px;top:70px;font-size:20px;color:rgba(30,30,30,.6);letter-spacing:.18em">S&#205;MBOLO / 03</div>
+  <div class="abs mono" style="right:64px;top:70px;font-size:20px;color:rgba(30,30,30,.6);letter-spacing:.18em">EXP&#174;</div>
   <div class="abs mono" style="left:0;bottom:290px;width:1080px;text-align:center;font-size:22px;color:rgba(30,30,30,.65);letter-spacing:.34em">SOBRE COR</div></div>
 </section>
 
@@ -308,6 +314,7 @@
 <section id="s12" style="background:#161616">
   <div class="in">
     <div id="s12wrap" style="position:absolute;left:-220px;top:-220px;width:1520px;height:2360px;transform:rotate(-5deg)"></div>
+    <div class="abs" id="s12seal" style="left:390px;top:810px;width:300px;height:300px;border-radius:50%;background:#FF4C00;transform:scale(0)"></div>
     <div class="abs mk" id="s12blast" style="left:240px;top:710px;width:600px;height:501px;background:#FF4C00;transform:scale(0)"></div>
   </div>
 </section>
@@ -327,6 +334,11 @@
     <div class="abs wd" id="s15word" style="left:508px;top:860px;width:390px;height:143px;background:#F4F1EE"></div>
     <div class="abs mono" id="s15tag" style="left:0;top:1130px;width:1080px;text-align:center;font-size:23px;color:#8B8B8B;letter-spacing:.4em">HUB DE SERVI&#199;OS DIGITAIS</div>
     <div class="abs" id="s15url" style="left:0;top:1192px;width:1080px;text-align:center;font-size:27px;font-weight:600;color:#FF4C00">expdigital.io</div>
+    <div id="s15corners"></div>
+    <div class="abs mono" id="s15l1" style="left:64px;top:64px;font-size:20px;color:#6E675F;letter-spacing:.18em">EXP&#174; &#8212; BRAND SYSTEM</div>
+    <div class="abs mono" id="s15l2" style="right:64px;top:64px;font-size:20px;color:#6E675F;letter-spacing:.18em">&#169; 2026</div>
+    <div class="abs mono" id="s15l3" style="left:64px;bottom:290px;font-size:20px;color:#6E675F;letter-spacing:.14em">DESIGN. TECNOLOGIA. ESTRAT&#201;GIA.</div>
+    <div class="abs mono" id="s15l4" style="right:64px;bottom:290px;font-size:20px;color:#FF4C00;letter-spacing:.14em">EXPDIGITAL.IO</div>
     <div class="abs" id="s15sheenBox" style="left:150px;top:770px;width:790px;height:320px;overflow:hidden">
       <div class="abs" id="s15sheen" style="left:-260px;top:-60px;width:130px;height:460px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.14),transparent);transform:rotate(16deg)"></div>
     </div>
@@ -347,7 +359,7 @@
    then it match-moves into the lockup and the mockup section runs.
    Every style is a pure function of time inside seek(t).
    ============================================================ */
-const BPM = 120, BEAT = 60 / BPM, DUR = 13.5;
+const BPM = 120, BEAT = 60 / BPM, DUR = 10;
 const clamp = (x, a, b) => Math.min(b, Math.max(a, x));
 const lerp = (a, b, x) => a + (b - a) * x;
 const ss = (a, b, x) => { x = clamp((x - a) / (b - a), 0, 1); return x * x * (3 - 2 * x); };
@@ -363,13 +375,13 @@ const pulse = t => Math.exp(-((t / BEAT) % 1) * 6.5);
 const $ = id => document.getElementById(id);
 
 const CUTS = [
-  [0,  's1',  0], [1.5,'s2',  0], [3,  's3',  0], [3.5,'s4',  0],
-  [4,  's5',  0], [5,  's6',  .04], [7,  's7',  .05], [9,  's8',  .05],
-  [11, 's9',  .05], [13, 's10', .08], [15, 's11', .06], [17, 's12', 0],
-  [22, 's14', .05], [23, 's15', .04], [27, null, 0]
+  [0,   's1',  0], [1,   's2',  0], [2,   's3',  0], [2.5, 's4',  0],
+  [3,   's5',  0], [4,   's6',  .04], [5.5, 's7',  .05], [7,   's8',  .05],
+  [8.5, 's9',  .05], [9.5, 's10', .07], [11,  's11', .06], [12,  's12', 0],
+  [15,  's14', .05], [16,  's15', .04], [20,  null, 0]
 ];
 const ANCHOR_SET = new Set(['s1', 's2', 's3', 's4', 's5']);
-const FLASH_CUTS = [1.5, 1.75];
+const FLASH_CUTS = [1.0, 1.25];
 
 (function build() {
   const DOTS = [[0,.62],[.16,.13],[.52,0],[.82,0],[.82,.30],[.52,.30],[.36,.44],[.30,.60],[.52,.78],[.86,.62],[1,.86],[.62,1]];
@@ -418,17 +430,24 @@ const FLASH_CUTS = [1.5, 1.75];
     </div>`;
   }).join('');
   document.querySelectorAll('.sepmk').forEach(el => { el.style.background = el.dataset.c; });
+  /* s15 corner ticks */
+  const TK = [[44,44,0],[1036,44,90],[1036,1636,180],[44,1636,270]];
+  $('s15corners').innerHTML = TK.map(k =>
+    `<div class="s15tick" style="position:absolute;left:${k[0]-2}px;top:${k[1]-2}px;transform:rotate(${k[2]}deg)">
+      <div style="position:absolute;left:0;top:0;width:56px;height:2.5px;background:rgba(255,255,255,.25)"></div>
+      <div style="position:absolute;left:0;top:0;width:2.5px;height:56px;background:rgba(255,255,255,.25)"></div>
+    </div>`).join('');
 })();
 
 const SCENES = {
   s1(u, tl, t) {
     $('s1grid').style.transform = `translate(${(-tl * 14).toFixed(2)}px,${(-tl * 9).toFixed(2)}px)`;
     document.querySelectorAll('.s1dot').forEach((d, i) => {
-      const p = spr(tl - 0.05 - i * 0.03, 5.5, .6);
+      const p = spr(tl - 0.03 - i * 0.02, 6, .6);
       d.style.transform = `scale(${p.toFixed(3)})`;
       d.style.opacity = p > .02 ? 1 : 0;
     });
-    const dw = 560 * ss(0.08, 0.5, tl);
+    const dw = 560 * ss(0.05, 0.34, tl);
     $('s1dimh').style.width = dw.toFixed(1) + 'px';
     $('s1dimv2').style.left = (260 + dw).toFixed(1) + 'px';
     $('s1pct').textContent = Math.round(100 * ss(0, 0.9, u)) + '%';
@@ -444,17 +463,17 @@ const SCENES = {
   s3() {}, s4() {}, s5() {},
   s6(u, tl) {
     /* match-move: anchor box (260,646,560x468) -> lockup slot (148,822,310x259) */
-    const e = spr(tl, 3.2, .82);
+    const e = spr(tl, 4.2, .84);
     const x = lerp(260, 148, e), y = lerp(646, 822, e), w = lerp(560, 310, e);
     const m = $('s6mark');
     m.style.left = x.toFixed(1) + 'px';
     m.style.top = y.toFixed(1) + 'px';
     m.style.width = w.toFixed(1) + 'px';
     m.style.height = (w * 468 / 560).toFixed(1) + 'px';
-    const wipe = ss(0.30, 0.72, tl);
+    const wipe = ss(0.2, 0.5, tl);
     $('s6wipe').style.clipPath = `inset(0 ${(100 - wipe * 100).toFixed(1)}% 0 0)`;
     $('s6wipe').style.opacity = wipe > 0.001 ? 1 : 0;
-    $('s6base').style.width = (785 * ss(0.45, 0.95, tl)).toFixed(1) + 'px';
+    $('s6base').style.width = (785 * ss(0.25, 0.52, tl)).toFixed(1) + 'px';
   },
   s7(u, tl, t) {
     $('s7ring').style.transform = `rotate(${(t * 30).toFixed(1)}deg)`;
@@ -488,10 +507,10 @@ const SCENES = {
     $('s9word').style.opacity = (0.55 + 0.45 * e).toFixed(3);
     $('s9word').style.letterSpacing = (-0.04 + 0.015 * (1 - e)) + 'em';
     ['s9xh', 's9basl', 's9desc'].forEach((id, i) => {
-      $(id).style.width = (960 * ss(0.05 + i * 0.07, 0.45 + i * 0.07, tl)).toFixed(1) + 'px';
+      $(id).style.width = (960 * ss(0.03 + i * 0.05, 0.3 + i * 0.05, tl)).toFixed(1) + 'px';
     });
     document.querySelectorAll('.s9dot').forEach((d, i) => {
-      const p = spr(tl - 0.3 - i * 0.05, 5, .6);
+      const p = spr(tl - 0.1 - i * 0.026, 6, .6);
       d.style.transform = `scale(${p.toFixed(3)})`;
       d.style.opacity = p > .02 ? 1 : 0;
     });
@@ -517,7 +536,7 @@ const SCENES = {
     const e = spr(tl, 3.4, .74);
     $('s11win').style.transform = `translateY(${((1 - e) * 70).toFixed(1)}px)`;
     $('s11body').style.transform = `translateY(${(-16 * ss(0.3, 1, u)).toFixed(1)}px)`;
-    const c = spr(tl - 0.45, 4.5, .62);
+    const c = spr(tl - 0.2, 4.5, .62);
     $('s11cta').style.transform = `scale(${(0.88 + 0.12 * clamp(c, 0, 1.12)).toFixed(4)})`;
   },
   s12(u, tl, t) {
@@ -528,18 +547,20 @@ const SCENES = {
       row.style.transform = `translateX(${((1 - e) * (i % 2 ? 120 : -120)).toFixed(1)}px)`;
       row.querySelector('.s12roll').style.transform = `translateX(${(OFF[i] + SPD[i] * tl).toFixed(1)}px)`;
     });
-    /* zoom blast: the mark erupts from center and swallows the screen */
-    const bl = ss(2.2, 2.5, tl);
-    const bs = Math.pow(bl, 1.7) * 16;
+    /* zoom blast: the mark erupts and a solid disc seals the whole frame
+       so the cut lands on 100% orange */
+    const bl = ss(1.25, 1.5, tl);
     const blast = $('s12blast');
-    blast.style.transform = `scale(${bs.toFixed(3)}) rotate(${(bl * -6).toFixed(2)}deg)`;
+    blast.style.transform = `scale(${(Math.pow(bl, 1.6) * 15).toFixed(3)}) rotate(${(bl * -6).toFixed(2)}deg)`;
     blast.style.opacity = bl > 0.001 ? 1 : 0;
-    blast.style.filter = bl > 0.6 ? `blur(${((bl - 0.6) * 14).toFixed(1)}px)` : 'none';
+    blast.style.filter = bl > 0.5 ? `blur(${((bl - 0.5) * 16).toFixed(1)}px)` : 'none';
+    const sl = ss(1.32, 1.5, tl);
+    $('s12seal').style.transform = `scale(${(Math.pow(sl, 1.6) * 9).toFixed(3)})`;
   },
   s14(u, tl, t) {
     const shake = 18 * Math.exp(-tl * 11);
     const sx = shake * Math.sin(t * 91.7), sy = shake * Math.cos(t * 73.3);
-    const settle = 1.16 - 0.16 * ss(0, 0.38, tl);
+    const settle = 1.32 - 0.32 * ss(0, 0.36, tl);
     $('s14mark').style.transform = `translate(${(-120 + 260 * u + sx).toFixed(1)}px,${(80 - 170 * u + sy).toFixed(1)}px) rotate(-8deg) scale(${settle.toFixed(4)})`;
   },
   s15(u, tl, t) {
@@ -553,6 +574,12 @@ const SCENES = {
     $('s15tag').style.transform = `translateY(${(1.5 * Math.sin(t * 3.1)).toFixed(2)}px)`;
     const sh = ss(0.55, 1.05, tl - 0.75) * 1250;
     $('s15sheen').style.transform = `rotate(16deg) translateX(${sh.toFixed(1)}px)`;
+    ['s15l1', 's15l2', 's15l3', 's15l4'].forEach((id, i) => {
+      $(id).style.opacity = ss(0.5 + i * 0.08, 0.75 + i * 0.08, tl).toFixed(3);
+    });
+    document.querySelectorAll('.s15tick').forEach((el, i) => {
+      el.style.opacity = ss(0.4 + i * 0.05, 0.6 + i * 0.05, tl).toFixed(3);
+    });
   }
 };
 
@@ -570,7 +597,7 @@ function seek(t) {
   if (ANCHOR_SET.has(id)) {
     /* one continuous push-in across the whole strobe section: the anchored
        mark grows smoothly THROUGH the cuts, like a camera pushing in */
-    inn.style.transform = `scale(${(1 + 0.055 * (t / 2.5)).toFixed(5)})`;
+    inn.style.transform = `scale(${(1 + 0.06 * (t / 2.0)).toFixed(5)})`;
   } else {
     const punch = 1 + 0.045 * (1 - spr(tl, 4.2, .9));
     inn.style.transform = `scale(${((1 + push * outQ(u)) * punch).toFixed(5)})`;
@@ -579,7 +606,7 @@ function seek(t) {
   let fl = 0;
   FLASH_CUTS.forEach(tc => { if (t >= tc) fl = Math.max(fl, 0.85 * Math.exp(-(t - tc) * 26)); });
   $('flash').style.opacity = fl > 0.01 ? fl.toFixed(3) : 0;
-  const fo = t >= 11.0 ? 0.9 * Math.exp(-(t - 11.0) * 13) : 0;
+  const fo = t >= 7.5 ? 0.9 * Math.exp(-(t - 7.5) * 15) : 0;
   $('flashO').style.opacity = fo > 0.01 ? fo.toFixed(3) : 0;
 }
 window.seek = seek;

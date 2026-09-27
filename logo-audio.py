@@ -8,7 +8,7 @@ import numpy as np
 import wave
 
 SR = 44100
-DUR = 13.5
+DUR = 10.0
 BEAT = 0.5
 N = int(SR * DUR)
 
@@ -141,61 +141,61 @@ def chime(freqs, dur=0.7):
 
 # ---------------- groove: kick 4/4, hats, claps, driving sub ----------------
 A1, E1, F1 = 55.0, 41.2, 43.65
-for b in range(27):
+for b in range(20):
     tb = b * BEAT
-    if b != 26:                                     # last beat breathes before the loop
+    if b != 19:                                     # last beat breathes before the loop
         put(kick(punch=1.0), tb, 0.95, drums=True)
-    put(hat(), tb + 0.25, 0.30 if b < 26 else 0.16, pan=0.35)
+    put(hat(), tb + 0.25, 0.30 if b < 19 else 0.16, pan=0.35)
     if b >= 2:
         put(hat(dur=0.03, tone=9500), tb + 0.375, 0.13, pan=-0.4)
-    if b % 4 in (1, 3) and b < 25:
+    if b % 4 in (1, 3) and b < 18:
         put(clap(), tb, 0.5, pan=-0.08)
 
-SUBP = {0: A1, 1: A1, 2: F1, 3: A1, 4: F1, 5: A1, 6: A1}   # per bar
+SUBP = {0: A1, 1: A1, 2: F1, 3: A1, 4: A1}   # per bar
 for bar, f in SUBP.items():
     for off in (0, 0.75, 1.5, 2.5, 3.0, 3.75):
-        if bar * 2 + off * BEAT < 13.2:
+        if bar * 2 + off * BEAT < 9.7:
             put(sub_note(f if off < 3 else A1, 0.32), bar * 2 + off * BEAT, 0.55)
-# marquee section shaker (8.5-11.0): rolling 16ths
-for k in range(20):
-    put(hat(dur=0.03, tone=8200), 8.5 + k * 0.125, 0.10, pan=(-1) ** k * 0.3)
+# marquee section shaker (6.0-7.5): rolling 16ths
+for k in range(12):
+    put(hat(dur=0.03, tone=8200), 6.0 + k * 0.125, 0.10, pan=(-1) ** k * 0.3)
 
 # ---------------- scene-cut hits ----------------
 CUTS = [0, 1, 2, 2.25, 2.5, 3, 4, 5, 6, 7, 8, 9, 10, 10.5, 11]  # seconds
 put(boom(0.8), 0.0, 0.7, drums=True)                       # opening
 put(whoosh(0.35, 400, 3200), 0.02, 0.5)
-put(whoosh(0.3, 500, 3600), 0.75, 0.5)                      # waves
-put(shutter(), 1.5, 0.85)                                   # white cut
-put(shutter(), 1.75, 0.7)                                   # negative cut
-put(boom(0.6, 60), 1.978, 0.6, drums=True)                  # on-color
-put(whoosh(0.3, 600, 4200), 2.5, 0.5)                       # lockup wipe
-put(tick(2600, 0.04), 2.85, 0.5, 0.2)
-put(chime([440, 660], 0.4), 3.5, 0.35)                      # instagram
-for k in range(6):
-    put(tick(3000 + k * 90, 0.03), 3.65 + k * 0.11, 0.16, 0.25)
-put(whoosh(0.28, 500, 3600), 4.5, 0.5)                      # app store
+put(whoosh(0.28, 500, 3600), 0.5, 0.5)                      # waves
+put(shutter(), 1.0, 0.85)                                   # white cut
+put(shutter(), 1.25, 0.7)                                   # negative cut
+put(boom(0.5, 60), 1.478, 0.6, drums=True)                  # on-color
+put(whoosh(0.28, 600, 4200), 2.0, 0.5)                      # lockup wipe
+put(tick(2600, 0.04), 2.3, 0.5, 0.2)
+put(chime([440, 660], 0.35), 2.75, 0.35)                    # instagram
 for k in range(5):
-    put(tick(2000 + k * 180, 0.05), 4.62 + k * 0.09, 0.3, -0.2 + k * 0.1)
-put(whoosh(0.3, 400, 3000), 5.5, 0.5)                       # type blueprint
-put(boom(0.7, 50), 6.472, 0.65, drums=True)                 # phone
-put(whoosh(0.3, 500, 3600), 7.5, 0.5)                       # browser
-put(tick(2400, 0.05), 7.95, 0.4)
-put(whoosh(0.4, 600, 5000), 8.5, 0.55)                      # marquee wall
-put(riser(1.1), 9.9, 0.55)                                  # riser into the blast
-def crash(dur=1.2):
+    put(tick(3000 + k * 90, 0.03), 2.85 + k * 0.1, 0.16, 0.25)
+put(whoosh(0.26, 500, 3600), 3.5, 0.5)                      # app store
+for k in range(5):
+    put(tick(2000 + k * 180, 0.05), 3.6 + k * 0.08, 0.3, -0.2 + k * 0.1)
+put(whoosh(0.26, 400, 3000), 4.25, 0.5)                     # type blueprint
+put(boom(0.6, 50), 4.722, 0.6, drums=True)                  # phone
+put(whoosh(0.26, 500, 3600), 5.5, 0.5)                      # browser
+put(tick(2400, 0.05), 5.8, 0.4)
+put(whoosh(0.4, 600, 5000), 6.0, 0.55)                      # marquee wall
+put(riser(1.05), 6.45, 0.6)                                 # riser into the blast
+def crash(dur=1.1):
     n = int(dur * SR)
     x = np.arange(n) / SR
-    return highpass(rng.standard_normal(n), 4200) * np.exp(-x * 4.5) * 0.9
-put(boom(1.0, 46), 10.972, 0.95, drums=True)                # THE BOOM
-put(crash(), 11.0, 0.32)
-put(sub_note(A1, 0.8), 11.0, 0.5)
-put(boom(0.8, 55), 11.475, 0.7, drums=True)                 # final lockup hit
-put(chime([440, 554, 659], 1.0), 11.52, 0.5)                # brand chime
-put(whoosh(0.3, 400, 2800), 13.05, 0.35)                    # tail into the loop
+    return highpass(rng.standard_normal(n), 4200) * np.exp(-x * 4.8) * 0.9
+put(boom(0.9, 46), 7.472, 0.95, drums=True)                 # THE BOOM
+put(crash(), 7.5, 0.32)
+put(sub_note(A1, 0.7), 7.5, 0.5)
+put(boom(0.8, 55), 7.975, 0.7, drums=True)                  # signature hit
+put(chime([440, 554, 659], 1.0), 8.02, 0.5)                 # brand chime
+put(whoosh(0.28, 400, 2800), 9.55, 0.35)                    # tail into the loop
 
 # ---------------- sidechain ----------------
 duck = np.ones(N)
-for b in range(27):
+for b in range(20):
     i0 = int(b * BEAT * SR)
     n = int(0.28 * SR)
     x = np.arange(min(n, N - i0)) / SR
@@ -228,7 +228,7 @@ hop = 256
 e = np.array([np.sqrt(np.mean(mono[i * hop:(i + 1) * hop] ** 2)) for i in range(len(mono) // hop)])
 onset = np.maximum(np.diff(e), 0)
 errs = []
-for b in range(26):
+for b in range(19):
     c = int(b * BEAT * SR / hop)
     win = onset[max(0, c - 8):c + 9]
     if len(win):
