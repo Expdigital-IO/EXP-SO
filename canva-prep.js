@@ -6,7 +6,7 @@
      for Geist Mono) so weights and word spacing survive the import */
 window.__canvaPrep = async function () {
   const st = document.createElement('style');
-  st.textContent = '*{font-kerning:none!important;font-variant-ligatures:none!important}';
+  st.textContent = '*{font-kerning:none!important;font-variant-ligatures:none!important;word-spacing:.08em!important}';
   document.head.appendChild(st);
   const cache = {};
   const load = url => cache[url] || (cache[url] = new Promise((ok, err) => {
