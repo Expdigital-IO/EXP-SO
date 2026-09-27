@@ -77,11 +77,11 @@
 <!-- S6: lockup dark -->
 <section id="s6" style="background:#1E1E1E">
   <div class="in">
-    <div class="abs mk" id="s6mark" style="left:105px;top:848px;width:264px;height:220px;background:#FF4C00"></div>
-    <div class="abs" id="s6wipe" style="left:400px;top:848px;width:600px;height:219px;overflow:hidden">
-      <div class="wd" style="width:600px;height:219px;background:#F4F1EE"></div>
+    <div class="abs mk" id="s6mark" style="left:148px;top:822px;width:310px;height:259px;background:#FF4C00"></div>
+    <div class="abs" id="s6wipe" style="left:493px;top:872px;width:440px;height:161px;overflow:hidden">
+      <div class="wd" style="width:440px;height:161px;background:#F4F1EE"></div>
     </div>
-    <div class="hair" id="s6base" style="left:105px;top:1118px;height:1.5px;background:rgba(255,255,255,.22)"></div>
+    <div class="hair" id="s6base" style="left:148px;top:1128px;height:1.5px;background:rgba(255,255,255,.22)"></div>
   </div>
 </section>
 
@@ -122,17 +122,17 @@
 <section id="s9" style="background:#161616">
   <div class="in">
     <div class="abs" id="s9grid" style="inset:-200px;background-image:linear-gradient(rgba(255,255,255,.045) 1.5px,transparent 1.5px),linear-gradient(90deg,rgba(255,255,255,.045) 1.5px,transparent 1.5px);background-size:96px 96px"></div>
-    <div class="hair" id="s9cap"  style="left:60px;width:960px;top:790px"></div>
-    <div class="hair" id="s9xh"   style="left:60px;width:960px;top:876px"></div>
-    <div class="hair" id="s9basl" style="left:60px;width:960px;top:1128px"></div>
-    <div class="hair" id="s9desc" style="left:60px;width:960px;top:1208px"></div>
+    
+    <div class="hair" id="s9xh"   style="left:60px;width:960px;top:886px"></div>
+    <div class="hair" id="s9basl" style="left:60px;width:960px;top:1117px"></div>
+    <div class="hair" id="s9desc" style="left:60px;width:960px;top:1180px"></div>
     <div class="abs" id="s9word" style="left:0;top:812px;width:1080px;text-align:center;font-size:420px;line-height:.75;font-weight:700;color:#F4F1EE;letter-spacing:-.04em">exp</div>
-    <div class="abs mono" style="left:64px;top:750px;font-size:20px;color:#666;letter-spacing:.1em">CAP</div>
-    <div class="abs mono" style="left:64px;top:836px;font-size:20px;color:#666;letter-spacing:.1em">X-HEIGHT</div>
-    <div class="abs mono" style="left:64px;top:1088px;font-size:20px;color:#666;letter-spacing:.1em">BASELINE</div>
+    
+    <div class="abs mono" style="left:64px;top:846px;font-size:20px;color:#666;letter-spacing:.1em">ALTURA-X</div>
+    <div class="abs mono" style="left:64px;top:1077px;font-size:20px;color:#666;letter-spacing:.1em">LINHA DE BASE</div>
     <div class="abs mono" style="left:84px;top:150px;font-size:22px;color:#8B8B8B;letter-spacing:.14em">TIPOGRAFIA &#8212; GEIST</div>
     <div class="abs mono" style="left:84px;top:186px;font-size:22px;color:#4A4A4A;letter-spacing:.14em">FIG. 02 / MIN&#218;SCULAS</div>
-    <div class="abs mono" id="s9trk" style="right:84px;top:150px;font-size:22px;color:#FF4C00;letter-spacing:.1em">-4.0</div>
+    <div class="abs mono" id="s9trk" style="right:84px;top:150px;font-size:22px;color:#FF4C00;letter-spacing:.1em">0.0</div>
     <div id="s9dots"></div>
   </div>
 </section>
@@ -262,7 +262,7 @@ const CUTS = [
   /* s9 dots on the type */
   const TD = [[.245,.06],[.205,.52],[.30,.97],[.475,.06],[.62,.06],[.475,.97],[.62,.97],[.70,.06],[.86,.28],[.86,.76],[.70,1.28]];
   $('s9dots').innerHTML = TD.map(d =>
-    `<div class="dot s9dot" style="left:${60 + d[0]*960 - 8}px;top:${790 + d[1]*338 - 8}px"></div>`).join('');
+    `<div class="dot s9dot" style="left:${60 + d[0]*960 - 8}px;top:${886 + d[1]*231 - 8}px"></div>`).join('');
   /* s12 tape text */
   $('s12x1').textContent = ' EXP DIGITAL ✦ HUB DE SERVIÇOS DIGITAIS ✦'.repeat(6);
   $('s12x2').textContent = ' DESIGN. TECNOLOGIA. ESTRATÉGIA. ✦'.repeat(8);
@@ -275,7 +275,7 @@ const SCENES = {
     $('s1grid').style.transform = `translate(${(-tl * 14).toFixed(2)}px,${(-tl * 9).toFixed(2)}px)`;
     const e = spr(tl, 3.6, .74);
     $('s1mark').style.transform = `scale(${(0.94 + 0.06 * e).toFixed(4)})`;
-    $('s1mark').style.opacity = clamp(0.45 + tl * 7, 0, 1).toFixed(3);
+    $('s1mark').style.opacity = 1;
     document.querySelectorAll('.s1dot').forEach((d, i) => {
       const p = spr(tl - 0.10 - i * 0.045, 5, .6);
       d.style.transform = `scale(${p.toFixed(3)})`;
@@ -288,7 +288,9 @@ const SCENES = {
   },
   s2(u, tl, t) {
     document.querySelectorAll('.s2ring').forEach((r, i) => {
-      r.style.transform = `scale(${(1 + 0.05 * Math.sin(t * 1.4 + i)).toFixed(4)})`;
+      const ph = ((tl * 0.42 + i * 0.2) % 1 + 1) % 1;
+      r.style.transform = `scale(${(0.88 + 0.30 * ph).toFixed(4)})`;
+      r.style.opacity = (1 - ph * 0.75).toFixed(3);
     });
     const e = spr(tl, 4, .7);
     $('s2mark').style.transform = `scale(${(0.85 + 0.15 * e + 0.035 * pulse(t)).toFixed(4)})`;
@@ -304,7 +306,7 @@ const SCENES = {
     $('s6mark').style.transform = `scale(${(0.7 + 0.3 * e).toFixed(4)})`;
     const wipe = ss(0.12, 0.55, tl);
     $('s6wipe').style.clipPath = `inset(0 ${(100 - wipe * 100).toFixed(1)}% 0 0)`;
-    $('s6base').style.width = (895 * ss(0.3, 0.85, tl)).toFixed(1) + 'px';
+    $('s6base').style.width = (785 * ss(0.3, 0.85, tl)).toFixed(1) + 'px';
   },
   s7(u, tl, t) {
     $('s7ring').style.transform = `rotate(${(t * 40).toFixed(1)}deg) scale(${(1 + 0.02 * pulse(t)).toFixed(4)})`;
@@ -326,10 +328,10 @@ const SCENES = {
   },
   s9(u, tl, t) {
     $('s9grid').style.transform = `translate(${(-tl * 12).toFixed(2)}px,${(tl * 7).toFixed(2)}px)`;
-    const e = ss(0, 0.35, tl);
-    $('s9word').style.opacity = e.toFixed(3);
+    const e = ss(0, 0.12, tl);
+    $('s9word').style.opacity = (0.55 + 0.45 * e).toFixed(3);
     $('s9word').style.letterSpacing = (-0.04 + 0.015 * (1 - e)) + 'em';
-    ['s9cap', 's9xh', 's9basl', 's9desc'].forEach((id, i) => {
+    ['s9xh', 's9basl', 's9desc'].forEach((id, i) => {
       $(id).style.width = (960 * ss(0.05 + i * 0.07, 0.45 + i * 0.07, tl)).toFixed(1) + 'px';
     });
     document.querySelectorAll('.s9dot').forEach((d, i) => {
@@ -337,7 +339,8 @@ const SCENES = {
       d.style.transform = `scale(${p.toFixed(3)})`;
       d.style.opacity = p > .02 ? 1 : 0;
     });
-    $('s9trk').textContent = (-4 + 4 * ss(0, 0.8, u)).toFixed(1);
+    const trk = -4 * ss(0, 0.8, u);
+    $('s9trk').textContent = (trk > -0.05 ? 0 : trk).toFixed(1);
   },
   s10(u, tl) {
     const e = spr(tl, 3.2, .78);
@@ -369,13 +372,13 @@ const SCENES = {
   },
   s15(u, tl, t) {
     const e = spr(tl, 3.6, .7);
-    $('s15mark').style.transform = `scale(${(0.75 + 0.25 * e).toFixed(4)})`;
+    $('s15mark').style.transform = `scale(${(0.75 + 0.25 * e + (tl > 0.45 ? 0.018 * pulse(t) : 0)).toFixed(4)})`;
     $('s15word').style.opacity = ss(0.1, 0.35, tl).toFixed(3);
     $('s15word').style.transform = `translateX(${((1 - ss(0.1, 0.4, tl)) * 24).toFixed(1)}px)`;
     $('s15tag').style.opacity = ss(0.3, 0.6, tl).toFixed(3);
     $('s15url').style.opacity = ss(0.45, 0.7, tl).toFixed(3);
     $('s15url').style.transform = `translateY(${((1 - ss(0.45, 0.75, tl)) * 14).toFixed(1)}px)`;
-    $('s15mark').style.filter = pulse(t) > .5 && tl > 0.5 ? 'none' : 'none';
+    $('s15tag').style.transform = `translateY(${(1.5 * Math.sin(t * 3.1)).toFixed(2)}px)`;
   }
 };
 
