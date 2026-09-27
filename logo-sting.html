@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<title>EXP Logo Sting</title>
+<style>
+  @font-face{font-family:Geist;src:url(fonts/Geist-Regular.woff2) format('woff2');font-weight:400}
+  @font-face{font-family:Geist;src:url(fonts/Geist-Medium.woff2) format('woff2');font-weight:500}
+  @font-face{font-family:Geist;src:url(fonts/Geist-SemiBold.woff2) format('woff2');font-weight:600}
+  @font-face{font-family:Geist;src:url(fonts/Geist-Bold.woff2) format('woff2');font-weight:700}
+  @font-face{font-family:GeistMono;src:url(fonts/GeistMono-Regular.woff2) format('woff2');font-weight:400}
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1080px;height:1920px;overflow:hidden;background:#0D0B0A}
+  body{font-family:Geist,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  section{position:absolute;inset:0;display:none;overflow:hidden}
+  .in{position:absolute;inset:0;transform-origin:50% 50%}
+  .abs{position:absolute}
+  .mk{-webkit-mask-image:url(assets/mark-mask.png);mask-image:url(assets/mark-mask.png);
+      -webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center}
+  .mk2{-webkit-mask-image:url(assets/mark-mask-2x.png);mask-image:url(assets/mark-mask-2x.png);
+      -webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center}
+  .ol{-webkit-mask-image:url(assets/mark-outline.png);mask-image:url(assets/mark-outline.png);
+      -webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center}
+  .wd{-webkit-mask-image:url(assets/wordmark-mask.png);mask-image:url(assets/wordmark-mask.png);
+      -webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center}
+  .mono{font-family:GeistMono,monospace}
+  /* the anchor box shared by the pure-logo scenes (matches the reference framing) */
+  .anch{position:absolute;left:330px;top:630px;width:420px;height:351px}
+</style>
+</head>
+<body>
+
+<!-- 1: waves + neon outline -->
+<section id="a1" style="background:#120C08">
+  <div class="in">
+    <div id="a1waves"></div>
+    <div class="anch ol" id="a1mark" style="background:#FF7A3A;filter:drop-shadow(0 0 26px rgba(255,76,0,.85)) drop-shadow(0 0 70px rgba(255,76,0,.35))"></div>
+  </div>
+</section>
+
+<!-- 2: white + dark-orange outline -->
+<section id="a2" style="background:#FDFDFD">
+  <div class="in"><div class="anch ol" style="background:#C43F00"></div></div>
+</section>
+
+<!-- 3: dark + neon -->
+<section id="a3" style="background:#0C0908">
+  <div class="in"><div class="anch ol" id="a3mark" style="background:#FF8A4A;filter:drop-shadow(0 0 26px rgba(255,76,0,.9)) drop-shadow(0 0 80px rgba(255,76,0,.4))"></div></div>
+</section>
+
+<!-- 4: billboard -->
+<section id="a4" style="background:#050505">
+  <div class="in">
+    <div class="abs" style="left:0;top:1620px;width:1080px;height:300px;background:linear-gradient(rgba(255,255,255,.045),transparent 65%)"></div>
+    <div class="abs" style="left:170px;top:1650px;width:740px;height:200px;background:#0B0B0B;transform:scaleY(-1);opacity:.35;border-radius:8px"></div>
+    <div class="abs" id="a4bb" style="left:190px;top:240px;width:700px;height:1310px;background:#0A0A0A;border:3px solid #1E1E1E;border-radius:10px;transform:perspective(1800px) rotateY(5deg);box-shadow:0 50px 120px rgba(0,0,0,.75)">
+      <div class="abs" style="left:16px;top:16px;right:16px;bottom:110px;background:#050505;border-radius:4px;overflow:hidden">
+        <div class="abs" style="inset:0;background:radial-gradient(ellipse 640px 620px at 334px 240px, rgba(255,76,0,.55), rgba(255,76,0,.12) 55%, transparent 78%)"></div>
+        <div class="abs" style="left:0;top:56px;width:668px;display:flex;justify-content:center">
+          <div style="display:flex;align-items:center;gap:10px;border:1.5px solid rgba(255,255,255,.25);border-radius:22px;padding:8px 20px">
+            <div class="mk" style="width:34px;height:28px;background:#fff"></div>
+            <span style="font-size:19px;color:#fff;font-weight:500">exp digital</span>
+          </div>
+        </div>
+        <div class="abs mk" id="a4mark" style="left:174px;top:430px;width:320px;height:267px;background:#fff;filter:drop-shadow(0 0 34px rgba(255,110,40,.95)) drop-shadow(0 0 90px rgba(255,76,0,.5))"></div>
+        <div class="abs wd" style="left:234px;top:1010px;width:200px;height:73px;background:rgba(255,255,255,.85)"></div>
+      </div>
+      <div class="abs" style="left:0;bottom:0;width:100%;height:96px;background:#0D0D0D;border-top:2px solid #1A1A1A"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 5/7: instagram circle -->
+<section id="a5" style="background:#FCFCFC">
+  <div class="in">
+    <div class="abs" id="a5ring" style="left:245px;top:665px;width:590px;height:590px;border-radius:50%;background:conic-gradient(#FEDA75,#FA7E1E,#D62976,#962FBF,#4F5BD5,#FEDA75)"></div>
+    <div class="abs" style="left:262px;top:682px;width:556px;height:556px;border-radius:50%;background:#FCFCFC"></div>
+    <div class="abs" style="left:276px;top:696px;width:528px;height:528px;border-radius:50%;background:#100D0B;display:flex;align-items:center;justify-content:center">
+      <div class="mk" style="width:300px;height:250px;background:#FF4C00"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 6: type construction grid -->
+<section id="a6" style="background:#100C09">
+  <div class="in">
+    <div id="a6lines"></div>
+    <div class="abs" id="a6word" style="left:-80px;top:660px;width:1600px;font-size:560px;line-height:1.05;font-weight:700;color:transparent;-webkit-text-stroke:2.5px rgba(255,120,50,.85);letter-spacing:-.03em;white-space:nowrap">exp exp</div>
+    <div id="a6dots"></div>
+  </div>
+</section>
+
+<!-- 8: smartwatch -->
+<section id="a8" style="background:#080605">
+  <div class="in">
+    <div class="abs" style="inset:0;background:radial-gradient(ellipse 800px 700px at 540px 900px, rgba(255,76,0,.14), transparent 70%)"></div>
+    <div class="abs" id="a8w" style="left:250px;top:420px;width:580px;height:1080px">
+      <div class="abs" style="left:110px;top:-160px;width:360px;height:330px;background:linear-gradient(#161311,#0C0A09);border-radius:26px 26px 60px 60px"></div>
+      <div class="abs" style="left:110px;top:900px;width:360px;height:330px;background:linear-gradient(#0C0A09,#161311);border-radius:60px 60px 26px 26px"></div>
+      <div class="abs" style="left:20px;top:120px;width:540px;height:840px;background:linear-gradient(145deg,#1F1C19,#0B0A09);border-radius:150px;box-shadow:0 40px 100px rgba(0,0,0,.8), inset 0 2px 3px rgba(255,255,255,.14)"></div>
+      <div class="abs" style="right:6px;top:400px;width:18px;height:120px;border-radius:9px;background:#242018"></div>
+      <div class="abs" style="left:56px;top:158px;width:468px;height:764px;background:#000;border-radius:118px;overflow:hidden">
+        <div class="abs" style="inset:0;background:radial-gradient(ellipse 380px 420px at 234px 340px, rgba(255,76,0,.22), transparent 72%)"></div>
+        <div class="abs mono" style="left:0;top:86px;width:468px;text-align:center;font-size:30px;color:#8B8680">9:41</div>
+        <div class="abs" id="a8icon" style="left:139px;top:230px;width:190px;height:190px;border-radius:48px;background:linear-gradient(160deg,#FF6A2A,#E24400);display:flex;align-items:center;justify-content:center;box-shadow:0 0 50px rgba(255,76,0,.65), 0 0 120px rgba(255,76,0,.3)">
+          <div class="mk" style="width:110px;height:92px;background:#fff"></div>
+        </div>
+        <div class="abs" style="left:0;top:475px;width:468px;text-align:center;font-size:29px;font-weight:600;color:#F4F1EE">exp digital</div>
+        <div class="abs mono" style="left:0;top:522px;width:468px;text-align:center;font-size:17px;color:#7E7872;letter-spacing:.18em">HUB DIGITAL</div>
+        <div class="abs" style="left:164px;top:600px;width:140px;height:44px;border-radius:22px;background:rgba(255,76,0,.18);border:1.5px solid rgba(255,110,40,.5);display:flex;align-items:center;justify-content:center;font-size:17px;color:#FF9A5A;font-weight:600">ABRIR</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 9: horizontal lockup -->
+<section id="a9" style="background:#0B0A0A">
+  <div class="in">
+    <div class="abs mk" style="left:200px;top:868px;width:230px;height:192px;background:#FF4C00"></div>
+    <div class="abs wd" style="left:462px;top:905px;width:420px;height:154px;background:#F4F1EE"></div>
+  </div>
+</section>
+
+<!-- 10: mark construction grid -->
+<section id="a10" style="background:#0F0C0A">
+  <div class="in">
+    <div id="a10lines"></div>
+    <div class="abs mk" id="a10mark" style="left:290px;top:630px;width:500px;height:418px;background:#D14000;opacity:.95"></div>
+    <div id="a10dots"></div>
+  </div>
+</section>
+
+<!-- 11: app store card on orange -->
+<section id="a11" style="background:#FF4C00">
+  <div class="in">
+    <div class="abs" id="a11card" style="left:100px;top:700px;width:880px;height:520px;border-radius:44px;background:#F5F4F2;box-shadow:0 40px 100px rgba(0,0,0,.3)">
+      <div class="abs" style="left:60px;top:60px;width:180px;height:180px;border-radius:44px;background:#14100D;display:flex;align-items:center;justify-content:center">
+        <div class="mk" style="width:108px;height:90px;background:#FF4C00"></div>
+      </div>
+      <div class="abs" style="left:276px;top:74px;font-size:44px;font-weight:700;color:#141414">exp digital</div>
+      <div class="abs" style="left:276px;top:136px;font-size:26px;color:#8A8A8A">Hub de servi&#231;os digitais</div>
+      <div class="abs" id="a11get" style="left:276px;top:182px;width:132px;height:52px;border-radius:26px;background:#141414;display:flex;align-items:center;justify-content:center;color:#fff;font-size:21px;font-weight:600">OBTER</div>
+      <div class="abs" id="a11score" style="left:60px;top:300px;font-size:92px;font-weight:700;color:#141414;letter-spacing:-.02em">5.0</div>
+      <div class="abs" id="a11stars" style="left:300px;top:330px;display:flex;gap:12px"></div>
+      <div class="abs mono" style="left:302px;top:400px;font-size:22px;color:#9A9A9A;letter-spacing:.1em">278 AVALIA&#199;&#213;ES</div>
+    </div>
+  </div>
+</section>
+
+<!-- 12: white outline (return) -->
+<section id="a12" style="background:#FDFDFD">
+  <div class="in"><div class="anch ol" style="background:#C43F00;transform:scale(.92)"></div></div>
+</section>
+
+<!-- 13: crossed tapes -->
+<section id="a13" style="background:#0C0B0A">
+  <div class="in">
+    <div class="abs" id="a13t1" style="left:-500px;top:520px;width:2400px;height:170px;background:#FF4C00;transform:rotate(27deg);overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.55)">
+      <div id="a13x1" class="tape" style="color:#141210"></div></div>
+    <div class="abs" id="a13t2" style="left:-500px;top:1120px;width:2400px;height:170px;background:#F4F1EE;transform:rotate(27deg);overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.55)">
+      <div id="a13x2" class="tape" style="color:#141210"></div></div>
+    <div class="abs" id="a13t3" style="left:-500px;top:760px;width:2400px;height:170px;background:#171514;border:2px solid rgba(255,255,255,.1);transform:rotate(-16deg);overflow:hidden;box-shadow:0 30px 70px rgba(0,0,0,.6)">
+      <div id="a13x3" class="tape" style="color:#FF4C00"></div></div>
+  </div>
+</section>
+
+<!-- 14: metallic macro + lockup overlay -->
+<section id="a14" style="background:#060504">
+  <div class="in">
+    <div class="abs mk2" id="a14macro" style="left:-760px;top:-120px;width:2600px;height:2172px;
+      background-image:linear-gradient(120deg, rgba(255,255,255,0) 42%, rgba(255,210,180,.5) 50%, rgba(255,255,255,0) 58%),linear-gradient(150deg,#FF8A4A 0%,#F25500 26%,#9E3000 52%,#E24C00 74%,#FF7A3A 100%);
+      background-size:260% 260%, 100% 100%;filter:drop-shadow(0 60px 90px rgba(0,0,0,.6))"></div>
+    <div class="abs" id="a14lock" style="left:0;top:0;width:1080px;height:1920px">
+      <div class="abs mk" style="left:322px;top:880px;width:150px;height:125px;background:#fff;filter:drop-shadow(0 6px 30px rgba(0,0,0,.6))"></div>
+      <div class="abs wd" style="left:494px;top:903px;width:264px;height:97px;background:#fff;filter:drop-shadow(0 6px 30px rgba(0,0,0,.6))"></div>
+    </div>
+  </div>
+</section>
+
+<script>
+'use strict';
+/* ============================================================
+   EXP LOGO STING — faithful re-creation of the reference edit:
+   same scene order, same cut times (3.6 s), orange for green,
+   the official EXP mark for theirs. Pure function of time.
+   ============================================================ */
+const DUR = 3.6;
+const clamp = (x, a, b) => Math.min(b, Math.max(a, x));
+const ss = (a, b, x) => { x = clamp((x - a) / (b - a), 0, 1); return x * x * (3 - 2 * x); };
+const outQ = x => 1 - (1 - x) * (1 - x);
+function spr(u, f = 4, z = .75) {
+  if (u <= 0) return 0;
+  const w = 2 * Math.PI * f;
+  if (z < 0.999) { const wd = w * Math.sqrt(1 - z * z);
+    return 1 - Math.exp(-z * w * u) * (Math.cos(wd * u) + (z * w / wd) * Math.sin(wd * u)); }
+  return 1 - Math.exp(-w * u) * (1 + w * u);
+}
+const $ = id => document.getElementById(id);
+
+/* reference cut list, in seconds */
+const CUTS = [
+  [0.00, 'a1'],  [0.37, 'a2'],  [0.60, 'a3'],  [0.87, 'a4'],
+  [1.07, 'a5'],  [1.23, 'a6'],  [1.40, 'a5'],  [1.60, 'a8'],
+  [1.90, 'a9'],  [2.10, 'a10'], [2.30, 'a11'], [2.53, 'a12'],
+  [2.73, 'a13'], [2.97, 'a14'], [3.60, null]
+];
+
+(function build() {
+  $('a1waves').innerHTML = [0,1,2,3,4,5].map(i =>
+    `<div class="abs a1w" style="left:${-450-i*180}px;top:${-350-i*180}px;width:${(520+i*180)*2}px;height:${(520+i*180)*2}px;border-radius:50%;border:2.5px solid rgba(255,76,0,${(.16-i*.022).toFixed(3)})"></div>`).join('');
+  const gl = [];
+  for (let i = 0; i < 8; i++) gl.push(`<div class="abs" style="left:${i*150-60}px;top:-200px;width:1.5px;height:2400px;background:rgba(255,110,50,.07);transform:rotate(${-24+i*7}deg)"></div>`);
+  for (let i = 0; i < 5; i++) gl.push(`<div class="abs" style="left:-200px;top:${300+i*330}px;width:1500px;height:1.5px;background:rgba(255,110,50,.06)"></div>`);
+  $('a6lines').innerHTML = gl.join('');
+  const TD6 = [[.13,.44],[.2,.28],[.3,.62],[.42,.3],[.52,.56],[.6,.34],[.7,.6],[.82,.42],[.9,.3]];
+  $('a6dots').innerHTML = TD6.map(d =>
+    `<div class="abs" style="left:${d[0]*1080-5}px;top:${640+d[1]*500-5}px;width:10px;height:10px;border-radius:5px;border:2px solid rgba(255,140,70,.9);background:#100C09"></div>`).join('');
+  const g2 = [];
+  for (let i = 0; i < 7; i++) g2.push(`<div class="abs" style="left:${140+i*135}px;top:400px;width:1.5px;height:1100px;background:rgba(255,255,255,.06)"></div>`);
+  for (let i = 0; i < 6; i++) g2.push(`<div class="abs" style="left:140px;top:${500+i*160}px;width:810px;height:1.5px;background:rgba(255,255,255,.06)"></div>`);
+  $('a10lines').innerHTML = g2.join('');
+  const TD10 = [[0,.6],[.16,.1],[.52,0],[.84,0],[.84,.32],[.34,.45],[.3,.62],[.55,.8],[.88,.64],[1,.88],[.6,1]];
+  $('a10dots').innerHTML = TD10.map(d =>
+    `<div class="abs" style="left:${290+d[0]*500-6}px;top:${630+d[1]*418-6}px;width:12px;height:12px;border-radius:6px;border:2.5px solid #fff;background:#0F0C0A"></div>`).join('');
+  const star = '<svg width="44" height="44" viewBox="0 0 24 24" fill="#B8B8BC"><path d="M12 2.5l2.9 6.2 6.6.8-4.9 4.6 1.3 6.6L12 17.4l-5.9 3.3 1.3-6.6L2.5 9.5l6.6-.8z"/></svg>';
+  $('a11stars').innerHTML = [0,1,2,3,4].map(() => star).join('');
+  document.querySelectorAll('.tape').forEach((el, i) => {
+    el.style.cssText += ';position:absolute;top:0;white-space:nowrap;font-weight:700;font-size:82px;line-height:170px;letter-spacing:.01em';
+    el.textContent = (i === 2 ? ' EXPDIGITAL.IO ✦' : ' exp digital ✦').repeat(10);
+  });
+})();
+
+const SCENES = {
+  a1(u, tl, t) {
+    document.querySelectorAll('.a1w').forEach((r, i) => {
+      r.style.transform = `scale(${(1 + 0.04 * Math.sin(t * 2 + i * .8)).toFixed(4)})`;
+    });
+    $('a1mark').style.transform = `scale(${(1 + 0.02 * ss(0, 1, u)).toFixed(4)})`;
+  },
+  a2() {}, a12() {},
+  a3(u) { $('a3mark').style.transform = `scale(${(1.02 - 0.02 * u).toFixed(4)})`; },
+  a4(u, tl) {
+    const e = spr(tl, 5, .8);
+    $('a4bb').style.transform = `perspective(1800px) rotateY(${(7 - 2 * e).toFixed(2)}deg) translateY(${((1 - e) * 30).toFixed(1)}px)`;
+  },
+  a5(u, tl, t) {
+    $('a5ring').style.transform = `rotate(${(t * 26).toFixed(1)}deg)`;
+  },
+  a6(u, tl) {
+    $('a6word').style.transform = `translateX(${(-40 - u * 120).toFixed(1)}px)`;
+    $('a6lines').style.transform = `translateX(${(u * 30).toFixed(1)}px)`;
+  },
+  a8(u, tl) {
+    const e = spr(tl, 4.5, .8);
+    $('a8w').style.transform = `translateY(${((1 - e) * 60).toFixed(1)}px) rotate(${(-2 + 2 * e).toFixed(2)}deg)`;
+    const p = spr(tl - 0.06, 5, .6);
+    $('a8icon').style.transform = `scale(${(0.85 + 0.15 * clamp(p, 0, 1.15)).toFixed(4)})`;
+  },
+  a9() {},
+  a10(u) {
+    $('a10lines').style.transform = `translateX(${(-u * 26).toFixed(1)}px)`;
+    $('a10mark').style.transform = `scale(${(1 + 0.015 * u).toFixed(4)})`;
+  },
+  a11(u, tl) {
+    const e = spr(tl, 5, .78);
+    $('a11card').style.transform = `translateY(${((1 - e) * 50).toFixed(1)}px) scale(${(0.96 + 0.04 * e).toFixed(4)})`;
+  },
+  a13(u, tl) {
+    $('a13x1').style.transform = `translateX(${(-700 - tl * 420).toFixed(1)}px)`;
+    $('a13x2').style.transform = `translateX(${(-1500 + tl * 380).toFixed(1)}px)`;
+    $('a13x3').style.transform = `translateX(${(-600 - tl * 500).toFixed(1)}px)`;
+  },
+  a14(u, tl) {
+    $('a14macro').style.transform = `translate(${(-60 + 110 * u).toFixed(1)}px,${(40 - 80 * u).toFixed(1)}px) rotate(-6deg)`;
+    $('a14macro').style.backgroundPosition = `${(-130 + 260 * ss(0.05, 0.85, u)).toFixed(1)}% 50%, 0 0`;
+    const e = ss(0.06, 0.3, tl);
+    $('a14lock').style.opacity = e.toFixed(3);
+    $('a14lock').style.transform = `translateY(${((1 - e) * 18).toFixed(1)}px)`;
+  }
+};
+
+function seek(t) {
+  t = ((t % DUR) + DUR) % DUR;
+  let ci = 0;
+  for (let i = 0; i < CUTS.length - 1; i++) if (t >= CUTS[i][0]) ci = i;
+  const [t0, id] = CUTS[ci];
+  const t1 = CUTS[ci + 1][0];
+  const u = clamp((t - t0) / (t1 - t0), 0, 1);
+  const tl = t - t0;
+  document.querySelectorAll('section').forEach(sc => { sc.style.display = sc.id === id ? 'block' : 'none'; });
+  $(id).querySelector('.in').style.transform = `scale(${(1 + 0.035 * outQ(u)).toFixed(5)})`;
+  SCENES[id](u, tl, t);
+}
+window.seek = seek;
+
+if (!window.__RENDER__) {
+  const t0 = performance.now();
+  (function loop() { seek(((performance.now() - t0) / 1000) % DUR); requestAnimationFrame(loop); })();
+} else { seek(0); }
+</script>
+</body>
+</html>

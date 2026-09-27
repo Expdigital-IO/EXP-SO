@@ -7,6 +7,7 @@ Zero After Effects: HTML + trilha composta em numpy + render Playwright/ffmpeg.
 |---|---|---|---|
 | 001 | UI Morph Reel (`index.html`) | `exp-brand-motion.mp4` | 1080×1920 · 60fps · 14s · loop |
 | 002 | Logo Flash Reel (`logo-reel.html`) | `exp-logo-reel.mp4` | 1080×1920 · 60fps · 10s · loop |
+| 003 | Logo Sting (`logo-sting.html`) | `exp-logo-sting.mp4` | 1080×1920 · 60fps · 3.6s · loop |
 
 ## 002 — Logo Flash Reel
 
