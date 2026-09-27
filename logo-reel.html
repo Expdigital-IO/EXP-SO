@@ -312,15 +312,6 @@
   </div>
 </section>
 
-<!-- S13: peach -->
-<section id="s13" style="background:#FFE4D9">
-  <div class="in">
-    <div class="abs mk" id="s13mark" style="left:285px;top:775px;width:250px;height:209px;background:#FF4C00"></div>
-    <div class="abs wd" style="left:565px;top:818px;width:355px;height:130px;background:#2B2422"></div>
-    <div class="abs mono" style="left:0;bottom:290px;width:1080px;text-align:center;font-size:22px;color:#B98F7E;letter-spacing:.3em">VERS&#195;O SECUND&#193;RIA</div>
-  </div>
-</section>
-
 <!-- S14: macro -->
 <section id="s14" style="background:#1E1E1E">
   <div class="in">
@@ -356,7 +347,7 @@
    then it match-moves into the lockup and the mockup section runs.
    Every style is a pure function of time inside seek(t).
    ============================================================ */
-const BPM = 120, BEAT = 60 / BPM, DUR = 15;
+const BPM = 120, BEAT = 60 / BPM, DUR = 13.5;
 const clamp = (x, a, b) => Math.min(b, Math.max(a, x));
 const lerp = (a, b, x) => a + (b - a) * x;
 const ss = (a, b, x) => { x = clamp((x - a) / (b - a), 0, 1); return x * x * (3 - 2 * x); };
@@ -372,13 +363,13 @@ const pulse = t => Math.exp(-((t / BEAT) % 1) * 6.5);
 const $ = id => document.getElementById(id);
 
 const CUTS = [
-  [0,  's1',  0], [2,  's2',  0], [4,  's3',  0], [4.5,'s4',  0],
-  [5,  's5',  0], [6,  's6',  .04], [8,  's7',  .05], [10, 's8',  .05],
-  [12, 's9',  .05], [14, 's10', .08], [16, 's11', .06], [18, 's12', 0],
-  [23, 's14', .05], [25, 's13', .05], [26.5, 's15', .04], [30, null, 0]
+  [0,  's1',  0], [1.5,'s2',  0], [3,  's3',  0], [3.5,'s4',  0],
+  [4,  's5',  0], [5,  's6',  .04], [7,  's7',  .05], [9,  's8',  .05],
+  [11, 's9',  .05], [13, 's10', .08], [15, 's11', .06], [17, 's12', 0],
+  [22, 's14', .05], [23, 's15', .04], [27, null, 0]
 ];
 const ANCHOR_SET = new Set(['s1', 's2', 's3', 's4', 's5']);
-const FLASH_CUTS = [2.0, 2.25];
+const FLASH_CUTS = [1.5, 1.75];
 
 (function build() {
   const DOTS = [[0,.62],[.16,.13],[.52,0],[.82,0],[.82,.30],[.52,.30],[.36,.44],[.30,.60],[.52,.78],[.86,.62],[1,.86],[.62,1]];
@@ -433,11 +424,11 @@ const SCENES = {
   s1(u, tl, t) {
     $('s1grid').style.transform = `translate(${(-tl * 14).toFixed(2)}px,${(-tl * 9).toFixed(2)}px)`;
     document.querySelectorAll('.s1dot').forEach((d, i) => {
-      const p = spr(tl - 0.08 - i * 0.045, 5, .6);
+      const p = spr(tl - 0.05 - i * 0.03, 5.5, .6);
       d.style.transform = `scale(${p.toFixed(3)})`;
       d.style.opacity = p > .02 ? 1 : 0;
     });
-    const dw = 560 * ss(0.12, 0.72, tl);
+    const dw = 560 * ss(0.08, 0.5, tl);
     $('s1dimh').style.width = dw.toFixed(1) + 'px';
     $('s1dimv2').style.left = (260 + dw).toFixed(1) + 'px';
     $('s1pct').textContent = Math.round(100 * ss(0, 0.9, u)) + '%';
@@ -538,22 +529,18 @@ const SCENES = {
       row.querySelector('.s12roll').style.transform = `translateX(${(OFF[i] + SPD[i] * tl).toFixed(1)}px)`;
     });
     /* zoom blast: the mark erupts from center and swallows the screen */
-    const bl = ss(2.02, 2.5, tl);
-    const bs = Math.pow(bl, 1.9) * 16;
+    const bl = ss(2.2, 2.5, tl);
+    const bs = Math.pow(bl, 1.7) * 16;
     const blast = $('s12blast');
     blast.style.transform = `scale(${bs.toFixed(3)}) rotate(${(bl * -6).toFixed(2)}deg)`;
     blast.style.opacity = bl > 0.001 ? 1 : 0;
     blast.style.filter = bl > 0.6 ? `blur(${((bl - 0.6) * 14).toFixed(1)}px)` : 'none';
   },
-  s13(u, tl) {
-    const e = spr(tl, 4, .7);
-    $('s13mark').style.transform = `translateY(${((1 - e) * 26).toFixed(1)}px)`;
-  },
   s14(u, tl, t) {
-    const shake = 16 * Math.exp(-tl * 6.5);
+    const shake = 18 * Math.exp(-tl * 11);
     const sx = shake * Math.sin(t * 91.7), sy = shake * Math.cos(t * 73.3);
-    const settle = 1.14 - 0.14 * ss(0, 0.55, tl);
-    $('s14mark').style.transform = `translate(${(-90 + 180 * u + sx).toFixed(1)}px,${(60 - 120 * u + sy).toFixed(1)}px) rotate(-8deg) scale(${settle.toFixed(4)})`;
+    const settle = 1.16 - 0.16 * ss(0, 0.38, tl);
+    $('s14mark').style.transform = `translate(${(-120 + 260 * u + sx).toFixed(1)}px,${(80 - 170 * u + sy).toFixed(1)}px) rotate(-8deg) scale(${settle.toFixed(4)})`;
   },
   s15(u, tl, t) {
     const e = spr(tl, 3.6, .7);
@@ -564,7 +551,7 @@ const SCENES = {
     $('s15url').style.opacity = ss(0.45, 0.7, tl).toFixed(3);
     $('s15url').style.transform = `translateY(${((1 - ss(0.45, 0.75, tl)) * 14).toFixed(1)}px)`;
     $('s15tag').style.transform = `translateY(${(1.5 * Math.sin(t * 3.1)).toFixed(2)}px)`;
-    const sh = ss(0.55, 1.1, tl - 1.6) * 1250;
+    const sh = ss(0.55, 1.05, tl - 0.75) * 1250;
     $('s15sheen').style.transform = `rotate(16deg) translateX(${sh.toFixed(1)}px)`;
   }
 };
@@ -583,7 +570,7 @@ function seek(t) {
   if (ANCHOR_SET.has(id)) {
     /* one continuous push-in across the whole strobe section: the anchored
        mark grows smoothly THROUGH the cuts, like a camera pushing in */
-    inn.style.transform = `scale(${(1 + 0.055 * (t / 3.0)).toFixed(5)})`;
+    inn.style.transform = `scale(${(1 + 0.055 * (t / 2.5)).toFixed(5)})`;
   } else {
     const punch = 1 + 0.045 * (1 - spr(tl, 4.2, .9));
     inn.style.transform = `scale(${((1 + push * outQ(u)) * punch).toFixed(5)})`;
@@ -592,7 +579,7 @@ function seek(t) {
   let fl = 0;
   FLASH_CUTS.forEach(tc => { if (t >= tc) fl = Math.max(fl, 0.85 * Math.exp(-(t - tc) * 26)); });
   $('flash').style.opacity = fl > 0.01 ? fl.toFixed(3) : 0;
-  const fo = t >= 11.5 ? 0.9 * Math.exp(-(t - 11.5) * 11) : 0;
+  const fo = t >= 11.0 ? 0.9 * Math.exp(-(t - 11.0) * 13) : 0;
   $('flashO').style.opacity = fo > 0.01 ? fo.toFixed(3) : 0;
 }
 window.seek = seek;
