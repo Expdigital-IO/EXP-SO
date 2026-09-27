@@ -17,12 +17,15 @@ Apresentação completa da marca em 16 s (8 compassos a 120 BPM), em três atos:
 
 | Tempo | Ato | Cenas |
 |---|---|---|
-| 0–4,75 s | **I · Branding** | símbolo neon → positivo → sobre cor · capítulo 01 *"Criativo também é estratégia."* · paleta com proporção de uso (60/25/10/5) · espécime tipográfico Geist (4 pesos) · billboard · papelaria |
+| 0–4,75 s | **I · Branding** | símbolo neon (escuro → claro) → sobre cor, sempre no mesmo ponto · capítulo 01 *"Sua empresa DEIXA MARCA? Criativo também é estratégia."* · paleta com proporção de uso (60/25/10/5) · espécime tipográfico Geist (4 pesos) · billboard · papelaria |
 | 4,75–6,25 s | ponte | perfil do Instagram → **mergulho de câmera no avatar** → iPhone nasce do card laranja |
-| 6,25–12 s | **II · Marketing** | capítulo 02 *"Do zero à operação digital."* · dashboard de campanhas (receita, ROAS, leads, CTR) · funil de performance · anúncio patrocinado + notificações de lead/venda · busca com a EXP em 1º · marquee |
-| 12–16 s | **III · Assinatura** | blast selando a tela → macro metálico · manifesto *"Você traz o negócio. A EXP traz a estrutura."* · endcard com CTA |
+| 6,25–12 s | **II · Marketing** | capítulo 02 *"Do zero à operação digital completa."* · dashboard "Campanhas Exp" (receita, ROAS, leads, CTR) · funil de performance · anúncio patrocinado *"Sua empresa merece o melhor."* + notificações de lead/venda · busca com a EXP em 1º · marquee |
+| 12–16 s | **III · Assinatura** | blast selando a tela → macro metálico com o símbolo branco carimbado · manifesto *"Você traz o negócio. A EXP entrega a estrutura."* · endcard *"EXP — Desenvolvimento completo"* com CTA |
 
 Os números dos mockups são ilustrativos.
+
+A versão atual incorpora as edições feitas no Canva (ver `frames/brand-film/COMO-EDITAR.md`;
+`canva-baseline.json` × `canva-edited.json` guardam o antes/depois).
 
 **Trilha (`film-audio.py`):** corporate house em Lá menor. Piano elétrico FM
 com acordes sincopados (Am9 → Fmaj9 → Cmaj9 → G6/9), baixo no contratempo,
