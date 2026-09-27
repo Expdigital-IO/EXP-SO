@@ -21,15 +21,19 @@ FFMPEG = "/usr/local/lib/python3.11/dist-packages/imageio_ffmpeg/binaries/ffmpeg
 PORT = 8741
 FPS = 60
 SUB = 4
-DUR = 14.0
-FRAMES = int(FPS * DUR)
+
 OUT = sys.argv[1] if len(sys.argv) > 1 else "/tmp/exp-video.mp4"
+PAGE = sys.argv[2] if len(sys.argv) > 2 else "index.html"
+DUR = float(sys.argv[3]) if len(sys.argv) > 3 else 14.0
 
 
 def serve():
     os.chdir(ROOT)
     with socketserver.TCPServer(("127.0.0.1", PORT), http.server.SimpleHTTPRequestHandler) as httpd:
         httpd.serve_forever()
+
+
+FRAMES = int(FPS * DUR)
 
 
 def main():
@@ -50,7 +54,7 @@ def main():
         browser = p.chromium.launch(executable_path=CHROMIUM, headless=True)
         page = browser.new_page(viewport={"width": 1080, "height": 1920})
         page.add_init_script("window.__RENDER__ = true;")
-        page.goto(f"http://127.0.0.1:{PORT}/index.html")
+        page.goto(f"http://127.0.0.1:{PORT}/{PAGE}")
         page.evaluate("document.fonts.ready")
         page.wait_for_timeout(300)
 

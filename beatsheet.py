@@ -14,14 +14,14 @@ from playwright.sync_api import sync_playwright
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 OUT = os.environ.get("BEATSHEET_OUT", "/tmp/beatsheet")
+PAGE = os.environ.get("BEATSHEET_PAGE", "index.html")
+DUR = float(os.environ.get("BEATSHEET_DUR", "14"))
 CHROMIUM = "/opt/pw-browsers/chromium"
 PORT = 8731
 
 # every beat, plus mid-action extras worth checking
-TIMES = [round(b * 0.5, 3) for b in range(28)] + [
-    0.6, 1.6, 2.1, 3.1, 4.3, 5.75, 6.6, 7.6, 8.5, 10.9, 11.6, 12.1, 13.2, 13.9,
-]
-TIMES = sorted(set(TIMES))
+TIMES = sorted(set(round(b * 0.5, 3) for b in range(int(DUR * 2))) |
+               set(round(b * 0.5 + 0.25, 3) for b in range(int(DUR * 2))))
 
 
 def serve():
@@ -39,7 +39,7 @@ def main():
         browser = p.chromium.launch(executable_path=CHROMIUM, headless=True)
         page = browser.new_page(viewport={"width": 1080, "height": 1920})
         page.add_init_script("window.__RENDER__ = true;")
-        page.goto(f"http://127.0.0.1:{PORT}/index.html")
+        page.goto(f"http://127.0.0.1:{PORT}/{PAGE}")
         page.evaluate("document.fonts.ready")
         page.wait_for_timeout(300)
 

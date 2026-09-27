@@ -1,8 +1,25 @@
-# EXP Brand Motion — Motion System 001
+# EXP Brand Motion — Motion System
 
-Vídeo de apresentação da marca **exp digital** feito 100% em código.
-Zero After Effects: um arquivo HTML, uma trilha composta em numpy e um
-pipeline de render com Playwright + ffmpeg.
+Vídeos de apresentação da marca **exp digital** feitos 100% em código.
+Zero After Effects: HTML + trilha composta em numpy + render Playwright/ffmpeg.
+
+| # | Vídeo | Arquivo | Formato |
+|---|---|---|---|
+| 001 | UI Morph Reel (`index.html`) | `exp-brand-motion.mp4` | 1080×1920 · 60fps · 14s · loop |
+| 002 | Logo Flash Reel (`logo-reel.html`) | `exp-logo-reel.mp4` | 1080×1920 · 60fps · 12s · loop |
+
+## 002 — Logo Flash Reel
+
+Montagem de identidade no estilo *brand reveal*: cortes secos no grid de
+120 BPM, cada cena mostra o **logo oficial** (máscaras extraídas dos
+arquivos da marca em `assets/`) numa aplicação diferente — blueprint de
+construção do símbolo, ondas concêntricas, cortes sobre branco, versão
+sobre cor, lockup horizontal, perfil do Instagram, card da App Store,
+blueprint da tipografia, totem OOH, site, fitas diagonais, cor secundária
+(pêssego), macro e lockup final. 15 cenas, 24 beats, um hit de som em cada
+corte (`logo-audio.py`).
+
+# 001 — UI Morph Reel
 
 **Formato:** Reels 1080×1920 · 60 fps · 14 s · loop perfeito · 120 BPM · 7 compassos
 
