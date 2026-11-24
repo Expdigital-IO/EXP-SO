@@ -1,6 +1,6 @@
 // Render em Node (para máquinas sem o Playwright de Python).
 // Uso: RENDER_SUB=4 node render-node.js saida.mp4 pagina.html segundos
-// Igual ao render.py: SUB subquadros por quadro misturados (motion blur), 1080×1920 a 60 fps.
+// Igual ao render.py: SUB subquadros por quadro (motion blur), 60 fps. Tamanho via W/H (padrão 1080×1920).
 const { chromium } = require('playwright');
 const { spawn } = require('child_process');
 const path = require('path');
@@ -14,7 +14,7 @@ const FPS = 60, SUB = +(process.env.RENDER_SUB || 4), DUR = +durS, FRAMES = Math
     '-c:v', 'libx264', '-preset', 'slow', '-crf', '16', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', out],
     { stdio: ['pipe', 'inherit', 'inherit'] });
   const b = await chromium.launch();
-  const p = await b.newPage({ viewport: { width: 1080, height: 1920 } });
+  const p = await b.newPage({ viewport: { width: +(process.env.W || 1080), height: +(process.env.H || 1920) } });
   await p.addInitScript('window.__RENDER__ = true;');
   await p.goto('file://' + path.resolve(__dirname, page));
   await p.evaluate('document.fonts.ready'); await p.waitForTimeout(300);
