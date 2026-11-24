@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>EXP + Bipa | Infraestrutura bancária</title>
+<meta name="description" content="A Bipa Business é a infraestrutura bancária da EXP Digital: conta PJ, Pix, link de pagamento, cobrança recorrente e boletos em um só lugar.">
+<meta property="og:title" content="EXP + Bipa: a infraestrutura bancária da EXP">
+<meta property="og:description" content="Conta PJ, Pix, link de pagamento, cobrança recorrente e boletos em um só lugar.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* Uma seção: texto à esquerda, rastro de partículas Bipa → EXP como fundo, focado à direita */
+  :root{
+    --bg:#050404; --line:rgba(255,255,255,.09);
+    --ink:#F5F1EE; --mut:#9A918B; --mut2:#6E675F;
+    --or:#FF4D00; --or2:#FF7433;
+    --grad:linear-gradient(90deg,#FF5310,#FF7433 55%,#FF9C74);
+    color-scheme:dark;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{background:var(--bg)}
+  body{color:var(--ink);font-family:Manrope,system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  :focus-visible{outline:2px solid var(--or2);outline-offset:3px;border-radius:6px}
+
+  .hero{position:relative;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;overflow:hidden;isolation:isolate}
+  #trail{position:absolute;inset:0;width:100%;height:100%;z-index:-1}
+  .wash{position:absolute;inset:0;z-index:-1;pointer-events:none;
+    background:
+      radial-gradient(55% 70% at 72% 50%,rgba(255,77,0,.13),transparent 70%),
+      linear-gradient(90deg,rgba(5,4,4,.94) 0%,rgba(5,4,4,.75) 30%,rgba(5,4,4,.2) 52%,rgba(5,4,4,0) 64%)}
+
+  .wrap{width:100%;max-width:1200px;margin:0 auto;padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px))}
+  .logo{display:flex;align-items:center;gap:8px}
+  .mark{width:30px;height:25px;display:block}
+  .word{font-size:24px;font-weight:600;letter-spacing:-.04em;line-height:1}
+  .back{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--mut)}
+  .back:hover{color:var(--ink)}
+
+  .main{flex:1;display:flex;align-items:center;padding-block:32px 40px}
+  .copy{max-width:560px}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--or2);margin-bottom:24px}
+  .eyebrow i{width:7px;height:7px;border-radius:50%;background:var(--or);box-shadow:0 0 12px var(--or)}
+  h1{font-weight:300;font-size:clamp(40px,5.2vw,76px);line-height:1.04;letter-spacing:-.045em;text-transform:uppercase}
+  h1 em{font-style:normal;color:var(--or)}
+  .lead{margin-top:24px;max-width:470px;color:var(--mut);font-size:17px;line-height:1.6}
+  .lead b{color:var(--ink);font-weight:600}
+  .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:52px;padding:0 30px;border-radius:9px;font-size:13px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;white-space:nowrap;transition:transform .2s,box-shadow .2s,background .2s}
+  .btn-or{background:var(--grad);color:#fff;box-shadow:0 0 0 1px rgba(255,120,60,.4),0 10px 40px -10px rgba(255,77,0,.7)}
+  .btn-or:hover{transform:translateY(-1px);box-shadow:0 0 0 1px rgba(255,120,60,.6),0 14px 50px -10px rgba(255,77,0,.9)}
+  .btn-gh{border:1px solid var(--line);background:rgba(10,8,7,.6);backdrop-filter:blur(8px)}
+  .btn-gh:hover{background:rgba(255,255,255,.07)}
+  .btn svg{width:16px;height:16px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:34px;list-style:none}
+  .chips li{font-size:12px;color:var(--mut);border:1px solid var(--line);background:rgba(10,8,7,.55);backdrop-filter:blur(6px);border-radius:99px;padding:7px 12px}
+
+  .cap{position:absolute;right:max(24px,env(safe-area-inset-right,0px));bottom:26px;font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--mut);opacity:0;transition:opacity .8s}
+  .cap.on{opacity:1}
+  .cap b{color:var(--ink);font-weight:600}
+
+  @media (max-width:699px){
+    .wash{background:linear-gradient(180deg,rgba(5,4,4,0) 0%,rgba(5,4,4,0) 30%,rgba(5,4,4,.9) 50%,rgba(5,4,4,.96) 100%)}
+    .main{align-items:flex-end;padding-top:34vh}
+    .lead{font-size:15px;margin-top:16px}
+    .cap{display:none}
+  }
+  @media (max-width:620px){
+    .wrap{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+    .ctas .btn{width:100%}
+    .chips{margin-top:24px}
+  }
+
+  /* Cabeçalho flutuante (padrão expdigital.io) */
+  .sh{position:fixed;left:0;right:0;top:12px;z-index:50;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+  .sh-bar{max-width:1180px;margin:0 auto;height:60px;display:flex;align-items:center;gap:18px;padding:0 10px 0 18px;border-radius:20px;border:1px solid rgba(255,255,255,.14);background:rgba(24,19,17,.52);backdrop-filter:blur(24px) saturate(1.5);-webkit-backdrop-filter:blur(24px) saturate(1.5);box-shadow:inset 0 1px 0 rgba(255,255,255,.13),0 24px 60px -20px rgba(0,0,0,.7)}
+  .sh-nav{display:flex;align-items:center;gap:4px;margin:0 auto}
+  .sh-nav > a,.dd > button{display:inline-flex;align-items:center;gap:4px;height:36px;padding:0 12px;border-radius:10px;font:500 14px/1 Manrope,system-ui,sans-serif;color:var(--ink);background:none;border:0;cursor:pointer}
+  .sh-nav > a:hover,.dd > button:hover,.dd.open > button{background:rgba(255,255,255,.06)}
+  .chev{width:14px;height:14px;opacity:.6;transition:transform .2s}
+  .dd{position:relative}
+  .dd.open .chev{transform:rotate(180deg)}
+  .dd-menu{position:absolute;top:calc(100% + 12px);left:50%;transform:translateX(-50%);min-width:270px;padding:10px;border-radius:16px;border:1px solid rgba(255,255,255,.12);background:rgba(20,16,14,.94);backdrop-filter:blur(20px);box-shadow:0 30px 60px -20px rgba(0,0,0,.8);display:none}
+  .dd.open .dd-menu{display:block}
+  .dd-menu ul{list-style:none}
+  .dd-menu li a,.dd-prod a{display:block;padding:10px 12px;border-radius:10px;font-size:14px;color:var(--ink)}
+  .dd-menu li a:hover,.dd-prod a:hover{background:rgba(255,255,255,.06)}
+  .dd-all{display:flex;align-items:center;gap:6px;margin-top:6px;padding:10px 12px;border-top:1px solid var(--line);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--or2)}
+  .dd-prod{min-width:320px}
+  .dd-prod b{display:flex;align-items:center;gap:6px;font-weight:600}
+  .dd-prod span{display:block;margin-top:4px;font-size:12px;line-height:1.5;color:var(--mut)}
+  .dd-prod a[aria-current]{background:rgba(255,77,0,.1)}
+  .ext{width:12px;height:12px;flex:none}
+  .sh-act{display:flex;align-items:center;gap:6px}
+  .sh-in{height:36px;display:inline-flex;align-items:center;padding:0 12px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink)}
+  .sh-cta{height:38px;display:inline-flex;align-items:center;padding:0 18px;border-radius:9px;background:var(--grad);color:#fff;font-size:12px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;box-shadow:0 0 0 1px rgba(255,120,60,.4),0 8px 30px -10px rgba(255,77,0,.8)}
+  .sh-burger{display:none;width:40px;height:40px;border-radius:10px;border:1px solid var(--line);background:rgba(255,255,255,.03);cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:5px}
+  .sh-burger span{display:block;width:16px;height:1.5px;background:var(--ink);transition:transform .2s}
+  .sh-burger[aria-expanded="true"] span:first-child{transform:translateY(3.25px) rotate(45deg)}
+  .sh-burger[aria-expanded="true"] span:last-child{transform:translateY(-3.25px) rotate(-45deg)}
+  .shm{max-width:1180px;margin:8px auto 0;padding:10px;border-radius:18px;border:1px solid rgba(255,255,255,.12);background:rgba(20,16,14,.96);backdrop-filter:blur(20px);display:flex;flex-direction:column}
+  .shm[hidden]{display:none}
+  .shm > a{padding:13px 12px;border-radius:10px;font-size:15px}
+  .shm > a[aria-current]{color:var(--or2)}
+  .shm-act{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+  .shm-act .btn{height:46px;padding:0 12px}
+  .hero{padding-top:84px}
+  @media (max-width:1080px){ .sh-nav{display:none} .sh-burger{display:flex} .sh-act{margin-left:auto} }
+  @media (max-width:520px){ .sh-in{display:none} .sh-cta{padding:0 14px} }
+
+  /* Rodapé (padrão expdigital.io) */
+  .sf{max-width:1180px;margin:0 auto;padding:40px max(16px,env(safe-area-inset-right,0px)) 28px max(16px,env(safe-area-inset-left,0px))}
+  .sf-card{border:1px solid rgba(255,255,255,.1);border-radius:26px;background:linear-gradient(180deg,#120E0C,#0A0807);padding:44px 40px 22px;overflow:hidden}
+  .sf-top{display:grid;grid-template-columns:1.3fr 1fr 1fr .8fr;gap:36px}
+  .sf-tag{margin-top:22px;font-weight:300;font-size:30px;line-height:1.05;letter-spacing:-.04em;text-transform:uppercase}
+  .sf-tag em{font-style:normal;color:var(--or)}
+  .sf-about{margin-top:16px;max-width:290px;color:var(--mut);font-size:13px;line-height:1.6}
+  .sf-wa{margin-top:22px;height:44px;padding:0 20px;font-size:12px}
+  .sf-col h4{font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--mut2);margin-bottom:14px}
+  .sf-col .sf-h2{margin-top:26px}
+  .sf-col ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+  .sf-col a{font-size:13px;color:var(--ink);display:inline-flex;align-items:center;gap:5px}
+  .sf-col a:hover{color:var(--or2)}
+  .sf-prod span{display:block;margin-top:3px;font-size:12px;line-height:1.5;color:var(--mut2);max-width:230px}
+  .sf-place{margin-top:40px;border-radius:20px;border:1px solid rgba(255,255,255,.08);background:radial-gradient(90% 140% at 0% 100%,rgba(255,77,0,.16),transparent 60%),#100C0A;padding:26px;display:grid;grid-template-columns:1fr 1.25fr;gap:24px;align-items:center}
+  .sf-addr small,.tile small{display:block;font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--mut2)}
+  .sf-street{margin-top:14px;font-weight:300;font-size:28px;letter-spacing:-.03em;text-transform:uppercase}
+  .sf-street em{font-style:normal;color:var(--or)}
+  .sf-city{margin-top:6px;font-size:13px;color:var(--mut)}
+  .sf-map{margin-top:18px;display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 14px;border-radius:9px;border:1px solid var(--line);font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+  .sf-map:hover{background:rgba(255,255,255,.05)}
+  .sf-tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .tile{display:flex;gap:12px;align-items:center;padding:14px;border-radius:14px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.02);font-size:13px;font-weight:600;min-width:0}
+  .tile > span:last-child{min-width:0;overflow-wrap:anywhere}
+  .tile i{display:block;font-style:normal;font-weight:400;font-size:11px;color:var(--mut2);margin-top:2px}
+  .tile .sel{user-select:all}
+  a.tile:hover{border-color:rgba(255,110,40,.35)}
+  .ti{width:34px;height:34px;flex:none;border-radius:10px;display:grid;place-items:center;background:rgba(255,77,0,.12);color:var(--or2)}
+  .ti svg{width:16px;height:16px}
+  .sf-note{grid-column:1/-1;font-size:12px;color:var(--mut2)}
+  .sf-partner{margin-top:18px;font-size:11px;color:var(--mut2)}
+  .sf-legal{margin-top:10px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:11px;letter-spacing:.04em;color:var(--mut2)}
+  .sf-legal span:last-child{display:flex;gap:18px}
+  .sf-legal a:hover{color:var(--ink)}
+  @media (max-width:980px){ .sf-top{grid-template-columns:1fr 1fr} .sf-place{grid-template-columns:1fr} }
+  @media (max-width:560px){ .sf-card{padding:30px 20px 18px} .sf-top{grid-template-columns:1fr;gap:28px} .sf-tiles{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+
+<!-- Cabeçalho no padrão do expdigital.io -->
+<header class="sh" id="sh">
+  <div class="sh-bar">
+    <a class="logo" href="https://expdigital.io/" aria-label="EXP Digital, início"><svg class="mark" viewBox="0 0 115 96" aria-hidden="true"><path fill="#FF4D00" fill-rule="evenodd" d="M0 57A57 57 0 0 1 57 0L95 0L95 19L57 19A38 38 0 0 0 19 57Z M95 19L114 19A38 38 0 0 1 76 57L45.87 57A9.5 9.5 0 0 0 36.37 66.5A9.5 9.5 0 0 0 45.87 76L76 76A19 19 0 0 0 95 57L114 57A38 38 0 0 1 76 95L45.87 95A28.5 28.5 0 0 1 17.37 66.5A28.5 28.5 0 0 1 45.87 38L76 38A19 19 0 0 0 95 19Z"/></svg><span class="word">exp</span></a>
+    <nav class="sh-nav" aria-label="Principal">
+      <a href="https://expdigital.io/">Início</a>
+      <div class="dd"><button type="button" aria-expanded="false">Serviços<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+        <div class="dd-menu"><ul><li><a href="https://expdigital.io/loja/site-landing-page">Criação de sites e landing pages</a></li><li><a href="https://expdigital.io/loja/loja-online">Loja online</a></li><li><a href="https://expdigital.io/loja/google-seo">Google e SEO</a></li><li><a href="https://expdigital.io/loja/trafego-pago">Gestão de tráfego pago</a></li><li><a href="https://expdigital.io/loja/marca-design">Marca e design</a></li><li><a href="https://expdigital.io/loja/criativos-conteudo">Criativos e conteúdo</a></li></ul><a class="dd-all" href="https://expdigital.io/loja">Ver todos na loja <svg class="ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"/><path d="M9 7h8v8"/></svg></a></div></div>
+      <div class="dd"><button type="button" aria-expanded="false">Produtos<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+        <div class="dd-menu dd-prod">
+          <a href="https://portalcrm.online" target="_blank" rel="noopener"><b>Portal CRM <svg class="ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"/><path d="M9 7h8v8"/></svg></b><span>WhatsApp, Instagram e Messenger em um só painel, com IA 24 horas.</span></a>
+          <a href="https://expdigital.io/bipa" aria-current="page"><b>Bipa Business</b><span>Conta PJ parceira da EXP: Pix, links, cobrança recorrente e boletos.</span></a>
+        </div></div>
+      <a href="https://expdigital.io/loja">Loja</a>
+      <a href="https://expdigital.io/#exp">A EXP</a>
+      <a href="https://expdigital.io/#faq">Dúvidas</a>
+      <a href="https://expdigital.io/suporte">Suporte</a>
+    </nav>
+    <div class="sh-act">
+      <a class="sh-in" href="https://expdigital.io/entrar">Entrar</a>
+      <a class="sh-cta" href="https://expdigital.io/cadastro">Criar conta</a>
+      <button class="sh-burger" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="shm"><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="shm" id="shm" hidden>
+    <a href="https://expdigital.io/">Início</a><a href="https://expdigital.io/loja">Serviços e loja</a><a href="https://portalcrm.online" target="_blank" rel="noopener">Portal CRM</a><a href="https://expdigital.io/bipa" aria-current="page">Bipa Business</a><a href="https://expdigital.io/#exp">A EXP</a><a href="https://expdigital.io/#faq">Dúvidas</a><a href="https://expdigital.io/suporte">Suporte</a>
+    <div class="shm-act"><a class="btn btn-gh" href="https://expdigital.io/entrar">Entrar</a><a class="btn btn-or" href="https://expdigital.io/cadastro">Criar conta</a></div>
+  </div>
+</header>
+
+<section class="hero">
+  <canvas id="trail" aria-hidden="true"></canvas>
+  <div class="wash" aria-hidden="true"></div>
+
+
+  <div class="wrap main">
+    <div class="copy">
+      <div class="eyebrow"><i></i>Nova parceria · EXP + Bipa</div>
+      <h1>Infraestrutura<br>bancária<br>da <em>EXP.</em></h1>
+      <p class="lead">A <b>Bipa Business</b> chega como parceira oficial da EXP para cuidar do financeiro da sua empresa, com tudo num só lugar.</p>
+      <div class="ctas">
+        <a class="btn btn-or js-signup" href="https://business.bipa.app/signup?ref=EXPDIGITAL" target="_blank" rel="noopener">Criar minha conta
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M9 7h8v8"/></svg></a>
+        <a class="btn btn-gh" href="https://wa.me/553121810089?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20a%20parceria%20EXP%20%2B%20Bipa." target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.4 3.9 1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>
+          Falar com a EXP</a>
+      </div>
+      <ul class="chips" aria-label="O que vem na conta">
+        <li>Conta PJ</li><li>Pix no CNPJ</li><li>Link de pagamento</li><li>Cobrança recorrente</li><li>Boletos</li><li>Extrato pro contador</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="cap" id="cap" aria-hidden="true"><b>BIPA</b> &nbsp;+&nbsp; <b>EXP</b></div>
+</section>
+
+<!-- Rodapé no padrão do expdigital.io -->
+<footer class="sf">
+  <div class="sf-card">
+    <div class="sf-top">
+      <div class="sf-brand">
+        <a class="logo" href="https://expdigital.io/" aria-label="EXP Digital, início"><svg class="mark" viewBox="0 0 115 96" aria-hidden="true"><path fill="#FF4D00" fill-rule="evenodd" d="M0 57A57 57 0 0 1 57 0L95 0L95 19L57 19A38 38 0 0 0 19 57Z M95 19L114 19A38 38 0 0 1 76 57L45.87 57A9.5 9.5 0 0 0 36.37 66.5A9.5 9.5 0 0 0 45.87 76L76 76A19 19 0 0 0 95 57L114 57A38 38 0 0 1 76 95L45.87 95A28.5 28.5 0 0 1 17.37 66.5A28.5 28.5 0 0 1 45.87 38L76 38A19 19 0 0 0 95 19Z"/></svg><span class="word">exp</span></a>
+        <p class="sf-tag">Design.<br>Tecnologia.<br><em>Estratégia.</em></p>
+        <p class="sf-about">Hub de serviços digitais desde 2017. Contrate pela loja e acompanhe pedidos, propostas e faturas em um só lugar.</p>
+        <a class="btn btn-or sf-wa" href="https://wa.me/553121810089?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20EXP." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.4 3.9 1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg> Falar com a EXP</a>
+      </div>
+      <div class="sf-col"><h4>Serviços</h4><ul><li><a href="https://expdigital.io/loja/site-landing-page">Criação de sites e landing pages</a></li><li><a href="https://expdigital.io/loja/loja-online">Loja online</a></li><li><a href="https://expdigital.io/loja/google-seo">Google e SEO</a></li><li><a href="https://expdigital.io/loja/trafego-pago">Gestão de tráfego pago</a></li><li><a href="https://expdigital.io/loja/marca-design">Marca e design</a></li><li><a href="https://expdigital.io/loja/criativos-conteudo">Criativos e conteúdo</a></li></ul></div>
+      <div class="sf-col"><h4>Sob medida</h4><ul><li><a href="https://expdigital.io/loja/sistemas-plataformas">Sistemas e plataformas</a></li><li><a href="https://expdigital.io/loja/automacoes-integracoes">Automações e integrações</a></li><li><a href="https://expdigital.io/loja/aplicativos">Aplicativos</a></li></ul>
+        <h4 class="sf-h2">Produtos</h4>
+        <ul class="sf-prod">
+          <li><a href="https://portalcrm.online" target="_blank" rel="noopener">Portal CRM <svg class="ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"/><path d="M9 7h8v8"/></svg></a><span>WhatsApp, Instagram e Messenger em um só painel, com IA 24 horas.</span></li>
+          <li><a href="https://expdigital.io/bipa">Bipa Business</a><span>Conta PJ parceira da EXP, a infraestrutura bancária dos nossos clientes.</span></li>
+        </ul></div>
+      <div class="sf-col"><h4>Navegação</h4><ul><li><a href="https://expdigital.io/">Início</a></li><li><a href="https://expdigital.io/#hub">Hub</a></li><li><a href="https://expdigital.io/#exp">A EXP</a></li><li><a href="https://expdigital.io/#metodo">Método</a></li><li><a href="https://expdigital.io/#faq">Dúvidas</a></li><li><a href="https://expdigital.io/#contato">Contato</a></li><li><a href="https://expdigital.io/loja">Loja</a></li><li><a href="https://expdigital.io/pedidos">Meus pedidos</a></li><li><a href="https://expdigital.io/suporte">Suporte</a></li><li><a href="https://expdigital.io/sobre">Sobre a EXP</a></li></ul></div>
+    </div>
+    <div class="sf-place">
+      <div class="sf-addr">
+        <small>Onde estamos</small>
+        <p class="sf-street">Rua Espírito Santo, <em>616</em></p>
+        <p class="sf-city">Centro · Belo Horizonte/MG</p>
+        <a class="sf-map" href="https://www.google.com/maps/search/?api=1&amp;query=Rua%20Esp%C3%ADrito%20Santo%2C%20616%2C%20Belo%20Horizonte" target="_blank" rel="noopener">Ver no mapa <svg class="ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"/><path d="M9 7h8v8"/></svg></a>
+      </div>
+      <div class="sf-tiles">
+        <a class="tile" href="https://wa.me/553121810089?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20EXP." target="_blank" rel="noopener"><span class="ti"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.4 3.9 1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg></span><span><small>WhatsApp</small>(31) 2181-0089</span></a>
+        <div class="tile"><span class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span><span><small>E-mail</small><span class="sel">contato@app.expdigital.io</span></span></div>
+        <a class="tile" href="https://www.instagram.com/expdigital.io/" target="_blank" rel="noopener"><span class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></span><span><small>Instagram</small>@expdigital.io</span></a>
+        <div class="tile"><span class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><span><small>Horário</small>Segunda a sexta, das 9h às 18h<i>Horário de Brasília</i></span></div>
+      </div>
+      <p class="sf-note">Atendimento presencial em Belo Horizonte e a distância para empresas de todo o Brasil.</p>
+    </div>
+  </div>
+  <p class="sf-partner">Bipa Business é um produto da Bipa, que presta a conta e os serviços financeiros. A EXP Digital é parceira e indica o serviço.</p>
+  <div class="sf-legal">
+    <span>© 2026 EXP Digital · EXPDIGITAL TECNOLOGIA LTDA · CNPJ 46.924.043/0001-64</span>
+    <span><a href="https://expdigital.io/termos">Termos de uso</a><a href="https://expdigital.io/privacidade">Política de privacidade</a></span>
+  </div>
+</footer>
+
+<script>
+/* Fundo animado: um cometa de partículas desenha a espiral da Bipa, cruza para a direita
+   e termina desenhando o símbolo da EXP. Depois o desenho fica vivo: as partículas cintilam
+   e um brilho continua percorrendo o traço em loop. Canvas 2D, sem bibliotecas. */
+(function(){
+  var canvas = document.getElementById('trail');
+  if (!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var cap = document.getElementById('cap');
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var W = 500, H = 400;                     // espaço de coordenadas do desenho
+  var NS = 'http://www.w3.org/2000/svg';
+  var DRAW_MS = 5200, LOOP_MS = 9000;
+
+  var BS = 0.29, BX = 66, BY = -30, BW = 1.32;   // BW alarga a espiral na horizontal
+           // Bipa: no alto, na diagonal acima da EXP (desenho de ~676×674)
+  var ES = 2.6, EX = 196, EY = 166;         // EXP: embaixo à direita, maior (viewBox 115×96)
+  function mapE(x,y){ return [EX + x*ES, EY + y*ES]; }
+  function mapB(x,y){ return [BX + x*BS*BW, BY + y*BS]; }
+  function mapId(x,y){ return [x,y]; }
+
+  var ORANGE = [[0,'#FF4D00'],[0.6,'#FF7433'],[1,'#FF9C74']];
+  var SPIRAL = [[0,'#5BD04A'],[0.17,'#E8D51E'],[0.3,'#F9B81C'],[0.42,'#FA8A2A'],[0.52,'#FF4B4B'],
+                [0.62,'#D53F9E'],[0.72,'#9A3BDE'],[0.86,'#6B42EE'],[1,'#3B84F0']];
+
+  var B1 = mapB(60,610), E0 = mapE(9.5,57);
+  var B0 = mapB(60,65);
+  var segs = [
+    { d:'M -140 -120 C -60 -90, -10 -50, '+(B0[0]-40)+' '+(B0[1]-6)+' S '+(B0[0]-8)+' '+B0[1]+', '+B0[0]+' '+B0[1], map:mapId, w:3, kind:'lead', grad:[[0,'#3a5a2a'],[1,'#5BD04A']] },
+    { d:'M60 65 C 250 10, 640 30, 640 200 C 640 330, 470 405, 280 405 C 120 405, 30 380, 30 335 C 30 285, 150 265, 290 265 C 470 265, 650 340, 650 470 C 650 600, 470 640, 300 640 C 190 640, 110 625, 60 610', map:mapB, w:62*BS, kind:'band', grad:SPIRAL },
+    { d:'M'+B1[0]+' '+B1[1]+' C '+(B1[0]-10)+' '+(B1[1]+70)+', '+(E0[0]-70)+' '+(E0[1]+10)+', '+E0[0]+' '+E0[1], map:mapId, w:5, kind:'thread', grad:[[0,'#3B84F0'],[0.5,'#C04BE0'],[1,'#FF4D00']] },
+    { d:'M9.5 57 A47.5 47.5 0 0 1 57 9.5 L95 9.5', map:mapE, w:19*ES, kind:'band', grad:[[0,'#FF4D00'],[1,'#FF6A1F']] },
+    { d:'M95 9.5 Q104 10 104.5 19', map:mapE, w:3, kind:'thread', grad:[[0,'#FF6A1F'],[1,'#FF6A1F']] },
+    { d:'M104.5 19 A28.5 28.5 0 0 1 76 47.5 L45.87 47.5 A19 19 0 0 0 45.87 85.5 L76 85.5 A28.5 28.5 0 0 0 104.5 57', map:mapE, w:19*ES, kind:'band', grad:ORANGE }
+  ];
+
+  function hex(h){ return [parseInt(h.slice(1,3),16),parseInt(h.slice(3,5),16),parseInt(h.slice(5,7),16)]; }
+  function gradAt(g,t){
+    for (var i=1;i<g.length;i++) if (t<=g[i][0]) {
+      var a=g[i-1], b=g[i], k=(t-a[0])/((b[0]-a[0])||1), A=hex(a[1]), B=hex(b[1]);
+      return [A[0]+(B[0]-A[0])*k|0, A[1]+(B[1]-A[1])*k|0, A[2]+(B[2]-A[2])*k|0];
+    }
+    return hex(g[g.length-1][1]);
+  }
+  function gauss(){ var u=0,v=0; while(!u)u=Math.random(); while(!v)v=Math.random(); return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v); }
+
+  // Amostra os caminhos (posição + normal) no espaço do desenho
+  var svg = document.createElementNS(NS,'svg');
+  svg.setAttribute('style','position:absolute;width:0;height:0;overflow:hidden');
+  document.body.appendChild(svg);
+  var total = 0;
+  segs.forEach(function(s){
+    var path = document.createElementNS(NS,'path'); path.setAttribute('d', s.d); svg.appendChild(path);
+    var L = path.getTotalLength(), N = 600, pts = [];
+    for (var i=0;i<=N;i++){ var p = path.getPointAtLength(L*i/N); pts.push(s.map(p.x,p.y)); }
+    var len = 0; for (i=1;i<=N;i++) len += Math.hypot(pts[i][0]-pts[i-1][0], pts[i][1]-pts[i-1][1]);
+    s.pts = pts; s.len = len; s.weight = len * (s.kind==='thread' ? 0.7 : s.kind==='lead' ? 0.3 : 1); total += s.weight;
+  });
+  svg.remove();
+  var GRP = [0,0,1,2,2,2];                  // 0 = Bipa, 1 = fio entre as duas, 2 = EXP
+  segs.forEach(function(s,i){ s.g = GRP[i]; });
+  var acc = 0;
+  segs.forEach(function(s){ s.t0 = acc/total; acc += s.weight; s.t1 = acc/total; });
+
+  function sample(s,u){
+    var f = u*(s.pts.length-1), i = Math.min(s.pts.length-2, f|0), k = f-i;
+    var a = s.pts[i], b = s.pts[i+1], dx=b[0]-a[0], dy=b[1]-a[1], m=Math.hypot(dx,dy)||1;
+    return { x:a[0]+dx*k, y:a[1]+dy*k, nx:-dy/m, ny:dx/m };
+  }
+  function headAt(P){
+    for (var i=0;i<segs.length;i++){ var s=segs[i]; if (P<=s.t1){ var u=(P-s.t0)/((s.t1-s.t0)||1); var o=FL(s.g,u), p=sample(s,u); p.x+=o[0]; p.y+=o[1]; return { p:p, c:gradAt(s.grad,u) }; } }
+    var l = segs[segs.length-1], o2=FL(l.g,1), p2=sample(l,1); p2.x+=o2[0]; p2.y+=o2[1]; return { p:p2, c:gradAt(l.grad,1) };
+  }
+
+  // FB/FE = flutuação; LB/LE = deslocamento de layout (no celular a EXP vai para a esquerda e a Bipa para a direita)
+  var FB = [0,0], FE = [0,0], LB = [0,0], LE = [0,0], FO = [0,0];
+  function FL(g,u){
+    var bx = FB[0]+LB[0], by = FB[1]+LB[1], ex = FE[0]+LE[0], ey = FE[1]+LE[1];
+    if (g===0){ FO[0]=bx; FO[1]=by; } else if (g===2){ FO[0]=ex; FO[1]=ey; } else { FO[0]=bx+(ex-bx)*u; FO[1]=by+(ey-by)*u; }
+    return FO;
+  }
+
+  // Cores arredondadas e só trocadas quando mudam: deixa cada quadro bem mais leve
+
+  // Partículas, ordenadas pela posição no traço
+  var parts = [];
+  segs.forEach(function(s){
+    var n = Math.round(s.len * (s.kind==='band' ? s.w*(s.w > 30 ? 0.12 : 0.17) : s.kind==='lead' ? 0.9 : 1.4));   // pontos espaçados, mesma densidade nas duas marcas
+    for (var i=0;i<n;i++){
+      var u = Math.random(), pt = sample(s,u);
+      var off = s.kind==='band' ? (Math.random()-0.5)*s.w*0.94 + gauss()*s.w*0.05 : gauss()*s.w*0.35;
+      var c = gradAt(s.grad,u);
+      parts.push({ g: s.g, gu: u, t: s.t0 + u*(s.t1-s.t0), x: pt.x+pt.nx*off, y: pt.y+pt.ny*off,
+        r: (s.kind==='band' ? 0.55+Math.random()*0.6 : 0.4+Math.random()*0.4),
+        a: (s.kind==='band' ? 0.4+Math.random()*0.6 : s.kind==='lead' ? 0.25+Math.random()*0.3 : 0.45+Math.random()*0.4),
+        dx: 0, dy: 0, ph: Math.random()*6.28, sp: 0.6+Math.random()*1.6, c: 'rgb('+((c[0]>>3)<<3)+','+((c[1]>>3)<<3)+','+((c[2]>>3)<<3)+')' });
+    }
+  });
+  parts.sort(function(a,b){ return a.t-b.t; });
+
+  // Posição do desenho: à direita no desktop, no topo no celular
+  var dpr = 1, sc = 1, ox = 0, oy = 0;
+  function layout(){
+    var r = canvas.getBoundingClientRect();
+    dpr = Math.min(2, window.devicePixelRatio||1);
+    canvas.width = Math.round(r.width*dpr); canvas.height = Math.round(r.height*dpr);
+    var cw = r.width, ch = r.height, bx, by, bw, bh;
+    if (cw >= 700){ bw = cw*(cw > 1100 ? 0.57 : 0.66); by = 128; bh = ch - by - ch*0.05; bx = cw - bw - cw*0.01; }   // começa abaixo do cabeçalho
+    else { bx = cw*0.04; bw = cw*0.92; by = 104; bh = ch*0.3; }
+    var WW = W, HH = H;
+    if (cw >= 700){ LB[0]=LB[1]=LE[0]=LE[1]=0; }
+    else { WW = 565; HH = 250; LB[0] = -72; LB[1] = 60; LE[0] = 68; LE[1] = -165; }   // Bipa | EXP lado a lado (o laser entra pela esquerda e sai na EXP)
+    sc = Math.min(bw/WW, bh/HH);
+    ox = (cw >= 700 ? bx + bw - WW*sc : bx + (bw - WW*sc)/2) * dpr; oy = (by + (bh - HH*sc)/2) * dpr; sc *= dpr;
+  }
+  layout(); window.addEventListener('resize', layout);
+
+  // Mouse: as partículas perto do cursor se afastam de leve e voltam ao lugar
+  var mx = -1e4, my = -1e4, MR = 40;
+  window.addEventListener('pointermove', function(e){
+    var r = canvas.getBoundingClientRect();
+    mx = ((e.clientX - r.left)*dpr - ox)/sc; my = ((e.clientY - r.top)*dpr - oy)/sc;
+  }, {passive:true});
+  document.addEventListener('pointerleave', function(){ mx = my = -1e4; });
+
+  var start = performance.now() + 120, visible = true;
+  function ease(x){ return x<0?0:x>1?1:(x<.5 ? 4*x*x*x : 1-Math.pow(-2*x+2,3)/2); }
+
+  function frame(now){
+    var el = now - start;
+    var P = reduce ? 1 : ease(el/DRAW_MS);
+    var done = P >= 1;
+    var loopT = done && !reduce ? ((el-DRAW_MS) % LOOP_MS)/LOOP_MS : -1;
+
+    ctx.setTransform(1,0,0,1,0,0);
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.setTransform(sc,0,0,sc,ox,oy);
+    ctx.globalCompositeOperation = 'lighter';
+    var tt = now/1000, fresh = 0.035;
+    // Flutuação: cada logo balança devagar no seu próprio ritmo
+    if (!reduce){
+      FB[0] = Math.sin(tt*0.3)*0.8;        FB[1] = Math.sin(tt*0.42 + 0.8)*1.6;
+      FE[0] = Math.sin(tt*0.26 + 2.1)*0.7; FE[1] = Math.sin(tt*0.37 + 2.9)*1.8;
+    }
+
+    var lastC = '';
+    for (var i=0;i<parts.length;i++){
+      var q = parts[i]; if (q.t > P) break;
+      var age = done ? 1 : (P - q.t)/fresh;       // 0 = acabou de aparecer
+      var k = age < 1 ? age : 1;
+      var tw = reduce ? 1 : 0.65 + 0.35*Math.sin(tt*q.sp + q.ph);
+      var wob = reduce ? 0 : Math.sin(tt*0.7 + q.ph)*0.45;
+      var boost = 0;
+      if (loopT >= 0){ var dl = loopT - q.t; if (dl < 0) dl += 1; if (dl < 0.03) boost = 1 - dl/0.03; }
+      ctx.globalAlpha = Math.min(1, q.a * tw * (age < 1 ? 1.5 - 0.5*k : 1) + boost*0.35);
+      if (!reduce){
+        var ex = q.x - mx, ey = q.y - my, d2 = ex*ex + ey*ey, tx = 0, ty = 0;
+        if (d2 < MR*MR){ var d = Math.sqrt(d2)||1, f = (1 - d/MR); f = f*f*9; tx = ex/d*f; ty = ey/d*f; }
+        q.dx += (tx - q.dx)*0.08; q.dy += (ty - q.dy)*0.08;
+      }
+      var fo = FL(q.g, q.gu);
+      var rr = q.r*(1+boost*0.3);
+      if (q.c !== lastC){ ctx.fillStyle = q.c; lastC = q.c; }
+      ctx.beginPath(); ctx.arc(q.x + wob + q.dx + fo[0], q.y - wob + q.dy + fo[1], rr, 0, 6.283); ctx.fill();
+    }
+
+    // Cabeça do cometa: um risco fino e brilhante que acompanha o traço
+    var hp = !done ? (P > 0.002 ? P : -1) : loopT;
+    if (hp >= 0){
+      var LEN = 0.028, STEPS = 18, prev = null;
+      ctx.lineCap = 'round';
+      for (var j=0;j<=STEPS;j++){
+        var tt2 = hp - LEN*(1 - j/STEPS); if (tt2 < 0) { if (!done) continue; tt2 += 1; }
+        var h = headAt(tt2), f = j/STEPS;
+        if (prev){
+          ctx.globalAlpha = 0.15 + 0.85*f*f;
+          ctx.strokeStyle = 'rgb('+Math.round(h.c[0]+(255-h.c[0])*f*0.75)+','+Math.round(h.c[1]+(255-h.c[1])*f*0.75)+','+Math.round(h.c[2]+(255-h.c[2])*f*0.75)+')';
+          ctx.lineWidth = 0.6 + 1.6*f;
+          ctx.beginPath(); ctx.moveTo(prev.x,prev.y); ctx.lineTo(h.p.x,h.p.y); ctx.stroke();
+        }
+        prev = h.p;
+      }
+      var hh = headAt(hp), g = ctx.createRadialGradient(hh.p.x,hh.p.y,0,hh.p.x,hh.p.y,12);
+      g.addColorStop(0,'rgba(255,255,255,.55)'); g.addColorStop(1,'rgba('+hh.c+',0)');
+      ctx.globalAlpha = 1; ctx.fillStyle = g; ctx.beginPath(); ctx.arc(hh.p.x,hh.p.y,12,0,6.283); ctx.fill();
+    }
+    ctx.globalCompositeOperation = 'source-over'; ctx.globalAlpha = 1;
+    if (cap) cap.classList.toggle('on', done);
+    if (visible && !reduce) requestAnimationFrame(frame);
+  }
+
+  if ('IntersectionObserver' in window){
+    new IntersectionObserver(function(es){
+      var v = es[0].isIntersecting; if (v && !visible){ visible = true; requestAnimationFrame(frame); } visible = v;
+    }).observe(canvas);
+  }
+  requestAnimationFrame(frame);
+
+  // Repassa as UTMs da campanha (ex.: post do Instagram) para o cadastro da Bipa e registra o clique no GA4
+  var q = new URLSearchParams(location.search);
+  document.querySelectorAll('.js-signup').forEach(function(a){
+    var u = new URL(a.href);
+    ['utm_source','utm_medium','utm_campaign','utm_content'].forEach(function(k){ if(q.get(k)) u.searchParams.set(k,q.get(k)); });
+    a.href = u.toString();
+    a.addEventListener('click', function(){ if (window.gtag) gtag('event','bipa_signup_click',{link_url:a.href}); });
+  });
+})();
+</script>
+
+<script>
+// Cabeçalho: menus suspensos e menu do celular
+(function(){
+  var dds = document.querySelectorAll('.dd');
+  dds.forEach(function(d){
+    var b = d.querySelector('button');
+    b.addEventListener('click', function(e){ e.stopPropagation(); var o = !d.classList.contains('open');
+      dds.forEach(function(x){ x.classList.remove('open'); x.querySelector('button').setAttribute('aria-expanded','false'); });
+      if (o){ d.classList.add('open'); b.setAttribute('aria-expanded','true'); } });
+    d.addEventListener('mouseenter', function(){ if (matchMedia('(hover:hover)').matches){ d.classList.add('open'); b.setAttribute('aria-expanded','true'); } });
+    d.addEventListener('mouseleave', function(){ d.classList.remove('open'); b.setAttribute('aria-expanded','false'); });
+  });
+  document.addEventListener('click', function(){ dds.forEach(function(x){ x.classList.remove('open'); }); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') dds.forEach(function(x){ x.classList.remove('open'); }); });
+  var bur = document.querySelector('.sh-burger'), m = document.getElementById('shm');
+  bur.addEventListener('click', function(){ var o = m.hidden; m.hidden = !o; bur.setAttribute('aria-expanded', String(o)); bur.setAttribute('aria-label', o ? 'Fechar menu' : 'Abrir menu'); });
+})();
+</script>
+</body>
+</html>
