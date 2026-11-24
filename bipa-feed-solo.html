@@ -47,7 +47,7 @@ function rnd() { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed
 function gauss() { let u = 0, v = 0; while (!u) u = rnd(); while (!v) v = rnd(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v); }
 
 // ---------- Desenho: Bipa em cima, EXP embaixo (mesmos traços da página)
-const SB = 0.96, BW = 1.12, BX = 540 - 340 * SB * BW, BY = 66 - 10 * SB;
+const SB = 0.84, BW = 1.12, BX = 540 - 340 * SB * BW, BY = 120 - 10 * SB;
 const ES = 4.8, EX = 548 - 9.5 * ES, EY = 196;
 const mapB = (x, y) => [BX + x * SB * BW, BY + y * SB];
 const mapE = (x, y) => [EX + x * ES, EY + y * ES];
