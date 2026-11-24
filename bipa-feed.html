@@ -18,11 +18,11 @@
   canvas{position:absolute;left:0;top:0;width:1080px;height:1350px}
   #glow{filter:blur(16px);opacity:.7;mix-blend-mode:screen}
   .mono{font-family:GeistMono,monospace;text-transform:uppercase;letter-spacing:.26em}
-  .lbl{left:0;width:1080px;text-align:center;font-size:24px;color:#FF7433;top:84px}
+  .lbl{left:0;width:1080px;text-align:center;font-size:24px;color:#FF7433;top:70px}
   .lbl i{display:inline-block;width:12px;height:12px;border-radius:50%;background:#FF4D00;box-shadow:0 0 16px #FF4D00;margin-right:16px;vertical-align:2px}
-  h1{left:0;width:1080px;top:690px;text-align:center;font-size:116px;line-height:1.0;font-weight:600;letter-spacing:-.045em;text-transform:uppercase}
+  h1{left:0;width:1080px;top:722px;text-align:center;font-size:108px;line-height:1.0;font-weight:600;letter-spacing:-.045em;text-transform:uppercase}
   h1 em{font-style:normal;color:#FF4D00}
-  .chips{left:90px;width:900px;top:1060px;display:flex;flex-wrap:wrap;justify-content:center;gap:12px;list-style:none}
+  .chips{left:90px;width:900px;top:1068px;display:flex;flex-wrap:wrap;justify-content:center;gap:12px;list-style:none}
   .chips li{font-size:25px;color:#EDE6E1;border:1.5px solid rgba(255,255,255,.16);background:rgba(20,15,13,.6);border-radius:99px;padding:11px 22px}
   .chips li b{color:#FF4D00;font-weight:600}
   .foot{left:64px;right:64px;top:1250px;display:flex;justify-content:space-between;font-size:21px;color:rgba(255,255,255,.62)}
@@ -48,8 +48,8 @@ function rnd() { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed
 function gauss() { let u = 0, v = 0; while (!u) u = rnd(); while (!v) v = rnd(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v); }
 
 // ---------- Desenho: Bipa em cima, EXP embaixo (mesmos traços da página)
-const SB = 0.6, BW = 1.15, BX = 66 - 30 * SB * BW, BY = 196 - 10 * SB;
-const ES = 3.55, EX = 600 - 9.5 * ES, EY = 214;
+const SB = 0.7, BW = 1.1, BX = 34 - 30 * SB * BW, BY = 168 - 10 * SB;
+const ES = 4.35, EX = 572 - 9.5 * ES, EY = 186;
 const mapB = (x, y) => [BX + x * SB * BW, BY + y * SB];
 const mapE = (x, y) => [EX + x * ES, EY + y * ES];
 const mapId = (x, y) => [x, y];
