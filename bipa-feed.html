@@ -33,7 +33,6 @@
 <div id="bg"></div>
 <canvas id="glow" width="540" height="675"></canvas>
 <canvas id="cv" width="2160" height="2700"></canvas>
-<div class="abs mono lbl"><i></i>Nova parceria</div>
 <h1 class="abs">Operação<br>financeira<br><em>sob medida.</em></h1>
 <ul class="abs chips">
   <li>Pix recorrente</li><li>As melhores taxas</li><li>Suporte qualificado</li>
@@ -48,8 +47,8 @@ function rnd() { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed
 function gauss() { let u = 0, v = 0; while (!u) u = rnd(); while (!v) v = rnd(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v); }
 
 // ---------- Desenho: Bipa em cima, EXP embaixo (mesmos traços da página)
-const SB = 0.7, BW = 1.1, BX = 34 - 30 * SB * BW, BY = 168 - 10 * SB;
-const ES = 4.35, EX = 572 - 9.5 * ES, EY = 186;
+const SB = 0.7, BW = 1.1, BX = 34 - 30 * SB * BW, BY = 128 - 10 * SB;
+const ES = 4.35, EX = 572 - 9.5 * ES, EY = 146;
 const mapB = (x, y) => [BX + x * SB * BW, BY + y * SB];
 const mapE = (x, y) => [EX + x * ES, EY + y * ES];
 const mapId = (x, y) => [x, y];
