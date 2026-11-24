@@ -26,7 +26,7 @@
   .h{font-size:118px;font-weight:600;letter-spacing:-.045em;text-transform:uppercase}
   .h em{font-style:normal;color:#FF4D00}
   .tick{left:0;width:1080px;height:84px;overflow:hidden;text-align:center}
-  .tick div{position:absolute;left:0;width:1080px;font-size:58px;font-weight:500;letter-spacing:-.02em;color:#EDE6E1}
+  .tick div{position:absolute;left:0;width:1080px;font-size:52px;font-weight:500;letter-spacing:-.02em;color:#EDE6E1}
   .tick b{display:inline-block;width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,#FF4D00,#FF9C74);margin-right:22px;vertical-align:-6px;position:relative}
   .tick b:after{content:"";position:absolute;left:15px;top:10px;width:12px;height:21px;border:solid #fff;border-width:0 5px 5px 0;transform:rotate(45deg)}
   .pill{left:190px;width:700px;height:132px;border-radius:66px;background:linear-gradient(90deg,#FF4D00,#FF8A55);display:flex;align-items:center;justify-content:center;gap:22px;font-size:44px;font-weight:600;letter-spacing:.06em;box-shadow:0 0 60px rgba(255,77,0,.55),0 0 160px rgba(255,77,0,.25)}
@@ -46,14 +46,14 @@
 <div class="abs mono lbl" id="cap" style="top:1010px;color:rgba(255,255,255,.7);font-size:28px">Bipa Business&nbsp;&nbsp;<span style="color:#FF4D00">+</span>&nbsp;&nbsp;EXP Digital</div>
 
 <div id="head">
-  <div class="abs line h" id="h1" style="top:1095px"><span>Infraestrutura</span></div>
-  <div class="abs line h" id="h2" style="top:1220px"><span>bancária</span></div>
-  <div class="abs line h" id="h3" style="top:1345px"><span>da <em>EXP.</em></span></div>
+  <div class="abs line h" id="h1" style="top:1095px"><span>Operação</span></div>
+  <div class="abs line h" id="h2" style="top:1220px"><span>financeira</span></div>
+  <div class="abs line h" id="h3" style="top:1345px"><span><em>sob medida.</em></span></div>
 </div>
 <div class="abs tick" id="tick" style="top:1560px"></div>
 
 <div id="endc">
-  <div class="abs end" id="e1" style="top:1110px">Sua conta PJ,<br>com a <em>EXP.</em></div>
+  <div class="abs end" id="e1" style="top:1110px">Infra robusta.<br>Estratégia <em>EXP.</em></div>
   <div class="abs pill" id="e2" style="top:1420px">CRIAR CONTA
     <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></div>
   <div class="abs mono sub" id="e3" style="top:1610px">Link na bio · expdigital.io/bipa</div>
@@ -146,7 +146,7 @@ const CB = [540, 620], CE = [540, 1010 + 48 * ES];
 
 // ---------- linha do tempo (120 BPM, 1 batida = 0,5 s)
 const T_DRAW0 = 0.0, T_DRAW1 = 6.6, T_HIT = 7.0;
-const TICKS = ['Conta PJ', 'Pix no CNPJ', 'Link de pagamento', 'Cobrança recorrente', 'Boletos', 'Extrato pro contador'];
+const TICKS = ['Pix recorrente', 'As melhores taxas', 'Suporte qualificado', 'Time de dev EXP de prontidão', 'Seu módulo financeiro sob medida'];
 const T_TICK = 9.0;   // uma por batida
 $('tick').innerHTML = TICKS.map(s => `<div><b></b>${s}</div>`).join('');
 

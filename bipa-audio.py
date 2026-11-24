@@ -147,8 +147,8 @@ for b in range(9):
     put(reverb(st, 1.2, 0.35), tb + 0.25, 0.25, pan=0.15 * (-1) ** b)
 for i, t0 in enumerate((8.35, 8.5, 8.65)):
     put(whoosh(0.28, 1200, 8000, rise=False), t0 - 0.05, 0.35, pan=(-0.3, 0, 0.3)[i])
-for i in range(6):
-    put(pop(1250 + 140 * i), 9.0 + i * 0.5, 0.42)
+for i in range(5):
+    put(pop(1250 + 160 * i), 9.0 + i * 0.5, 0.42)
 # ---------------- Ato 3: final (12–15)
 put(whoosh(0.45, 400, 7000), 11.6, 0.5)
 put(kick(0.5), 12.05, 0.7)
